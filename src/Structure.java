@@ -1,17 +1,10 @@
-/**
- * 
- */
+import java.util.*;
 
-/**
- * @author Alex
- *
- */
 public class Structure {
 	protected int x; 
 	protected int y;
 	protected Sprite sprite;
 	private boolean destroyed;
-	
 	
 	/**
  	 * @param x: x location of the structure
