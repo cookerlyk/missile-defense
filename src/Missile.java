@@ -1,4 +1,4 @@
-import Random;
+import java.util.*;
 
 public class Missile extends Sprite {
 	private Sprite sprite;
@@ -11,7 +11,7 @@ public class Missile extends Sprite {
 	public Missile() { // change
 		WIDTH = ;// some width
 		HEIGHT = ; // some height
-		x = rand.nextInt(WIDTH; // Not sure
+		x = rand.nextInt(WIDTH); // Not sure
 		y = 0;
 		isFriendly = false;
 		isDestroyed = false;
