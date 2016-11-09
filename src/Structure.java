@@ -4,7 +4,7 @@ public class Structure {
 	protected int x; 
 	protected int y;
 	protected Sprite sprite;
-	private boolean destroyed;
+	protected boolean destroyed;
 	
 	/**
  	 * @param x: x location of the structure
