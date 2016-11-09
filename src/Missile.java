@@ -1,74 +1,78 @@
 import Random;
 
-public class Missile extends Sprite {
+public class Missile {
 	private Sprite sprite;
-	private ObjectState state;
 	private boolean isFriendly, isDestroyed;
-	private int x, y, velocity;
-	private String path;
-	private const int WIDTH, HEIGHT;
+	private int x, y, velocity, dx, dy;
+	private static int WIDTH = 50, HEIGHT = 50;
+	private boolean isHit;
 
 	public Missile() { // change
 		WIDTH = ;// some width
 		HEIGHT = ; // some height
-		x = rand.nextInt(WIDTH; // Not sure
+		x = rand.nextInt(WIDTH); // Not sure
 		y = 0;
 		isFriendly = false;
 		isDestroyed = false;
-		path = "";
+		dx = dy = rand.Random();
 		velocity = 0;
+		isHit = false;
 	}
-	public Missile(Sprite spr, ObjectState s, boolean friendFoe, boolean status, int xCo, int yCo, int vel, String p, const int W, const int H) {
+	public Missile(Sprite spr, boolean friendFoe, int xCo, int yCo, int vel, int dx, int dy) {
 		sprite = spr;
-		state = s;
 		isFriendly = friendFoe;
-		isDestroyed = status;
+		isDestroyed = false;
 		x = xCo;
 		y = yCo;
 		velocity = vel;
-		path = p;
-		WIDTH = W;
-		HEIGHT = H;			
+		this.dx = dx;
+		this.dy = dy;
+		isHit = false;
 	}
-
-	public boolean getIsFriendly() {
+	public boolean isFriendly() {
 		return isFriendly;
 	}
-	public boolean getIsDestroyed() {
+	public void setFriendly(boolean isFriendly) {
+		this.isFriendly = isFriendly;
+	}
+	public boolean isDestroyed() {
 		return isDestroyed;
+	}
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 	public int getX() {
 		return x;
 	}
+	public void setX(int x) {
+		this.x = x;
+	}
 	public int getY() {
 		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 	public int getVelocity() {
 		return velocity;
 	}
+	public void setVelocity(int velocity) {
+		this.velocity = velocity;
+	}
 	public String getPath() {
 		return path;
 	}
-	public const int getWidth() {
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public Sprite getSprite() {
+		return sprite;
+	}
+	public int getWIDTH() {
 		return WIDTH;
 	}
-	public const int getHeight() {
-		return WIDTH;
+	public int getHEIGHT() {
+		return HEIGHT;
 	}
-
-	public void setX(int newX) {
-		x = nX;
-	}
-	public void setY(int newY) {
-		y = nY;
-	}
-	public void setVelocity(int v) {
-		velocity = v;
-	}
-	public void setIsDestroyed(boolean newStatus) {
-		isDestroyed = newStatus;
-	}
-	public void setPath(String p) {
-		path = p;
-	}
+	
 }
