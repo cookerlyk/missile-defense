@@ -9,11 +9,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Missile {
 	private Sprite sprite;
-	private boolean isFriendly, isDestroyed;
+	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y, dx, dy;
 	private static int WIDTH = 50, HEIGHT = 50;
-	private boolean isHit;
 	
+	/**
+	 * Default constructor. Intended for enemies.
+	 */
 	public Missile() {
 		sprite = EnemyMissileSprite; // DefaultMissileSprite;
 		isFriendly = false;
@@ -23,7 +25,16 @@ public class Missile {
 		y = 0;
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
+		isHit = false;
 	}
+	/**
+	 * Intentional use is for friendly missiles.
+	 * @param s Sprite
+	 * @param side Friend or foe / true or false
+	 * @param status Destroyed or not
+	 * @param x starting x coordinate
+	 * @param y starting y coordinate
+	 */
 	
 	public Missile(Sprite s, boolean side, boolean status, int x, int y) {
 		sprite = s;
@@ -33,8 +44,18 @@ public class Missile {
 		this.y = y;
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
+		isHit = false;
 	}
 	
+	/**
+	 * Checks for hit.
+	 */
+	
+	public boolean checkIfHit() {
+		if (isHit())
+			return true;
+		else return false;
+	}
 	
 	/**
 	 * @return the isDestroyed
