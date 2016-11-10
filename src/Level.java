@@ -11,25 +11,35 @@ import java.util.*;
 public class Level {
 	//TODO change to stage rather than level?
 	
-	private final int ROUND_TIME = 60;  // Round is 60 seconds
-	private final int BOARD_HEIGHT = 0; // TODO add size
-	private final int BOARD_WIDTH = 0;  // TODO add size
+	private final int TOTAL_TURRETS = 4;
+	private final int TOTAL_BUILDINGS = 4;
 	
-	private Board stage;
+	private final int ROUND_TIME = 60;  // Round is 60 seconds
+	
+
 	private boolean gameOver;
-	private int score;
-	private int time;
-	private int roundNum;
+	private int score, time, roundNum;
+	private Gameplay game;
+	
+	// array lists that will hold the missile objects on the board
+	private List<Missile> friendlyMissiles = new ArrayList<Missile>();
+	private List<Missile> enemyMissiles = new ArrayList<Missile>();
+	
+	// Static Arrays to hold the turret and the building objects
+	private Turret[] turrets;
+	private Structure[] buildings;
 	
 	/*
 	 * Set up the level (round?) when called
 	 */
 	public Level(){
-		this.stage = new Board(this.BOARD_HEIGHT, this.BOARD_WIDTH);
+		this.game = new Gameplay();
 		this.gameOver = false;
 		this.score = 0;
 		this.time = this.ROUND_TIME;
 		this.roundNum = 1;
+		this.turrets = new Turret[this.TOTAL_TURRETS];
+		this.buildings = new Structure[this.TOTAL_BUILDINGS];
 	}
 	
 	/*
@@ -38,7 +48,7 @@ public class Level {
 	 * as resets all of the turret and building objects to not
 	 * destroyed
 	 */
-	public void resetBoard(){
+	public void resetLevel(){
 		this.time = this.ROUND_TIME;
 		this.roundNum += 1;
 		// TODO reset the turrets and structures here
@@ -97,28 +107,32 @@ public class Level {
 	/*
 	 * Returns the array of turret objects on the board
 	 */
-	public Turret getTurretsOnStage(){
-		return stage.getTurrets();
+	public Turret[] getTurretsOnStage(){
+		return this.turrets;
 	}
 	
 	/*
 	 * Returns the array of buildings on the board
 	 */
-	public Structure getBuildingsOnStage(){
-		return  this.stage.getBuildings();
+	public Structure[] getBuildingsOnStage(){
+		return this.buildings;
+	}
+	
+	public void addFriendlyMissile(Missile missle){
+		this.friendlyMissiles.add(missile);
 	}
 	
 	/*
 	 * returns the friendly missiles that are on the stage
 	 */
 	public List<Missile> getFriendlyMissilesOnStage(){
-		return stage.getFriendlyMissiles();
+		return this.friendlyMissiles;
 	}
 	
 	/*
 	 * returns the enemy missiles that are on the stage
 	 */
 	public List<Missile> getEnemyMissilesOnStage(){
-		return stage.getEnemyMissiles();
+		return this.enemyMissiles;
 	}
 }
