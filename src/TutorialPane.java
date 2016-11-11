@@ -27,7 +27,7 @@ public class TutorialPane extends GraphicsPane{
 
 	@Override
 	public void hideContents() {
-		//program.remove(tut1);
+		program.remove(tut1);
 		program.remove(backButton);
 	}
 	
