@@ -62,6 +62,10 @@ public class MenuPane extends GraphicsPane {
 		if (obj == highScore){
 			program.switchToHighScore();
 		}
+		
+		if (obj == exit){
+			//program.destroy();
+		}
 		else return;
 	}
 }

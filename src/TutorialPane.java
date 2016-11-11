@@ -70,6 +70,8 @@ public class TutorialPane extends GraphicsPane{
 	public void hideContents() {
 		program.remove(page[currentPage]);
 		program.remove(backButton);
+		program.remove(nextPage);
+		program.remove(prevPage);
 	}
 	
 	@Override
