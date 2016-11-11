@@ -17,7 +17,7 @@ public class Missile {
 	 * Default constructor. Intended for enemies.
 	 */
 	public Missile() {
-		//sprite = EnemyMissileSprite; // DefaultMissileSprite;. Sprite constructors not done yet.
+		//sprite = EnemyMissileSprite; // DefaultMissileSprite;. Sprite constructors not done.
 		isFriendly = false;
 		isDestroyed = false;
 		Random rand;
@@ -45,6 +45,11 @@ public class Missile {
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
 		isHit = false;
+	}
+	
+	public void move() {
+		this.x += dx;
+		this.y += dy;
 	}
 	
 	/**
