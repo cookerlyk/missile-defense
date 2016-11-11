@@ -1,5 +1,12 @@
 import java.util.*;
 import java.io.*;
+import java.io.*;
+
+/**
+ * 
+ * @author obaid
+ *
+ */
 
 public class HighScores {
 	private String[][] scoreArray;
@@ -15,8 +22,26 @@ public class HighScores {
 		sc.close();
 	}
 	
-	public void drawSceen() {
+	public String[][] submitScore() {
+		String[][] score = new String[1][1];
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Input name: ");
+		String s = in.readLine();
+		score[0][0] = s;
 		
+		System.out.print("Input score: ");
+		s = in.readLine();
+		score[0][1] = s;
+	}
+	
+	public void addScore(String[1][1] score) {
+		
+	}
+	
+	public void drawSceen() {
+		for (int i = 0; i < 10; i++) {
+			System.out.print("Name: " + scoreArray[i][0] + " Score: " + scoreArray[i][1]);
+		}
 	}
 	
 	public void back() {

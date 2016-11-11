@@ -17,7 +17,7 @@ public class Missile {
 	 * Default constructor. Intended for enemies.
 	 */
 	public Missile() {
-		//sprite = EnemyMissileSprite; // DefaultMissileSprite;. Sprite constructors not done yet.
+		//sprite = EnemyMissileSprite; // DefaultMissileSprite;. Sprite constructors incomplete.
 		isFriendly = false;
 		isDestroyed = false;
 		Random rand;
