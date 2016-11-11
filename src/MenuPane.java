@@ -55,5 +55,13 @@ public class MenuPane extends GraphicsPane {
 		if(obj == playGame) {
 			program.switchToSome();
 		}
+		if(obj == tutorial){
+			program.switchToTutorial();
+		}
+		
+		if (obj == highScore){
+			program.switchToHighScore();
+		}
+		else return;
 	}
 }
