@@ -36,25 +36,15 @@ public class Missile {
 	 * @param y starting y coordinate
 	 */
 	
-	public Missile(Sprite s, boolean side, boolean status, int x, int y) {
+	public Missile(Sprite s, boolean side, int x, int y) {
 		sprite = s;
 		isFriendly = side;
-		isDestroyed = status;
+		isDestroyed = false;
 		this.x = x;
 		this.y = y;
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
 		isHit = false;
-	}
-	
-	/**
-	 * Checks for hit.
-	 */
-	
-	public boolean checkIfHit() {
-		if (isHit())
-			return true;
-		else return false;
 	}
 	
 	/**
