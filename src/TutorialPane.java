@@ -37,22 +37,24 @@ public class TutorialPane extends GraphicsPane{
 		program.add(page[currentPage+1]);
 		program.remove(page[currentPage]);
 		currentPage +=1;
-		page[currentPage].sendToBack();
+		
 		if(currentPage == numPages-1){
 			program.remove(nextPage);
-			program.add(prevPage);
 		}
+		program.add(prevPage);
+		page[currentPage].sendToBack();
 	}
 	
 	private void prevPage(){
 		program.add(page[currentPage-1]);
 		program.remove(page[currentPage]);
 		currentPage -=1;
-		page[currentPage].sendToBack();
+		
 		if(currentPage == 0){
 			program.remove(prevPage);
-			program.add(nextPage);
 		}
+		program.add(nextPage);
+		page[currentPage].sendToBack();
 	}
 	
 	@Override
