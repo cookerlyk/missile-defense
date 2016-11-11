@@ -4,8 +4,8 @@ import acm.graphics.*;
 import acm.program.*;
 
 public class MainApplication extends GraphicsApplication {
-	public static final int WINDOW_WIDTH = 800;
-	public static final int WINDOW_HEIGHT = 600;
+	public static final int WINDOW_WIDTH = 1024;
+	public static final int WINDOW_HEIGHT = 768;
 	
 	private SomePane somePane;
 	private MenuPane menu;
@@ -17,10 +17,11 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void run() {
 		System.out.println("Hello, world!");
-		somePane = new SomePane(this);
+		
 		menu = new MenuPane(this);
+		somePane = new SomePane(this);
 		setupInteractions();
-		switchToSome();
+		switchBack();
 	}
 	
 	/* Method: setupInteractions
@@ -53,4 +54,5 @@ public class MainApplication extends GraphicsApplication {
 		}
 		switchToScreen(somePane);
 	}
+	
 }

@@ -1,34 +1,58 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-
+import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
 
 public class MenuPane extends GraphicsPane {
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
-	private GButton rect;
+	
+	private GButton playGame;
+	private GButton tutorial;
+	private GButton highScore;
+	private GButton exit;
+	
+	private GImage background;
 	
 	public MenuPane(MainApplication app) {
 		program = app;
-		rect = new GButton("Next", 200, 200, 200, 200);
-		rect.setFillColor(Color.RED);
+		
+		playGame = new GButton("Play", 200, 100, 200, 100);
+		tutorial = new GButton ("Tutorial", 200, 250, 200, 100);
+		highScore = new GButton("High Score", 200, 400, 200, 100);
+		exit = new GButton("Exit", 200, 550, 200, 100);
+		
+		playGame.setFillColor(Color.RED);
+		tutorial.setFillColor(Color.RED);
+		highScore.setFillColor(Color.RED);
+		exit.setFillColor(Color.RED);
+		
+		background = new GImage("Screens/menu_placeholder.png", 0, 0);
 	}
 	
 	@Override
 	public void showContents() {
-		program.add(rect);
+		program.add(background);
+		program.add(playGame);
+		program.add(tutorial);
+		program.add(highScore);
+		program.add(exit);
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(rect);
+		program.remove(playGame);
+		program.remove(background);
+		program.remove(tutorial);
+		program.remove(highScore);
+		program.remove(exit);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if(obj == rect) {
+		if(obj == playGame) {
 			program.switchToSome();
 		}
 	}
