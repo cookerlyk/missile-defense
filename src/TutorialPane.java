@@ -5,29 +5,68 @@ import acm.graphics.GObject;
 
 
 public class TutorialPane extends GraphicsPane{
-
+	
+	private static int numPages = 3;//change this to increase the number of pages
+	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
-	private GImage tut1;
-	private GImage tut2;
+	private GImage page[] = new GImage[numPages];
 	private GButton backButton;
 	
+	private GButton nextPage;
+	private GButton prevPage;
+	
+	
+	
+	private int currentPage;
 	
 	public TutorialPane(MainApplication app) {
 		this.program = app;
 		backButton = new GButton("Back", 100, 100, 100, 100);
-		tut1 = new GImage("Screens/tutorial_1_placeholder.png",0, 0);
-		//tut2 = new GImage("Screens/tutorial_2_placeholder.png", 0, 0);
+		
+		prevPage = new GButton("Prev Page", 100, 600, 100, 50);
+		nextPage = new GButton("Next Page", 800, 600, 100, 50);
+		
+		//Pages must follow the naming convention. Remove placeholder to change from placeholder to actual screens
+		for (int i = 0; i < numPages; i++){
+			page[i] = new GImage("Screens/tutorial_"+ i +"_placeholder.png",0, 0);
+		}
+	}
+	
+	
+	private void nextPage(){
+		program.add(page[currentPage+1]);
+		program.remove(page[currentPage]);
+		currentPage +=1;
+		page[currentPage].sendToBack();
+		if(currentPage == numPages-1){
+			program.remove(nextPage);
+			program.add(prevPage);
+		}
+	}
+	
+	private void prevPage(){
+		program.add(page[currentPage-1]);
+		program.remove(page[currentPage]);
+		currentPage -=1;
+		page[currentPage].sendToBack();
+		if(currentPage == 0){
+			program.remove(prevPage);
+			program.add(nextPage);
+		}
 	}
 	
 	@Override
 	public void showContents() {
-		program.add(tut1);
+		program.add(page[0]);
+		currentPage = 0;
 		program.add(backButton);
+		program.add(nextPage);
 	}
 
+	
 	@Override
 	public void hideContents() {
-		program.remove(tut1);
+		program.remove(page[currentPage]);
 		program.remove(backButton);
 	}
 	
@@ -36,6 +75,14 @@ public class TutorialPane extends GraphicsPane{
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == backButton) {
 			program.switchBack();
+		}
+		
+		if(obj == nextPage && currentPage != numPages){
+			this.nextPage();
+		}
+		
+		if(obj == prevPage && currentPage != 0){
+			this.prevPage();
 		}
 	}
 	
