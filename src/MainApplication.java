@@ -17,10 +17,11 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void run() {
 		System.out.println("Hello, world!");
-		somePane = new SomePane(this);
+		
 		menu = new MenuPane(this);
+		somePane = new SomePane(this);
 		setupInteractions();
-		switchToSome();
+		switchBack();
 	}
 	
 	/* Method: setupInteractions
@@ -53,4 +54,5 @@ public class MainApplication extends GraphicsApplication {
 		}
 		switchToScreen(somePane);
 	}
+	
 }
