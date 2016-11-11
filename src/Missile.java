@@ -47,6 +47,11 @@ public class Missile {
 		isHit = false;
 	}
 	
+	public void move() {
+		this.x += dx;
+		this.y += dy;
+	}
+	
 	/**
 	 * @return the isDestroyed
 	 */
