@@ -18,12 +18,14 @@ public class Turret extends Structure{
 		else return false;
 	}
 	
-	void fireMissile(){
+	/**
+	 * 
+	 * @param x: the x location of the mouse when fireMissile is Called
+	 * @param y: the y location of the mouse when fireMissile is Called
+	 */
+	void fireMissile(int x, int y){
 		if(canFire()){
 			ammo -=1;
-			/*
-			 * create missile here. 
-			 */
 		}
 	}
 }

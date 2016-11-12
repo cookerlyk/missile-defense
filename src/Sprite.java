@@ -1,18 +1,32 @@
 import java.awt.Image;
 import java.awt.Graphics;
+import acm.graphics.GImage;
 
 public class Sprite {
-	private Image image;
+	private GImage image;
 	
-	public Sprite(Image image) {
+	public Sprite(GImage image) {
 		this.image = image;
 	}
 	
 	
+	
+	public int getWidth(){
+		return  (int)image.getWidth();
+	}
+	
+	public int getHeight(){
+		return (int)image.getHeight();
+	}
 	/**
 	 * Draws a sprite in a location when called.
 	 */
-	public void draw(int x, int y){
-		
+	public void draw(MainApplication p, int x, int y){
+		image.setLocation(x, y);
+		p.add(image);
+	}
+	
+	public void remove(MainApplication p){
+		p.remove(image);
 	}
 }
