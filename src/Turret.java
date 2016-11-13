@@ -3,8 +3,8 @@ public class Turret extends Structure{
 	private int ammo;
 	
 	
-	public Turret(int x, int y, String loc){
-		super(x, y, loc);
+	public Turret(MainApplication app, int x, int y, String loc){
+		super(app, x, y, loc);
 	}
 	
 	/**

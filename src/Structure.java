@@ -15,7 +15,7 @@ public class Structure {
 	 * @param y: y location of the structure
 	 * @param loc: image location of the sprite
 	 */
-	public Structure(int height, int width, int x, int y, String spriteLoc){
+	public Structure(MainApplication app, int x, int y, String spriteLoc){
 		destroyed = false;
 		this.x = x;
 		this.y = y;
@@ -23,13 +23,12 @@ public class Structure {
 		this.width = width;
 		
 		hitbox = new GRectangle(width, height);
-		//this.sprite = 
+		this.sprite = SpriteStore.get().getSprite(spriteLoc);
 		
 	}
 	
-	public void Draw(){
-		sprite.draw(x, y);
-		hitbox.add(x, y);
+	public void Draw(MainApplication app){
+		sprite.draw(app,(int) x,(int) y);
 	}
 	
 	
