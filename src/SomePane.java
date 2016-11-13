@@ -14,7 +14,7 @@ public class SomePane extends GraphicsPane {
 		img = new GImage("robot head.jpg", 100, 100);
 		
 		
-		test = new Turret(program,370,550,"robot head.jpg");
+		test = new Turret(program,370,550,"Sprites/turret_Placeholder.png");
 	}
 	
 	@Override
