@@ -23,9 +23,10 @@ public class Turret extends Structure{
 	 * @param x: the x location of the mouse when fireMissile is Called
 	 * @param y: the y location of the mouse when fireMissile is Called
 	 */
-	void fireMissile(int x, int y){
+	void fireMissile(MainApplication app, int x, int y){
 		if(canFire()){
 			ammo -=1;
+			
 		}
 	}
 }

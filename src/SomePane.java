@@ -8,20 +8,20 @@ public class SomePane extends GraphicsPane {
 	private GImage img;
 	
 	private Turret test;
-	
+	private Missile testMiss;
 	public SomePane(MainApplication app) {
 		this.program = app;
 		img = new GImage("robot head.jpg", 100, 100);
 		
-		
+		testMiss = new Missile(program, "Sprites/Missile_placeholder.png");
 		test = new Turret(program,370,550,"Sprites/turret_Placeholder.png");
 	}
 	
 	@Override
 	public void showContents() {
 		program.add(img);
-		test.Draw(program);
-		
+		test.draw(program);
+		testMiss.draw(program);
 	}
 
 	@Override
