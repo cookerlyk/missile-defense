@@ -1,15 +1,23 @@
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 
-public class SomePane extends GraphicsPane {
+
+
+public class SomePane extends GraphicsPane{
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage img;
 	private Level lvl;
 	private Turret test;
 	private Missile testMiss;
+	private Timer move;
+	
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -26,6 +34,18 @@ public class SomePane extends GraphicsPane {
 		//testMiss.draw(program);
 		System.out.println(lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program));
 		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
+		//	missile.draw(program);
+		}
+	}
+	
+	public void run(){
+		move = new Timer(100, (ActionListener) this);
+		move.setInitialDelay(0);
+		move.start();
+	}
+	
+	public void actionPerformed(ActionEvent e){
 		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
 			missile.draw(program);
 		}
