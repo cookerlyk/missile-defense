@@ -18,6 +18,9 @@ public class Gameplay {
 	private final int PERCENT = 100;                     // Used in place for hardcoding 100 into the RNG function
 	private Random rng;
 	
+	
+	
+	
 	// array lists that will hold the missile objects on the board
 	// TODO maybe one list would work
 	private List<Missile> friendlyMissiles;
