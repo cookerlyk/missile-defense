@@ -10,6 +10,8 @@ import java.util.*;
 
 public class Gameplay {
 	
+	private final int WIDTH_IN_PIXELS = 1024;
+	
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
 	private final int MISSILE_GENERATION_PROBILITY = 25; // Translates to a 25% chance of a missile spawning
@@ -25,6 +27,8 @@ public class Gameplay {
 	private Turret[] turrets;
 	private Structure[] buildings;
 	
+	
+	
 	 
 	public Gameplay() {
 		this.rng = new Random();  // seed the RNG at creation of the Gameplay object
@@ -39,11 +43,13 @@ public class Gameplay {
 	 * generates a RNG and if the number is within the range, an enemy missile is generated
 	 * when called the missile is added to the Array List of enemy missiles
 	 */
-	public boolean generateEnemyMissile(Sprite spr, boolean friendly, int xCoord, int yCoord){ //TODO add enum start location
+	public boolean generateEnemyMissile(String spriteLocation, boolean friendly, MainApplication app){ //TODO add enum start location
 		int num = this.rng.nextInt(this.PERCENT) + 1;
+		int xCoord = this.rng.nextInt(this.WIDTH_IN_PIXELS);
+		int yCoord = 0;
 		System.out.println(num);
 		if(num <= this.MISSILE_GENERATION_PROBILITY){
-			Missile missile = new Missile(spr, friendly, xCoord, yCoord);
+			Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
 			this.enemyMissiles.add(missile);
 			return true;
 		}
@@ -53,35 +59,54 @@ public class Gameplay {
 	/*
 	 * Friendly missile is generated at call and added to the friendly missile array
 	 */
-	public void generateFirendlyMissile(Sprite spr, boolean friendly, int xCoord, int yCoord){
-		Missile missile = new Missile(spr, friendly, xCoord, yCoord);
+	public void generateFirendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app){
+		Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
 		this.friendlyMissiles.add(missile);
 
 	}
+	
+//	/*
+//	 * generates the buildings at start
+//	 */
+//	public void generateBuildings(){
+//
+//	}
+//
+//	/*
+//	 * generates the turrets at start
+//	 */
+//	public void generateTurrets(){
+//
+//	}
 	
 	/*
 	 * moves all of the missiles every tick of the clock
 	 */
 	public void moveMissiles(){
 		for(Missile missile : this.enemyMissiles){ //TODO maybe there doesn't have to be different lists of missiles
-			missile.move();
+			if(missile != null){
+				missile.move();
+			}
+			
 		}
 		for(Missile missile : this.friendlyMissiles){
-			missile.move();
+			if(missile != null){
+				missile.move();
+			}
 		}
 	}
 	
 	/*
 	 * checks if each missile hit anything on each tick of the clock
 	 */
-	public void checkHits(){
-		for(Missile missile : this.enemyMissiles){
-			missile.checkIfHit();
-		}
-		for(Missile missile : this.friendlyMissiles){
-			missile.checkIfHit();
-		}
-	}
+//	public void checkHits(){
+//		for(Missile missile : this.enemyMissiles){
+//			missile.checkIfHit();
+//		}
+//		for(Missile missile : this.friendlyMissiles){
+//			missile.checkIfHit();
+//		}
+//	}
 	
 	/*
 	 * returns the friendly missiles that are on the stage
@@ -117,12 +142,12 @@ public class Gameplay {
 	 * 
 	 * Called when the round is over
 	 */
-	public void resetStructures(){
-		for(Turret turret : this.turrets){
-			turret.setDestoyed(false);
-		}
-		for(Structure building : this.buildings){
-			building.setDestoyed(false);
-		}
-	}
+//	public void resetStructures(){
+//		for(Turret turret : this.turrets){
+//			turret.setDestoyed(false);
+//		}
+//		for(Structure building : this.buildings){
+//			building.setDestoyed(false);
+//		}
+//	}
 }

@@ -17,13 +17,15 @@ public class Level {
 	private boolean gameOver;
 	private int score, time, roundNum;
 	private Gameplay game;
+	private MainApplication app;
 	
 
 	/*
 	 * Set up the level when called
 	 */
-	public Level(){
+	public Level(MainApplication app){
 		this.game = new Gameplay();
+		this.app = app;
 		this.gameOver = false;
 		this.score = 0;
 		this.time = this.ROUND_TIME;
@@ -37,7 +39,7 @@ public class Level {
 	 * destroyed
 	 */
 	public void resetLevel(){
-		this.game.resetStructures();
+		//this.game.resetStructures();
 		this.time = this.ROUND_TIME;
 		this.roundNum += 1;
 	}
