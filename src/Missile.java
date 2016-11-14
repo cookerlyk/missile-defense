@@ -139,4 +139,9 @@ public class Missile {
 	public static int getHEIGHT() {
 		return HEIGHT;
 	}
+	
+	public void Draw(MainApplication app) {
+		sprite.draw(app, (int) x, (int) y);
+		
+	}
 }
