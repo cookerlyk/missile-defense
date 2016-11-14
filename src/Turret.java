@@ -26,7 +26,6 @@ public class Turret extends Structure{
 	void fireMissile(MainApplication app, int x, int y){
 		if(canFire()){
 			ammo -=1;
-			
 		}
 	}
 }
