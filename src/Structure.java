@@ -27,7 +27,7 @@ public class Structure {
 		
 	}
 	
-	public void Draw(MainApplication app){
+	public void draw(MainApplication app){
 		sprite.draw(app,(int) x,(int) y);
 	}
 	
