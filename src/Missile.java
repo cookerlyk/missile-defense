@@ -1,5 +1,7 @@
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.awt.event.MouseEvent;
+import acm.graphics.*;
 
 /** 
  * 
@@ -8,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  **/
 
 public class Missile {
+	
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y, dx, dy;
@@ -43,7 +46,7 @@ public class Missile {
 		this.x = x;
 		this.y = y;
 		dy = 10;
-		dx = ThreadLocalRandom.current().nextInt(-10, 11);
+		dx = ThreadLocalRandom.current().nextInt(-10, 11); //change
 		isHit = false;
 	}
 	
