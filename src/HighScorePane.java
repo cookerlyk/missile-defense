@@ -15,7 +15,7 @@ public class HighScorePane extends GraphicsPane{
 		background = new GImage("Screens/High_Score_Placeholder.png", 0, 0);
 		backButton = new GButton("Back", 100, 100, 100, 100);
 		score = new GLabel("", 1, 1);
-		scoreTable = new HighScores(this.program);
+		scoreTable = new HighScores();
 	}
 	
 	public void getScores() {
