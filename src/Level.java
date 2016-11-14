@@ -32,6 +32,14 @@ public class Level {
 		this.roundNum = 1;
 	}
 	
+	
+	/*
+	 * Returns the Gameplay object when called
+	 */
+	public Gameplay getGameObject(){
+		return this.game;
+	}
+	
 	/*
 	 * Resets the Board and its objects to start a new round,
 	 * updates the round counter and resets the clock as well
