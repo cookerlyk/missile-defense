@@ -1,7 +1,14 @@
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.*;
+import javax.swing.Timer;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import acm.graphics.*;
+
+
 
 /** 
  * 
@@ -9,14 +16,15 @@ import acm.graphics.*;
  *
  **/
 
-public class Missile {
+public class Missile implements ActionListener {
 	
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y, dx, dy;
 	//private Random rng;
 	private static int WIDTH = 50, HEIGHT = 50;
-	
+	private Timer movement;
+	private final int MS = 50;
 	/**
 	 * Default constructor. Intended for enemies.
 	 */
@@ -49,6 +57,19 @@ public class Missile {
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11); //change
 		isHit = false;
+	}
+	
+	public void run(){
+		movement = new Timer(MS, this);
+		movement.setInitialDelay(0);
+		movement.start();
+		System.out.println(movement.isRunning());
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		this.setX(x+dx);
+		this.setY(y+dy);
+		System.out.println(x + "  " + y);
 	}
 	
 	public void move() {
