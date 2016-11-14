@@ -39,7 +39,7 @@ public class Missile {
 	 * @param y starting y coordinate
 	 */
 	
-	public Missile(String spriteLoc, boolean side, int x, int y) {
+	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
 		isDestroyed = false;
