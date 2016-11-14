@@ -13,16 +13,10 @@ public class HighScores {
 	private String[][] scoreArray;
 	private static int NUM_SCORES = 10;
 	private MainApplication program;
-	private GButton backButton;
 	
 	public HighScores(MainApplication app) {
-		this.program = app;
-		backButton = new GButton("Back", 100, 100, 100, 100);
-		scoreArray = new String[NUM_SCORES][2];
-	}
-	
-	public void readHS() {
-		Scanner sc = new Scanner(new File("HighScores.txt"));
+		Scanner sc = new Scanner(new File("media/HighScores.txt"));
+		program = app;
 		for (int i = 0; i < NUM_SCORES; i++) {
 			String data[] = sc.nextLine().split(" ");
 			scoreArray[i][0] = data[0];
@@ -59,10 +53,12 @@ public class HighScores {
 		sort();		
 	}
 	
-	public void drawSceen() {
+	public String printScores() {
+		String list = "";
 		for (int i = 0; i < 10; i++) {
-			System.out.print("Name: " + scoreArray[i][0] + " Score: " + scoreArray[i][1]);
+			list += "Name: " + scoreArray[i][0] + " Score: " + scoreArray[i][1] + "\n";
 		}
+		return list;
 	}
 	
 	private void sort() {
