@@ -47,7 +47,6 @@ public class Gameplay {
 		int num = this.rng.nextInt(this.PERCENT) + 1;
 		int xCoord = this.rng.nextInt(this.WIDTH_IN_PIXELS);
 		int yCoord = 0;
-		System.out.println(num);
 		if(num <= this.MISSILE_GENERATION_PROBILITY){
 			Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
 			this.enemyMissiles.add(missile);
