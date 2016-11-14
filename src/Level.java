@@ -34,7 +34,7 @@ public class Level {
 	
 	
 	/*
-	 * Returns the Gameplay object when called
+	 * Returns the Gameplay object 
 	 */
 	public Gameplay getGameObject(){
 		return this.game;
