@@ -14,7 +14,7 @@ public class Gameplay {
 	
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
-	private final int MISSILE_GENERATION_PROBILITY = 25; // Translates to a 25% chance of a missile spawning
+	private final int MISSILE_GENERATION_PROBILITY = 100; // Translates to a 25% chance of a missile spawning
 	private final int PERCENT = 100;                     // Used in place for hardcoding 100 into the RNG function
 	private Random rng;
 	
