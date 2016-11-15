@@ -1,6 +1,5 @@
 import java.util.*;
 import java.io.*;
-import import java.awt.event.MouseEvent;
 import acm.graphics.*;
 
 /**
