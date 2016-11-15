@@ -165,7 +165,6 @@ public class Missile implements ActionListener {
 	}
 	
 	public void draw(MainApplication app) {
-		sprite.draw(app, (int) x, (int) y);
-		
+		sprite.draw(app, this.x, this.y);
 	}
 }

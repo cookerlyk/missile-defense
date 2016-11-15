@@ -16,7 +16,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private Level lvl;
 	private Turret test;
 	private Turret test2;
-	private Missile testMiss;
 	private Timer move;
 	
 	
@@ -25,9 +24,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.program = app;
 		img = new GImage("robot head.jpg", 100, 100);
 		lvl = new Level(program);
-		//testMiss = new Missile(program, "Sprites/Missile_placeholder.png");
 		test = new Turret(program,0,550,"Sprites/turret_Placeholder.png");
-		test2 = new Turret(program,500,550,"Sprites/turret_Placeholder.png");
+		test2 = new Turret(program,750,550,"Sprites/turret_Placeholder.png");
 		
 		game = new Gameplay();
 	}
@@ -38,26 +36,27 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public void showContents() {
 		test.draw(program);
-		//test2.draw(program); //TODO something broken here with drawing two turrets
+		test2.draw(program); //TODO something broken here with drawing two turrets
 		this.run();
+		
 	
 	}
 	
 	public void run(){
-		move = new Timer(100, (ActionListener) this);
+		move = new Timer(80, (ActionListener) this);
 		move.setInitialDelay(1000);
 		move.start();
 		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+		this.testGeneration();
 	}
 	
 	public void actionPerformed(ActionEvent e){
 		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
 			missile.draw(program);
 			missile.move();
-			System.out.println("Move: " + 1);
-			System.out.println(missile.getX() + " X coord");
-			System.out.println(missile.getY() + " Y coord");
-			missile.draw(program);
+			//missile.draw(program); // Redundant
 			
 		}
 	}
@@ -75,4 +74,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		}
 	}
 
+	private void testGeneration(){
+		System.out.println(lvl.getGameObject().getEnemyMissilesOnStage().size());
+	}
 }

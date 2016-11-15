@@ -20,38 +20,38 @@ public class Gameplay {
 	private Random rng;
 	
 	
-	//********************************************************************
-	//********************************************************************
-	//********************************************************************
-	//test code alex
-	private Level lvl;
-	private boolean gameRunning;
-	private Missile testMiss;
-	
-	
-	public void testGameLoop(MainApplication app){
-		testMiss = new Missile("Sprites/Missile_placeholder.png", false, 200, 200, app);
-		long loopTime = System.currentTimeMillis();
-		lvl = new Level(app);
-		
-		
-		while(gameRunning){
-			this.generateEnemyMissile("Sprites/Missile_placeholder.png", false, app);
-
-			testMiss.draw(app);
-			for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
-					missile.move();
-					missile.draw(app);
-					
-					testMiss.move();
-					testMiss.draw(app);
-				}
-		}
-	}
-	//end test code alex
-	//********************************************************************
-	//********************************************************************
-	//********************************************************************
+//	//********************************************************************
+//	//********************************************************************
+//	//********************************************************************
+//	//test code alex
+//	private Level lvl;
+//	private boolean gameRunning;
+//	private Missile testMiss;
+//	
+//	
+//	public void testGameLoop(MainApplication app){
+//		testMiss = new Missile("Sprites/Missile_placeholder.png", false, 200, 200, app);
+//		long loopTime = System.currentTimeMillis();
+//		lvl = new Level(app);
+//		
+//		
+//		while(gameRunning){
+//			this.generateEnemyMissile("Sprites/Missile_placeholder.png", false, app);
+//
+//			testMiss.draw(app);
+//			for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
+//					missile.move();
+//					missile.draw(app);
+//					
+//					testMiss.move();
+//					testMiss.draw(app);
+//				}
+//		}
+//	}
+//	//end test code alex
+//	//********************************************************************
+//	//********************************************************************
+//	//********************************************************************
 	
 	
 	
