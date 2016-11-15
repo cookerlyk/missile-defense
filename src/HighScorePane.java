@@ -31,6 +31,7 @@ public class HighScorePane extends GraphicsPane{
 	@Override
 	public void hideContents() {
 		program.remove(background);
+		program.remove(backButton);
 	}
 
 	@Override
