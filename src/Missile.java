@@ -55,6 +55,8 @@ public class Missile implements ActionListener {
 		this.x = x;
 		this.y = y;
 		dy = 10;
+		if (isFriendly) 
+			dy *= -1;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11); //change
 		isHit = false;
 	}
