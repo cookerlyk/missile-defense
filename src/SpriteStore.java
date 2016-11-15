@@ -14,7 +14,6 @@ import acm.graphics.GImage;
 public class SpriteStore {
 	private static SpriteStore store = new SpriteStore();
 	private HashMap sprites = new HashMap();
-	
 	public static SpriteStore get() {
 		return store;
 	}
@@ -28,11 +27,11 @@ public class SpriteStore {
 	 * @return requested sprite.
 	 */
 	public Sprite getSprite(String name){
-		if (sprites.get(name) != null) {
-			return (Sprite) sprites.get(name);
-		}
-		
 		GImage img = new GImage(name);
+		if (sprites.get(name) != null) {
+			Sprite temp = new Sprite(img);
+			return temp;
+		}
 		Sprite image = new Sprite(img);
 		sprites.put(name, image);
 		return image;
