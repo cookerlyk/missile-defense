@@ -46,13 +46,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		move = new Timer(80, (ActionListener) this);
 		move.setInitialDelay(1000);
 		move.start();
-		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
-		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
-		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
-		this.testGeneration();
+
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
 		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
 			missile.draw(program);
 			missile.move();
@@ -74,7 +72,4 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		}
 	}
 
-	private void testGeneration(){
-		System.out.println(lvl.getGameObject().getEnemyMissilesOnStage().size());
-	}
 }
