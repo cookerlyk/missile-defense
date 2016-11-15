@@ -64,6 +64,7 @@ public class MenuPane extends GraphicsPane {
 		}
 		
 		if (obj == exit){
+			System.exit(0); //TODO possibly find a better way to exit the program
 			//program.destroy();
 		}
 		else return;
