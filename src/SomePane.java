@@ -22,21 +22,16 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
-		img = new GImage("robot head.jpg", 100, 100);
 		lvl = new Level(program);
 		test = new Turret(program,0,550,"Sprites/turret_Placeholder.png");
 		test2 = new Turret(program,750,550,"Sprites/turret_Placeholder.png");
 		
-		game = new Gameplay();
 	}
-	
-	//@Override
-	private Gameplay game; //TODO probably don't need this 
 	
 	
 	public void showContents() {
 		test.draw(program);
-		test2.draw(program); //TODO something broken here with drawing two turrets
+		test2.draw(program);
 		this.run();
 		
 	
