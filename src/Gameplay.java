@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 /**
  * This class will handle the game play for all of the objects
  * contained in the game
@@ -17,6 +18,40 @@ public class Gameplay {
 	private final int MISSILE_GENERATION_PROBILITY = 25; // Translates to a 25% chance of a missile spawning
 	private final int PERCENT = 100;                     // Used in place for hardcoding 100 into the RNG function
 	private Random rng;
+	
+	
+	//********************************************************************
+	//********************************************************************
+	//********************************************************************
+	//test code alex
+	private Level lvl;
+	private boolean gameRunning;
+	private Missile testMiss;
+	
+	
+	public void testGameLoop(MainApplication app){
+		testMiss = new Missile("Sprites/Missile_placeholder.png", false, 200, 200, app);
+		long loopTime = System.currentTimeMillis();
+		lvl = new Level(app);
+		
+		
+		while(gameRunning){
+			this.generateEnemyMissile("Sprites/Missile_placeholder.png", false, app);
+
+			testMiss.draw(app);
+			for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
+					missile.move();
+					missile.draw(app);
+					
+					testMiss.move();
+					testMiss.draw(app);
+				}
+		}
+	}
+	//end test code alex
+	//********************************************************************
+	//********************************************************************
+	//********************************************************************
 	
 	
 	

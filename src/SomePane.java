@@ -15,7 +15,7 @@ public class SomePane extends GraphicsPane{
 	private GImage img;
 	private Level lvl;
 	private Turret test;
-	private Missile testMiss;
+	private Missile testMiss, testMiss2;
 	private Timer move;
 	
 	
@@ -24,19 +24,29 @@ public class SomePane extends GraphicsPane{
 		img = new GImage("robot head.jpg", 100, 100);
 		lvl = new Level(program);
 		testMiss = new Missile(program, "Sprites/Missile_placeholder.png");
+		testMiss2 = new Missile("Sprites/Missile_placeholder.png", true, 500, 500, program);
 		test = new Turret(program,370,550,"Sprites/turret_Placeholder.png");
+		
+		game = new Gameplay();
 	}
 	
-	@Override
+	//@Override
+	
+	private Gameplay game;
 	public void showContents() {
-		program.add(img);
+//		program.add(img);
 		test.draw(program);
-		//testMiss.draw(program);
-		System.out.println(lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program));
-		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
-		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
-		//	missile.draw(program);
-		}
+		testMiss.draw(program);
+		testMiss2.draw(program);
+//		System.out.println(lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program));
+//		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+//		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
+//		//	missile.draw(program);
+//		}
+		
+		
+		game.testGameLoop(program);
+		
 	}
 	
 	public void run(){
