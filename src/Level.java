@@ -116,17 +116,11 @@ public class Level {
 	}
 	
 	/*
-	 * returns the friendly missiles that are in play
+	 * returns the missiles that are in play
 	 */
-	public List<Missile> getFriendlyMissiles(){
-		return this.game.getFriendlyMissilesOnStage();
+	public List<Missile> getmissiles(){
+		return this.game.getMissilesOnStage();
 	}
 	
-	/*
-	 * returns the enemy missiles that are in play
-	 */
-	public List<Missile> getEnemyMissiles(){
-		return this.game.getEnemyMissilesOnStage();
-	}
 	
 }

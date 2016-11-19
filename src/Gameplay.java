@@ -18,48 +18,11 @@ public class Gameplay {
 	private final int MISSILE_GENERATION_PROBILITY = 5;  // Translates to a 5% chance of a missile spawning
 	private final int PERCENT = 100;                     // Used in place for hardcoding 100 into the RNG function
 	private Random rng;
-	
-	
-//	//********************************************************************
-//	//********************************************************************
-//	//********************************************************************
-//	//test code alex
-//	private Level lvl;
-//	private boolean gameRunning;
-//	private Missile testMiss;
-//	
-//	
-//	public void testGameLoop(MainApplication app){
-//		testMiss = new Missile("Sprites/Missile_placeholder.png", false, 200, 200, app);
-//		long loopTime = System.currentTimeMillis();
-//		lvl = new Level(app);
-//		
-//		
-//		while(gameRunning){
-//			this.generateEnemyMissile("Sprites/Missile_placeholder.png", false, app);
-//
-//			testMiss.draw(app);
-//			for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
-//					missile.move();
-//					missile.draw(app);
-//					
-//					testMiss.move();
-//					testMiss.draw(app);
-//				}
-//		}
-//	}
-//	//end test code alex
-//	//********************************************************************
-//	//********************************************************************
-//	//********************************************************************
-	
-	
-	
+
 	
 	// array lists that will hold the missile objects on the board
 	// TODO maybe one list would work
-	private List<Missile> friendlyMissiles;
-	private List<Missile> enemyMissiles;
+	private List<Missile> missiles;
 	
 	// Static Arrays to hold the turret and the building objects
 	private Turret[] turrets;
@@ -70,8 +33,7 @@ public class Gameplay {
 	 
 	public Gameplay() {
 		this.rng = new Random();  // seed the RNG at creation of the Gameplay object
-		this.friendlyMissiles = new ArrayList<Missile>();
-		this.enemyMissiles = new ArrayList<Missile>();
+		this.missiles = new ArrayList<Missile>();
 		this.turrets = new Turret[this.TOTAL_TURRETS];
 		this.buildings = new Structure[this.TOTAL_BUILDINGS];
 	}
@@ -87,7 +49,7 @@ public class Gameplay {
 		int yCoord = 0;
 		if(num <= this.MISSILE_GENERATION_PROBILITY){
 			Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
-			this.enemyMissiles.add(missile);
+			this.missiles.add(missile);
 			return true;
 		}
 		return false;
@@ -96,9 +58,9 @@ public class Gameplay {
 	/*
 	 * Friendly missile is generated at call and added to the friendly missile array
 	 */
-	public void generateFirendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app){
+	public void generateFriendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app){
 		Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
-		this.friendlyMissiles.add(missile);
+		this.missiles.add(missile);
 
 	}
 	
@@ -120,16 +82,11 @@ public class Gameplay {
 	 * moves all of the missiles every tick of the clock
 	 */
 	public void moveMissiles(){
-		for(Missile missile : this.enemyMissiles){ //TODO maybe there doesn't have to be different lists of missiles
+		for(Missile missile : this.missiles){ //TODO maybe there doesn't have to be different lists of missiles
 			if(missile != null){
 				missile.move();
 			}
 			
-		}
-		for(Missile missile : this.friendlyMissiles){
-			if(missile != null){
-				missile.move();
-			}
 		}
 	}
 	
@@ -146,18 +103,12 @@ public class Gameplay {
 //	}
 	
 	/*
-	 * returns the friendly missiles that are on the stage
+	 * returns the missiles that are on the stage
 	 */
-	public List<Missile> getFriendlyMissilesOnStage(){
-		return this.friendlyMissiles;
+	public List<Missile> getMissilesOnStage(){
+		return this.missiles;
 	}
 	
-	/*
-	 * returns the enemy missiles that are on the stage
-	 */
-	public List<Missile> getEnemyMissilesOnStage(){
-		return this.enemyMissiles;
-	}
 	
 	/*
 	 * Returns the array of turret objects on the board
@@ -174,17 +125,15 @@ public class Gameplay {
 	}
 	
 	/*
-	 * resets all of the building and turrets status when called 
+	 * resets all of the turrets status when called 
 	 * eg. destroyed to not destroyed.
 	 * 
 	 * Called when the round is over
 	 */
-//	public void resetStructures(){
+//	public void resetTurrets(){
 //		for(Turret turret : this.turrets){
 //			turret.setDestoyed(false);
 //		}
-//		for(Structure building : this.buildings){
-//			building.setDestoyed(false);
-//		}
+//		
 //	}
 }

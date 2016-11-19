@@ -11,6 +11,10 @@ import acm.graphics.GObject;
 
 
 public class SomePane extends GraphicsPane implements ActionListener{
+	
+	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x768
+	private final int PROGRAM_HEIGHT = 768;
+	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage img;
 	private Level lvl;
@@ -46,12 +50,25 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
-		for(Missile missile: lvl.getGameObject().getEnemyMissilesOnStage()){
+		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
 			missile.draw(program);
 			missile.move();
-			//missile.draw(program); // Redundant
 			
+			//Sets the missile object to null if it goes off screen
+			//TODO Maybe make into a function because this code will need to exist in the friendly missile loop too
+			if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
+				missile = null;
+				
+			}
 		}
+		System.out.println(lvl.getGameObject().getMissilesOnStage().size());
+		//TODO friendly missile movement logic, uncomment when the turrets are completed
+//		for(Missile missile: lvl.getGameObject().getFriendlyMissilesOnStage()){
+//			missile.draw(program);
+//			missile.move();
+//			//missile.draw(program); // Redundant
+//			
+//		}
 	}
 
 	@Override
