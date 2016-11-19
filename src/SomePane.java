@@ -27,8 +27,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public SomePane(MainApplication app) {
 		this.program = app;
 		lvl = new Level(program);
-		
 		lvl.getGameObject().generateBuildings(program);
+		lvl.getGameObject().generateTurrets(program);
 		
 	}
 	
@@ -42,12 +42,12 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			}
 		}
 		
-		// Draws the turrets to the stage screen
-//		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
-//			if(turret != null){
-//				turret.draw(program);
-//			}
-//		}
+		 //Draws the turrets to the stage screen
+		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
+			if(turret != null){
+				turret.draw(program);
+			}
+		}
 		
 		this.run();
 	
@@ -63,13 +63,15 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
-			missile.draw(program);
-			missile.move();
+			if(missile != null){
+				missile.draw(program);
+				missile.move();
+			}
+			
 			
 			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
 			if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
 				missile = null;
-				
 			}
 		}
 		System.out.println(lvl.getGameObject().getMissilesOnStage().size());
