@@ -43,11 +43,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		}
 		
 		 //Draws the turrets to the stage screen
-		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
-			if(turret != null){
-				turret.draw(program);
-			}
-		}
+//		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
+//			if(turret != null){
+//				turret.draw(program);
+//			}
+//		}
 		
 		this.run();
 	
@@ -62,6 +62,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+		//lvl.getGameObject().checkForHits();
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
 			if(missile != null){
 				missile.draw(program);
@@ -74,8 +75,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 				missile = null;
 			}
 		}
-		System.out.println(lvl.getGameObject().getMissilesOnStage().size());
-		
 	}
 
 	@Override

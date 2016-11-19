@@ -95,13 +95,22 @@ public class Gameplay {
 	/*
 	 * checks if each missile hit anything on each tick of the clock
 	 */
-//	public void checkHits(){
-//		for(Missile missile : this.enemyMissiles){
-//			missile.checkIfHit();
+//	public void checkForHits(){
+//		for(Missile missile : this.missiles){
+//			if(missile.getHitBox().getLocation() == this.buildings[0].getHitBox().getLocation()) {
+//				this.buildings[0].destroy();
+//				System.out.println("building 0 status: " + this.buildings[0].isDestoryed());
+//			}
+//			if(missile.getHitBox().getLocation() == this.buildings[1].getHitBox().getLocation()){
+//				this.buildings[1].destroy();
+//				System.out.println("building 1 status: " + this.buildings[1].isDestoryed());
+//			}
+//			System.out.println(this.buildings[0].getHitBox().getLocation());
+//
 //		}
-//		for(Missile missile : this.friendlyMissiles){
-//			missile.checkIfHit();
-//		}
+////		for(Missile missile : this.friendlyMissiles){
+////			missile.checkIfHit();
+////		}
 //	}
 	
 	/*
