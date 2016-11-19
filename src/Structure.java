@@ -56,4 +56,8 @@ public class Structure {
 	public boolean isDestoryed(){
 		return destroyed;
 	}
+	
+	public GRectangle getHitBox(){
+		return this.hitbox;
+	}
 }

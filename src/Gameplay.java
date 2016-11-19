@@ -64,19 +64,21 @@ public class Gameplay {
 
 	}
 	
-//	/*
-//	 * generates the buildings at start
-//	 */
-//	public void generateBuildings(){
-//
-//	}
-//
-//	/*
-//	 * generates the turrets at start
-//	 */
-//	public void generateTurrets(){
-//
-//	}
+	/*
+	 * generates the buildings at start
+	 */
+	public void generateBuildings(MainApplication app){
+		this.buildings[0] = new Building(app, 300, 625, "Sprites/house_placeholder.jpg");
+		this.buildings[1] = new Building(app, 600, 625, "Sprites/house_placeholder.jpg");
+	}
+
+	/*
+	 * generates the turrets at start
+	 */
+	public void generateTurrets(MainApplication app){
+		this.turrets[0] = new Turret(app,0,550,"Sprites/turret_Placeholder.png");
+		this.turrets[1] = new Turret(app,750,550,"Sprites/turret_Placeholder.png");
+	}
 	
 	/*
 	 * moves all of the missiles every tick of the clock
@@ -125,15 +127,25 @@ public class Gameplay {
 	}
 	
 	/*
-	 * resets all of the turrets status when called 
+	 * resets all of the turret's status to true when called 
 	 * eg. destroyed to not destroyed.
 	 * 
 	 * Called when the round is over
 	 */
-//	public void resetTurrets(){
-//		for(Turret turret : this.turrets){
-//			turret.setDestoyed(false);
-//		}
-//		
-//	}
+	public void resetTurrets(){
+		for(Turret turret : this.turrets){
+			turret.reset();
+		}
+	}
+	
+	/*
+	 * resets all of the building's status to true when called 
+	 * eg. destroyed to not destroyed.
+	 *
+	 */
+	public void resetBuildings(){
+		for(Structure building : this.buildings){
+			building.reset();
+		}
+	}
 }

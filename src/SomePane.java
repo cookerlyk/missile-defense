@@ -27,17 +27,29 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public SomePane(MainApplication app) {
 		this.program = app;
 		lvl = new Level(program);
-		test = new Turret(program,0,550,"Sprites/turret_Placeholder.png");
-		test2 = new Turret(program,750,550,"Sprites/turret_Placeholder.png");
+		
+		lvl.getGameObject().generateBuildings(program);
 		
 	}
 	
 	
 	public void showContents() {
-		test.draw(program);
-		test2.draw(program);
-		this.run();
 		
+		// Draws the buildings to the stage screen
+		for(Structure building : lvl.getGameObject().getBuildingsOnStage()){
+			if(building != null){
+				building.draw(program);
+			}
+		}
+		
+		// Draws the turrets to the stage screen
+//		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
+//			if(turret != null){
+//				turret.draw(program);
+//			}
+//		}
+		
+		this.run();
 	
 	}
 	
@@ -54,21 +66,14 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			missile.draw(program);
 			missile.move();
 			
-			//Sets the missile object to null if it goes off screen
-			//TODO Maybe make into a function because this code will need to exist in the friendly missile loop too
+			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
 			if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
 				missile = null;
 				
 			}
 		}
 		System.out.println(lvl.getGameObject().getMissilesOnStage().size());
-		//TODO friendly missile movement logic, uncomment when the turrets are completed
-//		for(Missile missile: lvl.getGameObject().getFriendlyMissilesOnStage()){
-//			missile.draw(program);
-//			missile.move();
-//			//missile.draw(program); // Redundant
-//			
-//		}
+		
 	}
 
 	@Override
