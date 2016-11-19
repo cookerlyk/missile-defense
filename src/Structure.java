@@ -53,7 +53,7 @@ public class Structure {
 	 * 
 	 * @return the current structure state
 	 */
-	public boolean isDestoryed(){
+	public boolean isDestroyed(){
 		return destroyed;
 	}
 	
