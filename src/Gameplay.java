@@ -1,4 +1,7 @@
+import java.awt.event.KeyEvent;
 import java.util.*;
+
+import acm.program.GraphicsProgram;
 
 
 /**
@@ -9,7 +12,7 @@ import java.util.*;
  *
  */
 
-public class Gameplay {
+public class Gameplay extends GraphicsProgram {
 	
 	private final int WIDTH_IN_PIXELS = 1024;
 	
@@ -36,6 +39,7 @@ public class Gameplay {
 		this.missiles = new ArrayList<Missile>();
 		this.turrets = new Turret[this.TOTAL_TURRETS];
 		this.buildings = new Structure[this.TOTAL_BUILDINGS];
+		addKeyListeners();
 	}
 	
 	
@@ -157,4 +161,5 @@ public class Gameplay {
 			building.reset();
 		}
 	}
+	
 }

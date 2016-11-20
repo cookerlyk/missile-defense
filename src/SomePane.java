@@ -1,13 +1,12 @@
 import java.awt.event.MouseEvent;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
-
 
 
 public class SomePane extends GraphicsPane implements ActionListener{
@@ -69,7 +68,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 				missile.move();
 			}
 			
-			
 			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
 			if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
 				missile = null;
@@ -88,6 +86,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		if(obj == img) {
 			program.switchBack();
 		}
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e){
+		System.out.println(e.getKeyChar());
 	}
 
 }
