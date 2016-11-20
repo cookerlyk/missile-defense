@@ -1,6 +1,6 @@
 import java.util.*;
 import acm.graphics.GObject;
-import acm.graphics.GRectangle;
+import acm.graphics.GRect;
 
 public class Structure {
 	protected int x; 
@@ -9,7 +9,8 @@ public class Structure {
 	protected int width;
 	protected Sprite sprite;
 	protected boolean destroyed;
-	protected GRectangle hitbox;
+	protected GRect hitbox;
+	
 	/**
  	 * @param x: x location of the structure
 	 * @param y: y location of the structure
@@ -22,7 +23,7 @@ public class Structure {
 		this.height = height;
 		this.width = width;
 		
-		hitbox = new GRectangle(width, height);
+		hitbox = new GRect(width, height);
 		this.sprite = SpriteStore.get().getSprite(spriteLoc);
 		
 	}
@@ -30,7 +31,6 @@ public class Structure {
 	public void draw(MainApplication app){
 		sprite.draw(app,(int) x,(int) y);
 	}
-	
 	
 	/**
 	 * Sets the structure state to destroyed
@@ -40,14 +40,12 @@ public class Structure {
 		
 	}
 	
-	
 	/**
 	 * Resets the structure state to not destroyed
 	 */
 	public void reset(){
 		destroyed = false;
 	}
-	
 	
 	/**
 	 * 
@@ -57,7 +55,10 @@ public class Structure {
 		return destroyed;
 	}
 	
-	public GRectangle getHitBox(){
+	/*
+	 * returns the hitbox for the structure
+	 */
+	public GRect getHitBox(){
 		return this.hitbox;
 	}
 }

@@ -25,6 +25,8 @@ public class Missile implements ActionListener {
 	private static int WIDTH = 50, HEIGHT = 50;
 	private Timer movement;
 	private final int MS = 50;
+	private GRect hitbox;
+	
 	/**
 	 * Default constructor. Intended for enemies.
 	 */
@@ -38,7 +40,10 @@ public class Missile implements ActionListener {
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
 		isHit = false;
+		
+		this.hitbox = new GRect(x, y); //TODO need more here, not all of the constructor params are filled 
 	}
+	
 	/**
 	 * Intentional use is for friendly missiles.
 	 * @param s Sprite
@@ -47,7 +52,6 @@ public class Missile implements ActionListener {
 	 * @param x starting x coordinate
 	 * @param y starting y coordinate
 	 */
-	
 	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouse) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
@@ -59,6 +63,12 @@ public class Missile implements ActionListener {
 			dy *= -1;
 		dx = (mouse/40); //change
 		isHit = false;
+		
+		this.hitbox = new GRect(x, y); //TODO need more here, not all of the constructor params are filled 
+	}
+	
+	public void draw(MainApplication app) {
+		sprite.draw(app, this.x, this.y);
 	}
 	
 	public void run(){
@@ -75,6 +85,7 @@ public class Missile implements ActionListener {
 	}
 	
 	public void move() {
+		//TODO need to move the hitbox with the missile
 		this.x += dx;
 		this.y += dy;
 	}
@@ -85,78 +96,91 @@ public class Missile implements ActionListener {
 	public boolean isDestroyed() {
 		return isDestroyed;
 	}
+	
 	/**
 	 * @param isDestroyed the isDestroyed to set
 	 */
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 	}
+	
 	/**
 	 * @return the x
 	 */
 	public int getX() {
 		return x;
 	}
+	
 	/**
 	 * @param x the x to set
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
+	
 	/**
 	 * @return the y
 	 */
 	public int getY() {
 		return y;
 	}
+	
 	/**
 	 * @param y the y to set
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
+	
 	/**
 	 * @return the isHit
 	 */
 	public boolean isHit() {
 		return isHit;
 	}
+	
 	/**
 	 * @param isHit the isHit to set
 	 */
 	public void setHit(boolean isHit) {
 		this.isHit = isHit;
 	}
+	
 	/**
 	 * @return the sprite
 	 */
 	public Sprite getSprite() {
 		return sprite;
 	}
+	
 	/**
 	 * @return the isFriendly
 	 */
 	public boolean isFriendly() {
 		return isFriendly;
 	}
+	
 	/**
 	 * @return the dx
 	 */
 	public int getDx() {
 		return dx;
 	}
+	
 	/**
 	 * @return the dy
 	 */
 	public int getDy() {
 		return dy;
 	}
+	
 	/**
 	 * @return the wIDTH
 	 */
 	public static int getWIDTH() {
 		return WIDTH;
 	}
+	
 	/**
 	 * @return the hEIGHT
 	 */
@@ -164,7 +188,10 @@ public class Missile implements ActionListener {
 		return HEIGHT;
 	}
 	
-	public void draw(MainApplication app) {
-		sprite.draw(app, this.x, this.y);
+	/*
+	 * returns the hitbox for the missile
+	 */
+	public GRect getHitBox(){
+		return this.hitbox;
 	}
 }
