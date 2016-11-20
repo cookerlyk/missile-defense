@@ -1,4 +1,5 @@
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -6,7 +7,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 
 
 public class SomePane extends GraphicsPane implements ActionListener{
@@ -21,6 +24,9 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private Turret test2;
 	private Timer move;
 	
+	private GRect pauseBox;
+	private GLabel pauseMessage;
+	
 	private int currentMouseX;
 	private int currentMouseY;
 	
@@ -33,6 +39,13 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl.getGameObject().generateTurrets(program);
 		this.currentMouseX = 0;
 		this.currentMouseY = 0;
+		
+		// TODO do all of this better, no hard coding and make pause window better (image instead of making with GRect and GLabel)
+		this.pauseBox = new GRect(this.PROGRAM_WIDTH/2 - 200, this.PROGRAM_HEIGHT/2 - 200, 400, 200);
+		this.pauseBox.setColor(Color.red);
+		this.pauseBox.setFilled(true);
+		this.pauseMessage = new GLabel("Press Spacebar to Resume", 320, 280);
+		this.pauseMessage.setFont("Arial-Bold-30");
 		
 	}
 	
@@ -105,21 +118,47 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		System.out.println(e.getKeyChar()); //TODO remove, testing only
 		//TODO have to deal with capital letters
 		switch(e.getKeyChar()){
+		
+		// Turret Q
 		case 'q':
 			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
 					lvl.getGameObject().getTurretsOnStage()[0].y, program, this.currentMouseX);
 			break;
+		
+		// Turret W
 //		case 'w':
 //			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
 //					lvl.getGameObject().getTurretsOnStage()[0].y, program);
+	   
+		// Turret E
 //		case 'e':
 //			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
 //					lvl.getGameObject().getTurretsOnStage()[0].y, program);
+		
+		// Turret R
 		case 'r':
 			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[1].x,
 					lvl.getGameObject().getTurretsOnStage()[1].y, program, -this.currentMouseX);
 			break;
+		
+		// Pause or resume the game with a space bar press
+		case ' ':
+			if(!lvl.isPaused()){
+				lvl.setPaused();           // sets paused to true
+				this.move.stop();          // stops timer, thus pauses the game
+				program.add(this.pauseBox);
+				program.add(this.pauseMessage);
+			}
+			else{
+				program.remove(this.pauseBox);
+				program.remove(this.pauseMessage);
+				lvl.setPaused();           // sets paused to false
+				move.setInitialDelay(50);  // 50ms delay before restart
+				this.move.start();         // starts timer, thus resumes the game
+			}
+			break;
 		}
+		
 	}
 
 }

@@ -8,13 +8,10 @@ import java.util.*;
  * @author Kyle Cookerly
  *
  */
-public class Level {
-	//TODO change to stage rather than level?
-	
-	private final int ROUND_TIME = 60;  // Round is 60 seconds
-	
 
-	private boolean gameOver;
+public class Level {
+	private final int ROUND_TIME = 60;  // Round is 60 seconds
+	private boolean gameOver, paused;
 	private int score, time, roundNum;
 	private Gameplay game;
 	private MainApplication app;
@@ -26,12 +23,12 @@ public class Level {
 	public Level(MainApplication app){
 		this.game = new Gameplay();
 		this.app = app;
+		this.paused = false;
 		this.gameOver = false;
 		this.score = 0;
 		this.time = this.ROUND_TIME;
 		this.roundNum = 1;
 	}
-	
 	
 	/*
 	 * Returns the Gameplay object 
@@ -47,7 +44,7 @@ public class Level {
 	 * destroyed
 	 */
 	public void resetLevel(){
-		//this.game.resetStructures();
+		this.game.resetTurrets();
 		this.time = this.ROUND_TIME;
 		this.roundNum += 1;
 	}
@@ -99,6 +96,25 @@ public class Level {
 	 */
 	public boolean isGameOver(){
 		return this.gameOver;
+	}
+	
+	/*
+	 * returns the status of the game
+	 */
+	public boolean isPaused(){
+		return this.paused;
+	}
+	
+	/*
+	 * toggles paused when called
+	 */
+	public void setPaused(){
+		if(this.paused == false){
+			this.paused = true;
+		}
+		else{
+			this.paused = false;
+		}
 	}
 	
 	/*
