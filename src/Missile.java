@@ -21,7 +21,7 @@ public class Missile implements ActionListener {
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y, dx, dy;
-	//private Random rng;
+	private Random rng;
 	private static int WIDTH = 50, HEIGHT = 50;
 	private Timer movement;
 	private final int MS = 50;
@@ -32,8 +32,8 @@ public class Missile implements ActionListener {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = false;
 		isDestroyed = false;
-		//this.rng = new Random();
-		//x = rng.nextInt(1024);
+		this.rng = new Random();
+		x = rng.nextInt(1024);
 		y = 0;
 		dy = 10;
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
@@ -48,7 +48,7 @@ public class Missile implements ActionListener {
 	 * @param y starting y coordinate
 	 */
 	
-	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app) {
+	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouse) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
 		isDestroyed = false;
@@ -57,7 +57,7 @@ public class Missile implements ActionListener {
 		dy = 10;
 		if (isFriendly) 
 			dy *= -1;
-		dx = ThreadLocalRandom.current().nextInt(-10, 11); //change
+		dx = (mouse/40); //change
 		isHit = false;
 	}
 	

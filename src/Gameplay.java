@@ -12,7 +12,7 @@ import acm.program.GraphicsProgram;
  *
  */
 
-public class Gameplay extends GraphicsProgram {
+public class Gameplay {
 	
 	private final int WIDTH_IN_PIXELS = 1024;
 	
@@ -39,7 +39,6 @@ public class Gameplay extends GraphicsProgram {
 		this.missiles = new ArrayList<Missile>();
 		this.turrets = new Turret[this.TOTAL_TURRETS];
 		this.buildings = new Structure[this.TOTAL_BUILDINGS];
-		addKeyListeners();
 	}
 	
 	
@@ -47,12 +46,10 @@ public class Gameplay extends GraphicsProgram {
 	 * generates a RNG and if the number is within the range, an enemy missile is generated
 	 * when called the missile is added to the Array List of enemy missiles
 	 */
-	public boolean generateEnemyMissile(String spriteLocation, boolean friendly, MainApplication app){ //TODO add enum start location
+	public boolean generateEnemyMissile(String spriteLocation, MainApplication app){
 		int num = this.rng.nextInt(this.PERCENT) + 1;
-		int xCoord = this.rng.nextInt(this.WIDTH_IN_PIXELS);
-		int yCoord = 0;
 		if(num <= this.MISSILE_GENERATION_PROBILITY){
-			Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
+			Missile missile = new Missile(app, spriteLocation);
 			this.missiles.add(missile);
 			return true;
 		}
@@ -62,8 +59,8 @@ public class Gameplay extends GraphicsProgram {
 	/*
 	 * Friendly missile is generated at call and added to the friendly missile array
 	 */
-	public void generateFriendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app){
-		Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app);
+	public void generateFriendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app, int mouse){
+		Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app, mouse);
 		this.missiles.add(missile);
 
 	}

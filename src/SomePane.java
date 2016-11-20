@@ -21,6 +21,9 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private Turret test2;
 	private Timer move;
 	
+	private int currentMouseX;
+	private int currentMouseY;
+	
 	
 	
 	public SomePane(MainApplication app) {
@@ -28,6 +31,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl = new Level(program);
 		lvl.getGameObject().generateBuildings(program);
 		lvl.getGameObject().generateTurrets(program);
+		this.currentMouseX = 0;
+		this.currentMouseY = 0;
 		
 	}
 	
@@ -42,11 +47,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		}
 		
 		 //Draws the turrets to the stage screen
-//		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
-//			if(turret != null){
-//				turret.draw(program);
-//			}
-//		}
+		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
+			if(turret != null){
+				turret.draw(program);
+			}
+		}
 		
 		this.run();
 	
@@ -60,7 +65,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", false, program);
+		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", program);
 		//lvl.getGameObject().checkForHits();
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
 			if(missile != null){
@@ -89,8 +94,32 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	}
 	
 	@Override
+	public void mouseMoved(MouseEvent e){
+		this.currentMouseX = e.getX();
+		this.currentMouseY = e.getY();
+	}
+	
+	
+	@Override
 	public void keyTyped(KeyEvent e){
-		System.out.println(e.getKeyChar());
+		System.out.println(e.getKeyChar()); //TODO remove, testing only
+		//TODO have to deal with capital letters
+		switch(e.getKeyChar()){
+		case 'q':
+			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
+					lvl.getGameObject().getTurretsOnStage()[0].y, program, this.currentMouseX);
+			break;
+//		case 'w':
+//			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
+//					lvl.getGameObject().getTurretsOnStage()[0].y, program);
+//		case 'e':
+//			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
+//					lvl.getGameObject().getTurretsOnStage()[0].y, program);
+		case 'r':
+			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[1].x,
+					lvl.getGameObject().getTurretsOnStage()[1].y, program, -this.currentMouseX);
+			break;
+		}
 	}
 
 }
