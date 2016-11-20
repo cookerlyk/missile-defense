@@ -116,8 +116,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	@Override
 	public void keyTyped(KeyEvent e){
 		System.out.println(e.getKeyChar()); //TODO remove, testing only
-		//TODO have to deal with capital letters
-		switch(e.getKeyChar()){
+		
+		switch(Character.toLowerCase(e.getKeyChar())){
 		
 		// Turret Q
 		case 'q':
