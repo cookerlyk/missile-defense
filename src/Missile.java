@@ -3,6 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.*;
 import javax.swing.Timer;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -41,7 +42,11 @@ public class Missile implements ActionListener {
 		dx = ThreadLocalRandom.current().nextInt(-10, 11);
 		isHit = false;
 		
-		this.hitbox = new GRect(x, y); //TODO need more here, not all of the constructor params are filled 
+		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
+		
+		//TODO remove, test only to generate the boxes for visual example
+//		hitbox.setColor(Color.BLUE);
+//		hitbox.setFilled(true);
 	}
 	
 	/**
@@ -64,11 +69,16 @@ public class Missile implements ActionListener {
 		dx = (mouse/40); //change
 		isHit = false;
 		
-		this.hitbox = new GRect(x, y); //TODO need more here, not all of the constructor params are filled 
+		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
+		
+		//TODO remove, test only to generate the boxes for visual example
+//		hitbox.setColor(Color.BLUE);
+//		hitbox.setFilled(true);
 	}
 	
 	public void draw(MainApplication app) {
 		sprite.draw(app, this.x, this.y);
+//		app.add(this.hitbox);
 	}
 	
 	public void run(){
@@ -85,9 +95,9 @@ public class Missile implements ActionListener {
 	}
 	
 	public void move() {
-		//TODO need to move the hitbox with the missile
 		this.x += dx;
 		this.y += dy;
+		this.hitbox.move(dx, dy);
 	}
 	
 	/**

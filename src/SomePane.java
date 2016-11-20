@@ -79,7 +79,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		lvl.getGameObject().generateEnemyMissile("Sprites/Missile_placeholder.png", program);
-		//lvl.getGameObject().checkForHits();
+		lvl.getGameObject().checkForHits();
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
 			if(missile != null){
 				missile.draw(program);

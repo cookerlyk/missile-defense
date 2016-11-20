@@ -16,12 +16,11 @@ public class Gameplay {
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
 	private final int MISSILE_GENERATION_PROBILITY = 5;  // Translates to a 5% chance of a missile spawning
-	private final int PERCENT = 100;                     // Used in place for hardcoding 100 into the RNG function
+	private final int PERCENT = 100;                     // Used in place for hard coding 100 into the RNG function
 	private Random rng;
 
 	
-	// array lists that will hold the missile objects on the board
-	// TODO maybe one list would work
+	// array list that will hold the missile objects on the board
 	private List<Missile> missiles;
 	
 	// Static Arrays to hold the turret and the building objects
@@ -37,7 +36,6 @@ public class Gameplay {
 		this.turrets = new Turret[this.TOTAL_TURRETS];
 		this.buildings = new Structure[this.TOTAL_BUILDINGS];
 	}
-	
 	
 	/*
 	 * generates a RNG and if the number is within the range, an enemy missile is generated
@@ -82,7 +80,7 @@ public class Gameplay {
 	 * moves all of the missiles every tick of the clock
 	 */
 	public void moveMissiles(){
-		for(Missile missile : this.missiles){ //TODO maybe there doesn't have to be different lists of missiles
+		for(Missile missile : this.missiles){
 			if(missile != null){
 				missile.move();
 			}
@@ -92,24 +90,27 @@ public class Gameplay {
 	
 	/*
 	 * checks if each missile hit anything on each tick of the clock
+	 * by checking if the hit boxes of the buildings/turrets contain a missile 
+	 * hit box
 	 */
-//	public void checkForHits(){
-//		for(Missile missile : this.missiles){
-//			if(missile.getHitBox().getLocation() == this.buildings[0].getHitBox().getLocation()) {
-//				this.buildings[0].destroy();
-//				System.out.println("building 0 status: " + this.buildings[0].isDestroyed());
-//			}
-//			if(missile.getHitBox().getLocation() == this.buildings[1].getHitBox().getLocation()){
-//				this.buildings[1].destroy();
-//				System.out.println("building 1 status: " + this.buildings[1].isDestroyed());
-//			}
-//			System.out.println(this.buildings[0].getHitBox().getLocation());
-//
-//		}
-////		for(Missile missile : this.friendlyMissiles){
-////			missile.checkIfHit();
-////		}
-//	}
+	public void checkForHits(){
+		for(Missile missile : this.missiles){
+			if(missile != null){
+				if(this.buildings[0].getHitBox().contains(missile.getHitBox().getLocation())) {
+					this.buildings[0].destroy();
+					System.out.println("building 0 status: " + this.buildings[0].isDestroyed());
+				}
+				if(this.buildings[1].getHitBox().contains(missile.getHitBox().getLocation())){
+					this.buildings[1].destroy();
+					System.out.println("building 1 status: " + this.buildings[1].isDestroyed());
+				}
+
+			}
+			//		for(Missile missile : this.friendlyMissiles){
+			//			missile.checkIfHit();
+			//		}
+		}
+	}
 	
 	/*
 	 * returns the missiles that are on the stage

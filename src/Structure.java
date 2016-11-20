@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.*;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
@@ -20,11 +21,16 @@ public class Structure {
 		destroyed = false;
 		this.x = x;
 		this.y = y;
-		this.height = height;
-		this.width = width;
+		this.height = 150;
+		this.width = 100;
 		
-		hitbox = new GRect(width, height);
+		hitbox = new GRect(x, y, width, height);
 		this.sprite = SpriteStore.get().getSprite(spriteLoc);
+		
+		//TODO remove, test only to generate the boxes for visual example
+//		hitbox.setColor(Color.BLUE);
+//		hitbox.setFilled(true);
+//		app.add(hitbox);
 		
 	}
 	
