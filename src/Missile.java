@@ -39,8 +39,8 @@ public class Missile implements ActionListener {
 		this.rng = new Random();
 		x = rng.nextInt(1024);
 		y = 0;
-		dy = 10;
-		dx = ThreadLocalRandom.current().nextInt(-10, 11);
+		radius = 10;
+		angle = ThreadLocalRandom.current().nextDouble(45, 135);
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -67,8 +67,8 @@ public class Missile implements ActionListener {
 		radius = 10;
 		if (isFriendly) 
 			radius *= -1;
-		dx = mouseX - this.x;
-		dy = mouseY - this.y;
+		double dx = mouseX - this.x;
+		double dy = mouseY - this.y;
 		angle = return Math.toDegrees(Math.atan2(dy, dx));
 		isHit = false;
 		
