@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Turret extends Structure{
-	private int ammo;
+	private int ammo = 10;
 	
 	
 	public Turret(MainApplication app, int x, int y, String loc){
@@ -25,12 +25,12 @@ public class Turret extends Structure{
 	 * @param y: the y location of the mouse when fireMissile is Called
 	 */
 	void fireMissile(MainApplication app, Level lvl, int x, int y, List<Missile> m){
-	//	if(canFire()){
-	//		ammo -=1;
+		if(canFire()){
+			ammo -=1;
 			
 			Missile missile = new Missile("Sprites/Missile_placeholder.png", true, this.x, this.y, app, x);
 			m.add(missile);
-	//	}
+		}
 		
 	}
 }
