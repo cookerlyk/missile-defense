@@ -137,8 +137,10 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		
 		// Turret R
 		case 'r':
-			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[1].x,
-					lvl.getGameObject().getTurretsOnStage()[1].y, program, -this.currentMouseX);
+//			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[1].x,
+//					lvl.getGameObject().getTurretsOnStage()[1].y, program, -this.currentMouseX);
+			
+			lvl.getGameObject().getTurretsOnStage()[1].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
 			break;
 		
 		// Pause or resume the game with a space bar press
