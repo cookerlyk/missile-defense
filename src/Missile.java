@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import acm.graphics.*;
-
+import java.lang.Math;
 
 
 /** 
@@ -21,7 +21,8 @@ public class Missile implements ActionListener {
 	
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
-	private int x, y, dx, dy;
+	private int x, y;
+	private double radius, angle;
 	private Random rng;
 	private static int WIDTH = 50, HEIGHT = 50;
 	private Timer movement;
@@ -57,16 +58,18 @@ public class Missile implements ActionListener {
 	 * @param x starting x coordinate
 	 * @param y starting y coordinate
 	 */
-	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouse) {
+	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
 		isDestroyed = false;
 		this.x = x;
 		this.y = y;
-		dy = 10;
+		radius = 10;
 		if (isFriendly) 
-			dy *= -1;
-		dx = (mouse/40); //change
+			radius *= -1;
+		dx = mouseX - this.x;
+		dy = mouseY - this.y;
+		angle = return Math.toDegrees(Math.atan2(dy, dx));
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -89,14 +92,14 @@ public class Missile implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		this.setX(x+dx);
-		this.setY(y+dy);
+		this.setX(x+radius*Math.cos(angle));
+		this.setY(y+radius*Math.sin(angle));
 		System.out.println(x + "  " + y);
 	}
 	
 	public void move() {
-		this.x += dx;
-		this.y += dy;
+		this.x += radius*Math.cos(angle);
+		this.y += radius*Math.sin(angle);
 		this.hitbox.move(dx, dy);
 	}
 	

@@ -135,6 +135,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		// Turret R
 		case 'r':
 			lvl.getGameObject().getTurretsOnStage()[3].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
+
 			break;
 
 		// Pause or resume the game with a space bar press
