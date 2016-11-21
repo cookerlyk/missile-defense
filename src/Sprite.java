@@ -9,7 +9,10 @@ public class Sprite {
 		this.image = image;
 	}
 	
-	
+	public Sprite(GImage image, double xScale, double yScale){
+		this.image = image;
+		this.image.scale(xScale, yScale);
+	}
 	
 	public int getWidth(){
 		return  (int)image.getWidth();
