@@ -121,26 +121,22 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		
 		// Turret Q
 		case 'q':
-			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
-					lvl.getGameObject().getTurretsOnStage()[0].y, program, this.currentMouseX);
+			lvl.getGameObject().getTurretsOnStage()[0].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
 			break;
 		
 		// Turret W
-//		case 'w':
-//			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
-//					lvl.getGameObject().getTurretsOnStage()[0].y, program);
+		case 'w':
+			lvl.getGameObject().getTurretsOnStage()[1].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
 	   
 		// Turret E
-//		case 'e':
-//			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[0].x,
-//					lvl.getGameObject().getTurretsOnStage()[0].y, program);
+		case 'e':
+			lvl.getGameObject().getTurretsOnStage()[2].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
 		
 		// Turret R
 		case 'r':
-			lvl.getGameObject().getTurretsOnStage()[1].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
+			lvl.getGameObject().getTurretsOnStage()[3].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
 			break;
-		//			lvl.getGameObject().generateFriendlyMissile("Sprites/Missile_placeholder.png", true, lvl.getGameObject().getTurretsOnStage()[1].x,
-//					lvl.getGameObject().getTurretsOnStage()[1].y, program, -this.currentMouseX);
+
 		// Pause or resume the game with a space bar press
 		case ' ':
 			if(!lvl.isPaused()){

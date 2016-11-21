@@ -45,8 +45,8 @@ public class Missile implements ActionListener {
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
 		
 		//TODO remove, test only to generate the boxes for visual example
-//		hitbox.setColor(Color.BLUE);
-//		hitbox.setFilled(true);
+		hitbox.setColor(Color.BLUE);
+		hitbox.setFilled(true);
 	}
 	
 	/**

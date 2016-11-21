@@ -68,6 +68,8 @@ public class Gameplay {
 	public void generateBuildings(MainApplication app){
 		this.buildings[0] = new Building(app, 300, 625, "Sprites/house_placeholder.jpg");
 		this.buildings[1] = new Building(app, 600, 625, "Sprites/house_placeholder.jpg");
+//		this.buildings[2] = new Building(app, 300, 625, "Sprites/house_placeholder.jpg");
+//		this.buildings[3] = new Building(app, 600, 625, "Sprites/house_placeholder.jpg");
 	}
 
 	/*
@@ -76,6 +78,8 @@ public class Gameplay {
 	public void generateTurrets(MainApplication app){
 		this.turrets[0] = new Turret(app,0,550,"Sprites/turret_Placeholder.png");
 		this.turrets[1] = new Turret(app,750,550,"Sprites/turret_Placeholder.png");
+		this.turrets[2] = new Turret(app,0,550,"Sprites/turret_Placeholder.png");
+		this.turrets[3] = new Turret(app,750,550,"Sprites/turret_Placeholder.png");
 	}
 	
 	/*
