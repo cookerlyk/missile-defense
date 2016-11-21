@@ -54,8 +54,8 @@ public class Gameplay {
 	/*
 	 * Friendly missile is generated at call and added to the friendly missile array
 	 */
-	public void generateFriendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app, int mouse){
-		Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app, mouse);
+	public void generateFriendlyMissile(String spriteLocation, boolean friendly, int xCoord, int yCoord, MainApplication app, int mouseX, int mouseY){
+		Missile missile = new Missile(spriteLocation, friendly, xCoord, yCoord, app, mouseX, mouseY);
 		this.missiles.add(missile);
 
 	}

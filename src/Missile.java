@@ -69,7 +69,7 @@ public class Missile implements ActionListener {
 			radius *= -1;
 		double dx = mouseX - this.x;
 		double dy = mouseY - this.y;
-		angle = return Math.toDegrees(Math.atan2(dy, dx));
+		angle = Math.toDegrees(Math.atan2(dy, dx));
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
