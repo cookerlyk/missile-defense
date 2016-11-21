@@ -59,7 +59,6 @@ public class Gameplay {
 		this.missiles.add(missile);
 
 	}
-	
 
 
 	/*
