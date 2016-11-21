@@ -28,7 +28,7 @@ public class Turret extends Structure{
 		if(canFire()){
 			ammo -=1;
 			
-			Missile missile = new Missile("Sprites/Missile_placeholder.png", true, this.x, this.y, app, x);
+			Missile missile = new Missile("Sprites/Missile_placeholder.png", true, this.x, this.y, app, x, y);
 			m.add(missile);
 		}
 		
