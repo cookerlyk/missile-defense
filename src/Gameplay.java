@@ -90,7 +90,6 @@ public class Gameplay {
 			if(missile != null){
 				missile.move();
 			}
-			
 		}
 	}
 	
@@ -102,15 +101,32 @@ public class Gameplay {
 	public void checkForHits(){
 		for(Missile missile : this.missiles){
 			if(missile != null){
-				if(this.buildings[0].getHitBox().contains(missile.getHitBox().getLocation())) {
+				if(this.buildings[0].getHitBox().contains(missile.getHitBox().getLocation())){
 					this.buildings[0].destroy();
-					System.out.println("building 0 status: " + this.buildings[0].isDestroyed());
 				}
 				if(this.buildings[1].getHitBox().contains(missile.getHitBox().getLocation())){
 					this.buildings[1].destroy();
-					System.out.println("building 1 status: " + this.buildings[1].isDestroyed());
 				}
-
+				if(this.buildings[2].getHitBox().contains(missile.getHitBox().getLocation())){
+					this.buildings[2].destroy();
+				}
+				if(this.buildings[3].getHitBox().contains(missile.getHitBox().getLocation())){
+					this.buildings[3].destroy();
+				}
+				if(!missile.isFriendly()){
+					if(this.turrets[0].getHitBox().contains(missile.getHitBox().getLocation())){
+						this.turrets[0].destroy();
+					}
+					if(this.turrets[1].getHitBox().contains(missile.getHitBox().getLocation())){
+						this.turrets[1].destroy();
+					}
+					if(this.turrets[2].getHitBox().contains(missile.getHitBox().getLocation())){
+						this.turrets[2].destroy();
+					}
+					if(this.turrets[3].getHitBox().contains(missile.getHitBox().getLocation())){
+						this.turrets[3].destroy();
+					}
+				}
 			}
 			//		for(Missile missile : this.friendlyMissiles){
 			//			missile.checkIfHit();

@@ -34,7 +34,7 @@ public class Structure {
 	 */
 	public void destroy(){
 		destroyed = true;
-		
+		this.hitbox.setFillColor(Color.red);
 	}
 	
 	/**
