@@ -55,6 +55,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		// Draws the buildings to the stage screen
 		for(Structure building : lvl.getGameObject().getBuildingsOnStage()){
 			if(building != null){
+				building.sprite.scale(0.4, 0.4);
 				building.draw(program);
 			}
 		}
@@ -62,6 +63,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		 //Draws the turrets to the stage screen
 		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
 			if(turret != null){
+				turret.sprite.scale(0.3, 0.3);
 				turret.draw(program);
 			}
 		}
@@ -127,15 +129,16 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		// Turret W
 		case 'w':
 			lvl.getGameObject().getTurretsOnStage()[1].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
+			break;
 	   
 		// Turret E
 		case 'e':
 			lvl.getGameObject().getTurretsOnStage()[2].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
+			break;
 		
 		// Turret R
 		case 'r':
 			lvl.getGameObject().getTurretsOnStage()[3].fireMissile(program, lvl, 100, 100, lvl.getmissiles());
-
 			break;
 
 		// Pause or resume the game with a space bar press

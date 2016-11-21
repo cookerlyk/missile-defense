@@ -1,7 +1,11 @@
 import java.util.*;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+
+import acm.graphics.GRect;
+
 import javax.swing.*;
 
 public class Turret extends Structure implements ActionListener{
@@ -16,6 +20,15 @@ public class Turret extends Structure implements ActionListener{
 	
 	public Turret(MainApplication app, int x, int y, String loc){
 		super(app, x, y, loc);
+		this.height = 100;
+		this.width = 100;
+		hitbox = new GRect(x, y, width, height);
+		
+		//TODO remove, test only to generate the boxes for visual example
+		hitbox.setColor(Color.BLUE);
+		hitbox.setFilled(true);
+		app.add(hitbox);
+		
 		run();
 	}
 	
