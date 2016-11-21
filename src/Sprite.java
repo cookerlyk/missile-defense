@@ -14,6 +14,14 @@ public class Sprite {
 		this.image.scale(xScale, yScale);
 	}
 	
+	public void scale(double xScale, double yScale){
+		this.image.scale(xScale, yScale);
+	}
+	
+	public Sprite getSprite(){
+		return this;
+	}
+	
 	public int getWidth(){
 		return  (int)image.getWidth();
 	}
