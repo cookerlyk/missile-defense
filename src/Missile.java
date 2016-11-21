@@ -92,15 +92,15 @@ public class Missile implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		this.setX(x+radius*Math.cos(angle));
-		this.setY(y+radius*Math.sin(angle));
+		this.setX(x + (int) (radius * Math.cos(angle)));
+		this.setY(y + (int) (radius * Math.sin(angle)));
 		System.out.println(x + "  " + y);
 	}
 	
 	public void move() {
-		this.x += radius*Math.cos(angle);
-		this.y += radius*Math.sin(angle);
-		this.hitbox.move(dx, dy);
+		this.x += (int) (radius*Math.cos(angle));
+		this.y += (int) (radius*Math.sin(angle));
+		this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 	}
 	
 	/**
@@ -172,21 +172,7 @@ public class Missile implements ActionListener {
 	public boolean isFriendly() {
 		return isFriendly;
 	}
-	
-	/**
-	 * @return the dx
-	 */
-	public int getDx() {
-		return dx;
-	}
-	
-	/**
-	 * @return the dy
-	 */
-	public int getDy() {
-		return dy;
-	}
-	
+
 	/**
 	 * @return the wIDTH
 	 */
