@@ -25,9 +25,9 @@ public class Missile implements ActionListener {
 	private double radius, angle;
 	private Random rng;
 	private static int WIDTH = 50, HEIGHT = 50;
-	private Timer movement;
 	private final int MS = 50;
 	private GRect hitbox;
+	private boolean left;
 	
 	/**
 	 * Default constructor. Intended for enemies.
@@ -40,7 +40,7 @@ public class Missile implements ActionListener {
 		x = rng.nextInt(1024);
 		y = 0;
 		radius = 10;
-		angle = ThreadLocalRandom.current().nextDouble(45, 135);
+		angle = this.rng.nextDouble();
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -48,6 +48,12 @@ public class Missile implements ActionListener {
 		//TODO remove, test only to generate the boxes for visual example
 		hitbox.setColor(Color.BLUE);
 		hitbox.setFilled(true);
+		
+		if (this.rng.nextInt(2) == 0) 
+			left = true;
+		else left = false;
+		
+		System.out.print("r" + radius + "a" + angle + "\n" );
 	}
 	
 	/**
@@ -58,19 +64,21 @@ public class Missile implements ActionListener {
 	 * @param x starting x coordinate
 	 * @param y starting y coordinate
 	 */
-	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
+	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY, boolean l) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
 		isDestroyed = false;
 		this.x = x;
 		this.y = y;
 		radius = 10;
-		if (isFriendly) 
-			radius *= -1;
+//		if (isFriendly) 
+//			radius *= -1;
 		double dx = mouseX - this.x;
 		double dy = mouseY - this.y;
 		angle = Math.toDegrees(Math.atan2(dy, dx));
 		isHit = false;
+		
+		this.left = l;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
 		
@@ -84,13 +92,6 @@ public class Missile implements ActionListener {
 //		app.add(this.hitbox);
 	}
 	
-	public void run(){
-		movement = new Timer(MS, this);
-		movement.setInitialDelay(0);
-		movement.start();
-		System.out.println(movement.isRunning());
-	}
-	
 	public void actionPerformed(ActionEvent e){
 		this.setX(x + (int) (radius * Math.cos(angle)));
 		this.setY(y + (int) (radius * Math.sin(angle)));
@@ -98,7 +99,12 @@ public class Missile implements ActionListener {
 	}
 	
 	public void move() {
-		this.x += (int) (radius*Math.cos(angle));
+		if (left) {
+			this.x -= (int) (radius*Math.cos(angle));
+		}
+		else {
+			this.x += (int) (radius*Math.cos(angle));
+		}
 		this.y += (int) (radius*Math.sin(angle));
 		this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 	}

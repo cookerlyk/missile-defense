@@ -52,7 +52,7 @@ public class Turret extends Structure implements ActionListener{
 		if(canFire()){
 			ammo -=1;
 			fireDelay = DELAYTIME;
-			Missile missile = new Missile("Sprites/Missile_placeholder.png", true, this.x, this.y, app, x, y);
+			Missile missile = new Missile("Sprites/Missile_placeholder.png", true, this.x, this.y, app, x, y, false); //TODO fix user firing
 			m.add(missile);
 		}
 		
@@ -62,13 +62,13 @@ public class Turret extends Structure implements ActionListener{
 		timer = new Timer(TIMERTICK, this);
 		timer.setInitialDelay(0);
 		timer.start();
-		System.out.println(fireDelay);
+//		System.out.println(fireDelay);
 	}
 	
 	public void actionPerformed(ActionEvent e){
 		if (fireDelay > 0){
 			fireDelay -=SHOTDELAY;
 		}
-		System.out.println(fireDelay);
+	//	System.out.println(fireDelay);
 	}
 }
