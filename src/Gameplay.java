@@ -90,6 +90,18 @@ public class Gameplay {
 	public void checkForHits(){
 		for(Missile missile : this.missiles){
 			if(missile != null){
+				for (int i = 0; i < this.buildings.length; i++) {
+					if (this.buildings[i].getHitBox().contains(missile.getHitBox().getLocation())) {
+						this.buildings[i].destroy();
+					}
+				}
+				for (int i = 0; i < this.turrets.length; i++ ) {
+					if (!missile.isFriendly() && this.turrets[i].getHitBox().contains(missile.getHitBox().getLocation())) {
+						this.turrets[i].destroy();
+					}
+				}
+					
+				/*
 				if(this.buildings[0].getHitBox().contains(missile.getHitBox().getLocation())){
 					this.buildings[0].destroy();
 				}
@@ -116,6 +128,7 @@ public class Gameplay {
 						this.turrets[3].destroy();
 					}
 				}
+				*/
 			}
 			//		for(Missile missile : this.friendlyMissiles){
 			//			missile.checkIfHit();
