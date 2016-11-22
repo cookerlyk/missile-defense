@@ -1,15 +1,6 @@
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
-import javax.swing.*;
-import javax.swing.Timer;
-
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import acm.graphics.*;
 import java.lang.Math;
-
 
 /** 
  * 
@@ -41,6 +32,12 @@ public class Missile {
 		y = 0;
 		radius = 10;
 		angle = this.rng.nextDouble();
+		if (angle < 0.3) {
+			angle += 0.1;
+		}
+		else if (angle > 0.7) {
+			angle -= 0.1;
+		}
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -77,12 +74,19 @@ public class Missile {
 		radius = 10;
 //		if (isFriendly) 
 //			radius *= -1;
-		double dx = mouseX - this.x;
+		
+		this.left = l;
+		
+		double dx;
+		if (this.left) {
+			dx = mouseX - this.x;
+		} else dx = mouseX + this.x;
+		
 		double dy = mouseY - this.y;
 		angle = Math.toDegrees(Math.atan2(dy, dx));
 		isHit = false;
 		
-		this.left = l;
+		
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
 		this.sprite.scale(scale, scale);
@@ -90,6 +94,7 @@ public class Missile {
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
+		System.out.print("x: " + mouseX + " y: " + mouseY + "\n");
 	}
 	
 	public void draw(MainApplication app) {
@@ -193,10 +198,17 @@ public class Missile {
 		return HEIGHT;
 	}
 	
-	/*
-	 * returns the hitbox for the missile
+	/**
+	 * @return the hitbox for the missile
 	 */
 	public GRect getHitBox(){
 		return this.hitbox;
+	}
+	
+	/**
+	 * @return missile angle
+	 */
+	public double getAngle() {
+		return angle;
 	}
 }
