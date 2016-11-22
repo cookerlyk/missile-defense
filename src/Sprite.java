@@ -40,5 +40,4 @@ public class Sprite {
 	public void remove(MainApplication p){
 		p.remove(image);
 	}
-
 }

@@ -24,8 +24,8 @@ public class Missile implements ActionListener {
 	private int x, y;
 	private double radius, angle;
 	private Random rng;
-	private static int WIDTH = 50, HEIGHT = 50;
-	private final int MS = 50;
+	private static int WIDTH = 30, HEIGHT = 50;
+
 	private GRect hitbox;
 	private boolean left;
 	private double scale = 0.1;
@@ -56,6 +56,7 @@ public class Missile implements ActionListener {
 		else left = false;
 		
 		System.out.print("r" + radius + "a" + angle + "\n" );
+		
 	}
 	
 	/**
@@ -92,7 +93,7 @@ public class Missile implements ActionListener {
 	
 	public void draw(MainApplication app) {
 		sprite.draw(app, this.x, this.y);
-		//app.add(this.hitbox);
+		app.add(this.hitbox);
 	}
 	
 	public void actionPerformed(ActionEvent e){
