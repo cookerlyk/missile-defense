@@ -111,7 +111,7 @@ public class Missile {
 			this.x += (int) (radius*Math.cos(angle));
 			this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 		}
-		this.y += (int) (radius*Math.sin(angle));
+		this.y += (int) (radius*Math.sin(angle)); 
 	}
 	
 	/**
