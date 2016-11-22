@@ -99,7 +99,8 @@ public class Missile {
 		sprite.getImage().movePolar(radius, angle);
 		this.x = (int) sprite.getImage().getX();
 		this.y = (int) sprite.getImage().getY();
-		this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
+		this.hitbox.setLocation(this.x, this.y);
+	//	move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 
 		/*
 		if (left) {
