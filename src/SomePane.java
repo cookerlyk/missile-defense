@@ -84,7 +84,12 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl.getGameObject().checkForHits();
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
 			if(missile != null){
-				missile.draw(program);
+				if(!missile.isDestroyed()){
+					missile.draw(program);
+				}
+				else{
+					missile.getSprite().remove(program);
+				}
 				missile.move();
 			}
 			

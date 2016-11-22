@@ -19,7 +19,7 @@ public class Gameplay {
 	private final int PERCENT = 100;                     // Used in place for hard coding 100 into the RNG function
 	private Random rng;
 
-	
+
 	// array list that will hold the missile objects on the board
 	private List<Missile> missiles;
 	
@@ -100,39 +100,7 @@ public class Gameplay {
 						this.turrets[i].destroy();
 					}
 				}
-					
-				/*
-				if(this.buildings[0].getHitBox().contains(missile.getHitBox().getLocation())){
-					this.buildings[0].destroy();
-				}
-				if(this.buildings[1].getHitBox().contains(missile.getHitBox().getLocation())){
-					this.buildings[1].destroy();
-				}
-				if(this.buildings[2].getHitBox().contains(missile.getHitBox().getLocation())){
-					this.buildings[2].destroy();
-				}
-				if(this.buildings[3].getHitBox().contains(missile.getHitBox().getLocation())){
-					this.buildings[3].destroy();
-				}
-				if(!missile.isFriendly()){
-					if(this.turrets[0].getHitBox().contains(missile.getHitBox().getLocation())){
-						this.turrets[0].destroy();
-					}
-					if(this.turrets[1].getHitBox().contains(missile.getHitBox().getLocation())){
-						this.turrets[1].destroy();
-					}
-					if(this.turrets[2].getHitBox().contains(missile.getHitBox().getLocation())){
-						this.turrets[2].destroy();
-					}
-					if(this.turrets[3].getHitBox().contains(missile.getHitBox().getLocation())){
-						this.turrets[3].destroy();
-					}
-				}
-				*/
 			}
-			//		for(Missile missile : this.friendlyMissiles){
-			//			missile.checkIfHit();
-			//		}
 		}
 	}
 	

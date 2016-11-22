@@ -123,7 +123,7 @@ public class Missile {
 	 * @return the isDestroyed
 	 */
 	public boolean isDestroyed() {
-		return isDestroyed;
+		return this.isDestroyed;
 	}
 	
 	/**
