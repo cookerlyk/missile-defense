@@ -28,6 +28,7 @@ public class Missile implements ActionListener {
 	private final int MS = 50;
 	private GRect hitbox;
 	private boolean left;
+	private double scale = 0.1;
 	
 	/**
 	 * Default constructor. Intended for enemies.
@@ -44,10 +45,11 @@ public class Missile implements ActionListener {
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
+		this.sprite.scale(scale, scale);
 		
 		//TODO remove, test only to generate the boxes for visual example
-		hitbox.setColor(Color.BLUE);
-		hitbox.setFilled(true);
+//		hitbox.setColor(Color.BLUE);
+//		hitbox.setFilled(true);
 		
 		if (this.rng.nextInt(2) == 0) 
 			left = true;
@@ -81,6 +83,7 @@ public class Missile implements ActionListener {
 		this.left = l;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
+		this.sprite.scale(scale, scale);
 		
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
@@ -89,7 +92,7 @@ public class Missile implements ActionListener {
 	
 	public void draw(MainApplication app) {
 		sprite.draw(app, this.x, this.y);
-//		app.add(this.hitbox);
+		//app.add(this.hitbox);
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -101,12 +104,13 @@ public class Missile implements ActionListener {
 	public void move() {
 		if (left) {
 			this.x -= (int) (radius*Math.cos(angle));
+			this.hitbox.move((int) -(radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 		}
 		else {
 			this.x += (int) (radius*Math.cos(angle));
+			this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 		}
 		this.y += (int) (radius*Math.sin(angle));
-		this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 	}
 	
 	/**

@@ -52,7 +52,7 @@ public class Turret extends Structure implements ActionListener{
 		if(canFire()){
 			ammo -=1;
 			fireDelay = DELAYTIME;
-			Missile missile = new Missile("Sprites/Missile_placeholder.png", true, this.x, this.y, app, x, y, false); //TODO fix user firing
+			Missile missile = new Missile("Sprites/missile2placeholder.png", true, this.x, this.y, app, x, y, false); //TODO fix user firing
 			m.add(missile);
 		}
 		
