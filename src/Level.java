@@ -14,7 +14,6 @@ public class Level {
 	private boolean gameOver, paused;
 	private int score, time, roundNum;
 	private Gameplay game;
-	private MainApplication app;
 	
 
 	/*
@@ -22,7 +21,6 @@ public class Level {
 	 */
 	public Level(MainApplication app){
 		this.game = new Gameplay();
-		this.app = app;
 		this.paused = false;
 		this.gameOver = false;
 		this.score = 0;
@@ -138,5 +136,8 @@ public class Level {
 		return this.game.getMissilesOnStage();
 	}
 	
+	public List<Missile> getFriendlymissiles(){
+		return this.game.getFriendlyMissilesOnStage();
+	}
 	
 }

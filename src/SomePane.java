@@ -82,13 +82,17 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
 		lvl.getGameObject().checkForHits();
+		
+		//TODO make the inner for loop code in both loops into a single helper function
+		
+		// Enemy Missiles
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
 			if(missile != null){
 				if(!missile.isDestroyed()){
-					missile.draw(program);
+					missile.draw(program);                // draws the missile image if the missile is not destroyed
 				}
 				else{
-					missile.getSprite().remove(program);
+					missile.getSprite().remove(program);  // removes image if the missile is destroyed
 				}
 				missile.move();
 			}
@@ -96,6 +100,24 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
 			if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
 				missile = null;
+			}
+		}
+		
+		// Friendly Missiles
+		for(Missile fMissile: lvl.getGameObject().getFriendlyMissilesOnStage()){
+			if(fMissile != null){
+				if(!fMissile.isDestroyed()){
+					fMissile.draw(program);                // draws the missile image if the missile is not destroyed
+				}
+				else{
+					fMissile.getSprite().remove(program);  // removes image if the missile is destroyed
+				}
+				fMissile.move();
+			}
+			
+			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
+			if(fMissile.getY() < 0 || fMissile.getY() > this.PROGRAM_HEIGHT || fMissile.getX() < 0 || fMissile.getX() > this.PROGRAM_WIDTH){
+				fMissile = null;
 			}
 		}
 	}
@@ -128,22 +150,22 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		
 		// Turret Q
 		case 'q':
-			lvl.getGameObject().getTurretsOnStage()[0].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getmissiles());
+			lvl.getGameObject().getTurretsOnStage()[0].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getFriendlymissiles());
 			break;
 		
 		// Turret W
 		case 'w':
-			lvl.getGameObject().getTurretsOnStage()[1].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getmissiles());
+			lvl.getGameObject().getTurretsOnStage()[1].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getFriendlymissiles());
 			break;
 	   
 		// Turret E
 		case 'e':
-			lvl.getGameObject().getTurretsOnStage()[2].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getmissiles());
+			lvl.getGameObject().getTurretsOnStage()[2].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getFriendlymissiles());
 			break;
 		
 		// Turret R
 		case 'r':
-			lvl.getGameObject().getTurretsOnStage()[3].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getmissiles());
+			lvl.getGameObject().getTurretsOnStage()[3].fireMissile(program, lvl, this.currentMouseX, this.currentMouseY, lvl.getFriendlymissiles());
 			break;
 
 		// Pause or resume the game with a space bar press

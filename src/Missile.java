@@ -96,7 +96,7 @@ public class Missile {
 	
 	public void draw(MainApplication app) {
 		sprite.draw(app, this.x, this.y);
-		app.add(this.hitbox);
+		//app.add(this.hitbox);
 	}
 	
 	public void move() {

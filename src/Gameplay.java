@@ -11,8 +11,6 @@ import java.util.*;
 
 public class Gameplay {
 	
-	private final int WIDTH_IN_PIXELS = 1024;
-	
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
 	private final int MISSILE_GENERATION_PROBILITY = 5;  // Translates to a 5% chance of a missile spawning
@@ -23,16 +21,17 @@ public class Gameplay {
 	// array list that will hold the missile objects on the board
 	private List<Missile> missiles;
 	
+	private List<Missile> friendlyMissiles;
+	
 	// Static Arrays to hold the turret and the building objects
 	private Turret[] turrets;
 	private Structure[] buildings;
 	
 	
-	
-	 
 	public Gameplay() {
 		this.rng = new Random();  // seed the RNG at creation of the Gameplay object
 		this.missiles = new ArrayList<Missile>();
+		this.friendlyMissiles = new ArrayList<Missile>();
 		this.turrets = new Turret[this.TOTAL_TURRETS];
 		this.buildings = new Structure[this.TOTAL_BUILDINGS];
 	}
@@ -88,16 +87,40 @@ public class Gameplay {
 	 * hit box
 	 */
 	public void checkForHits(){
+		
+		// TODO try to remove a for loop or 2?
+		
 		for(Missile missile : this.missiles){
-			if(missile != null){
+			if(missile != null && !missile.isDestroyed()){
+				// Check buildings
 				for (int i = 0; i < this.buildings.length; i++) {
-					if (this.buildings[i].getHitBox().contains(missile.getHitBox().getLocation())) {
-						this.buildings[i].destroy();
+					if(!this.buildings[i].isDestroyed()){
+						if (this.buildings[i].getHitBox().contains(missile.getHitBox().getLocation())) {
+							this.buildings[i].destroy();
+							missile.setDestroyed(true);
+							break;
+						}
 					}
 				}
+				// Check turrets
 				for (int i = 0; i < this.turrets.length; i++ ) {
-					if (!missile.isFriendly() && this.turrets[i].getHitBox().contains(missile.getHitBox().getLocation())) {
-						this.turrets[i].destroy();
+					if(!this.turrets[i].isDestroyed()){
+						if (!missile.isFriendly() && this.turrets[i].getHitBox().contains(missile.getHitBox().getLocation())) {
+							this.turrets[i].destroy();
+							missile.setDestroyed(true);
+							break;
+						}
+					}
+				}
+				
+				// Checks Missile vs. Friendly Missile collisions
+				for (Missile fMissile : this.friendlyMissiles){
+					if(!fMissile.isDestroyed() && fMissile != null){
+						if (missile.getHitBox().contains(fMissile.getHitBox().getLocation())) {
+							fMissile.setDestroyed(true);
+							missile.setDestroyed(true);
+							break;
+						}
 					}
 				}
 			}
@@ -149,4 +172,7 @@ public class Gameplay {
 		}
 	}
 	
+	public List<Missile> getFriendlyMissilesOnStage(){
+		return this.friendlyMissiles;
+	}
 }
