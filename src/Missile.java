@@ -17,15 +17,14 @@ import java.lang.Math;
  *
  **/
 
-public class Missile implements ActionListener {
+public class Missile {
 	
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y;
 	private double radius, angle;
 	private Random rng;
-	private static int WIDTH = 50, HEIGHT = 50;
-	private final int MS = 50;
+	private static final int WIDTH = 50, HEIGHT = 50;
 	private GRect hitbox;
 	private boolean left;
 	private double scale = 0.1;
@@ -55,7 +54,7 @@ public class Missile implements ActionListener {
 			left = true;
 		else left = false;
 		
-		System.out.print("r" + radius + "a" + angle + "\n" );
+		System.out.print("r:" + radius + " a:" + angle + "\n" );
 	}
 	
 	/**
@@ -65,6 +64,9 @@ public class Missile implements ActionListener {
 	 * @param status Destroyed or not
 	 * @param x starting x coordinate
 	 * @param y starting y coordinate
+	 * @param mouseX is mouse's x
+	 * @param mouseY is mouse's y
+	 * @param l is whether the missile is going left or not.
 	 */
 	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY, boolean l) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
@@ -93,12 +95,6 @@ public class Missile implements ActionListener {
 	public void draw(MainApplication app) {
 		sprite.draw(app, this.x, this.y);
 		//app.add(this.hitbox);
-	}
-	
-	public void actionPerformed(ActionEvent e){
-		this.setX(x + (int) (radius * Math.cos(angle)));
-		this.setY(y + (int) (radius * Math.sin(angle)));
-		System.out.println(x + "  " + y);
 	}
 	
 	public void move() {
