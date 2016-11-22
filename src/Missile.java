@@ -77,13 +77,9 @@ public class Missile {
 		
 		this.left = l;
 		
-		double dx;
-		if (this.left) {
-			dx = mouseX - this.x;
-		} else dx = mouseX + this.x;
-		
+		double dx = mouseX - this.x;
 		double dy = mouseY - this.y;
-		angle = Math.toDegrees(Math.atan2(dy, dx));
+		angle = Math.abs(Math.toDegrees(Math.atan2(dy, dx)));
 		isHit = false;
 		
 		
@@ -94,7 +90,7 @@ public class Missile {
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
-		System.out.print("x: " + mouseX + " y: " + mouseY + "\n");
+		System.out.print("x: " + mouseX + " y: " + mouseY + " a: " + angle + "\n");
 	}
 	
 	public void draw(MainApplication app) {
