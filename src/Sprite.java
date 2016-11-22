@@ -5,6 +5,10 @@ import acm.graphics.GImage;
 public class Sprite {
 	private GImage image;
 	
+	public GImage getImage() {
+		return this.image;
+	}
+	
 	public Sprite(GImage image) {
 		this.image = image;
 	}

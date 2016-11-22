@@ -17,7 +17,6 @@ public class Missile {
 	private Random rng;
 	private static final int WIDTH = 50, HEIGHT = 50;
 	private GRect hitbox;
-	private boolean left;
 	private double scale = 0.1;
 	
 	/**
@@ -31,13 +30,16 @@ public class Missile {
 		x = rng.nextInt(1024);
 		y = 0;
 		radius = 10;
-		angle = this.rng.nextDouble();
+		angle = 150 * this.rng.nextDouble() - 150;
+/*
 		if (angle < 0.3) {
 			angle += 0.1;
 		}
 		else if (angle > 0.7) {
 			angle -= 0.1;
 		}
+		angle = -100 * angle;
+*/
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -46,10 +48,6 @@ public class Missile {
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
-		
-		if (this.rng.nextInt(2) == 0) 
-			left = true;
-		else left = false;
 		
 		System.out.print("r:" + radius + " a:" + angle + "\n" );
 	}
@@ -63,19 +61,18 @@ public class Missile {
 	 * @param y starting y coordinate
 	 * @param mouseX is mouse's x
 	 * @param mouseY is mouse's y
-	 * @param l is whether the missile is going left or not.
 	 */
-	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY, boolean l) {
+	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
 		isDestroyed = false;
 		this.x = x;
 		this.y = y;
 		radius = 10;
-//		if (isFriendly) 
+		
+//		if (isFriendly)
 //			radius *= -1;
 		
-		this.left = l;
 		
 		double dx = mouseX - this.x;
 		double dy = mouseY - this.y;
@@ -99,6 +96,12 @@ public class Missile {
 	}
 	
 	public void move() {
+		sprite.getImage().movePolar(radius, angle);
+		this.x = (int) sprite.getImage().getX();
+		this.y = (int) sprite.getImage().getY();
+		this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
+
+		/*
 		if (left) {
 			this.x -= (int) (radius*Math.cos(angle));
 			this.hitbox.move((int) -(radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
@@ -108,6 +111,7 @@ public class Missile {
 			this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 		}
 		this.y += (int) (radius*Math.sin(angle)); 
+		*/
 	}
 	
 	/**
