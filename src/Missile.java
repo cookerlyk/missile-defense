@@ -1,15 +1,6 @@
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
-import javax.swing.*;
-import javax.swing.Timer;
-
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import acm.graphics.*;
 import java.lang.Math;
-
 
 /** 
  * 
@@ -17,17 +8,18 @@ import java.lang.Math;
  *
  **/
 
-public class Missile implements ActionListener {
+public class Missile {
 	
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y;
 	private double radius, angle;
 	private Random rng;
+
 	private static int WIDTH = 30, HEIGHT = 50;
 
+
 	private GRect hitbox;
-	private boolean left;
 	private double scale = 0.1;
 	
 	/**
@@ -41,7 +33,16 @@ public class Missile implements ActionListener {
 		x = rng.nextInt(1024);
 		y = 0;
 		radius = 10;
-		angle = this.rng.nextDouble();
+		angle = 150 * this.rng.nextDouble() - 150;
+/*
+		if (angle < 0.3) {
+			angle += 0.1;
+		}
+		else if (angle > 0.7) {
+			angle -= 0.1;
+		}
+		angle = -100 * angle;
+*/
 		isHit = false;
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -50,13 +51,9 @@ public class Missile implements ActionListener {
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
-		
-		if (this.rng.nextInt(2) == 0) 
-			left = true;
-		else left = false;
-		
+
 		System.out.print("r" + radius + "a" + angle + "\n" );
-		
+	
 	}
 	
 	/**
@@ -66,22 +63,27 @@ public class Missile implements ActionListener {
 	 * @param status Destroyed or not
 	 * @param x starting x coordinate
 	 * @param y starting y coordinate
+	 * @param mouseX is mouse's x
+	 * @param mouseY is mouse's y
 	 */
-	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY, boolean l) {
+	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
 		sprite = SpriteStore.get().getSprite(spriteLoc);
 		isFriendly = side;
 		isDestroyed = false;
 		this.x = x;
 		this.y = y;
 		radius = 10;
-//		if (isFriendly) 
+		
+//		if (isFriendly)
 //			radius *= -1;
+		
+		
 		double dx = mouseX - this.x;
 		double dy = mouseY - this.y;
-		angle = Math.toDegrees(Math.atan2(dy, dx));
+		angle = Math.abs(Math.toDegrees(Math.atan2(dy, dx)));
 		isHit = false;
 		
-		this.left = l;
+		
 		
 		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
 		this.sprite.scale(scale, scale);
@@ -89,6 +91,7 @@ public class Missile implements ActionListener {
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
+		System.out.print("x: " + mouseX + " y: " + mouseY + " a: " + angle + "\n");
 	}
 	
 	public void draw(MainApplication app) {
@@ -96,13 +99,14 @@ public class Missile implements ActionListener {
 		app.add(this.hitbox);
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		this.setX(x + (int) (radius * Math.cos(angle)));
-		this.setY(y + (int) (radius * Math.sin(angle)));
-		System.out.println(x + "  " + y);
-	}
-	
 	public void move() {
+		sprite.getImage().movePolar(radius, angle);
+		this.x = (int) sprite.getImage().getX();
+		this.y = (int) sprite.getImage().getY();
+		this.hitbox.setLocation(this.x, this.y);
+	//	move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
+
+		/*
 		if (left) {
 			this.x -= (int) (radius*Math.cos(angle));
 			this.hitbox.move((int) -(radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
@@ -111,7 +115,8 @@ public class Missile implements ActionListener {
 			this.x += (int) (radius*Math.cos(angle));
 			this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 		}
-		this.y += (int) (radius*Math.sin(angle));
+		this.y += (int) (radius*Math.sin(angle)); 
+		*/
 	}
 	
 	/**
@@ -198,10 +203,17 @@ public class Missile implements ActionListener {
 		return HEIGHT;
 	}
 	
-	/*
-	 * returns the hitbox for the missile
+	/**
+	 * @return the hitbox for the missile
 	 */
 	public GRect getHitBox(){
 		return this.hitbox;
+	}
+	
+	/**
+	 * @return missile angle
+	 */
+	public double getAngle() {
+		return angle;
 	}
 }
