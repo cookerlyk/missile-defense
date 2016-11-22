@@ -5,10 +5,6 @@ import acm.graphics.GImage;
 public class Sprite {
 	private GImage image;
 	
-	public GImage getImage() {
-		return this.image;
-	}
-	
 	public Sprite(GImage image) {
 		this.image = image;
 	}
@@ -44,4 +40,9 @@ public class Sprite {
 	public void remove(MainApplication p){
 		p.remove(image);
 	}
+	
+	public GImage getImage(){
+		return this.image;
+	}
+
 }
