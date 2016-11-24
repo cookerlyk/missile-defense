@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.util.*;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import acm.graphics.GRectangle;
 
 public class Structure {
 	protected int x; 
@@ -10,7 +11,10 @@ public class Structure {
 	protected int width;
 	protected Sprite sprite;
 	protected boolean destroyed;
-	protected GRect hitbox;
+	protected GRectangle hitbox;
+	
+	protected final boolean DEBUG_MODE = true; // set to false if you want the hit boxes to not appear on screen
+	protected GRect debugHitbox;
 	
 	/**
  	 * @param x: x location of the structure
@@ -34,7 +38,7 @@ public class Structure {
 	 */
 	public void destroy(){
 		destroyed = true;
-		this.hitbox.setFillColor(Color.red);
+		this.debugHitbox.setFillColor(Color.red);
 	}
 	
 	/**
@@ -42,7 +46,7 @@ public class Structure {
 	 */
 	public void reset(){
 		destroyed = false;
-		this.hitbox.setFillColor(Color.blue);
+		this.debugHitbox.setFillColor(Color.blue);
 	}
 	
 	/**
@@ -56,7 +60,7 @@ public class Structure {
 	/*
 	 * returns the hitbox for the structure
 	 */
-	public GRect getHitBox(){
+	public GRectangle getHitBox(){
 		return this.hitbox;
 	}
 }

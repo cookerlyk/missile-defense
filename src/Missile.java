@@ -10,17 +10,22 @@ import java.lang.Math;
 
 public class Missile {
 	
+	private final double SCALE = 0.1;
 	private Sprite sprite;
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y;
 	private double radius, angle;
 	private Random rng;
 
-	private static int WIDTH = 30, HEIGHT = 50;
+	private final static int WIDTH = 30, HEIGHT = 50;
 
 
-	private GRect hitbox;
-	private double scale = 0.1;
+	private GRectangle hitbox;
+	
+	private final boolean DEBUG_MODE = true; // set to false if you want the hit boxes to not appear on screen
+	private GRect debugHitbox;
+	
+	
 	
 	/**
 	 * Default constructor. Intended for enemies.
@@ -45,14 +50,19 @@ public class Missile {
 */
 		isHit = false;
 		
-		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
-		this.sprite.scale(scale, scale);
+		this.hitbox = new GRectangle(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
+		this.sprite.scale(SCALE, SCALE);
 		
 		//TODO remove, test only to generate the boxes for visual example
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
 
 		System.out.print("r" + radius + "a" + angle + "\n" );
+		
+		//TODO remove, test only to generate the boxes for visual example
+		if(this.DEBUG_MODE == true){
+			this.debugHitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); 
+		}
 	
 	}
 	
@@ -85,18 +95,25 @@ public class Missile {
 		
 		
 		
-		this.hitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
-		this.sprite.scale(scale, scale);
+		this.hitbox = new GRectangle(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
+		this.sprite.scale(SCALE, SCALE);
+		
+		System.out.print("x: " + mouseX + " y: " + mouseY + " a: " + angle + "\n");
 		
 		//TODO remove, test only to generate the boxes for visual example
-//		hitbox.setColor(Color.BLUE);
-//		hitbox.setFilled(true);
-		System.out.print("x: " + mouseX + " y: " + mouseY + " a: " + angle + "\n");
+		if(this.DEBUG_MODE == true){
+			this.debugHitbox = new GRect(x, y, Missile.WIDTH, Missile.HEIGHT); 
+		}
 	}
 	
 	public void draw(MainApplication app) {
 		sprite.draw(app, this.x, this.y);
-		app.add(this.hitbox);
+		
+		//TODO remove, test only to generate the boxes for visual example
+		if(this.DEBUG_MODE == true){
+			app.add(this.debugHitbox);
+		}
+		
 	}
 	
 	public void move() {
@@ -104,6 +121,12 @@ public class Missile {
 		this.x = (int) sprite.getImage().getX();
 		this.y = (int) sprite.getImage().getY();
 		this.hitbox.setLocation(this.x, this.y);
+		
+		//TODO remove, test only to generate the boxes for visual example
+		if(this.DEBUG_MODE == true){
+			this.debugHitbox.setLocation(this.x, this.y);
+		}
+		
 	//	move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
 
 		/*
@@ -206,7 +229,7 @@ public class Missile {
 	/**
 	 * @return the hitbox for the missile
 	 */
-	public GRect getHitBox(){
+	public GRectangle getHitBox(){
 		return this.hitbox;
 	}
 	

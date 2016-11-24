@@ -99,7 +99,7 @@ public class Gameplay {
 				// Check buildings
 				for (int i = 0; i < this.buildings.length; i++) {
 					if(!this.buildings[i].isDestroyed()){
-						if (this.buildings[i].getHitBox().contains(missile.getHitBox().getLocation())) {
+						if (this.buildings[i].getHitBox().intersects(missile.getHitBox())) {
 							this.buildings[i].destroy();
 							missile.setDestroyed(true);
 							break;
@@ -109,7 +109,7 @@ public class Gameplay {
 				// Check turrets
 				for (int i = 0; i < this.turrets.length; i++ ) {
 					if(!this.turrets[i].isDestroyed()){
-						if (!missile.isFriendly() && this.turrets[i].getHitBox().contains(missile.getHitBox().getLocation())) {
+						if (!missile.isFriendly() && this.turrets[i].getHitBox().intersects(missile.getHitBox())) {
 							this.turrets[i].destroy();
 							missile.setDestroyed(true);
 							break;
@@ -120,7 +120,7 @@ public class Gameplay {
 				// Checks Missile vs. Friendly Missile collisions
 				for (Missile fMissile : this.friendlyMissiles){
 					if(!fMissile.isDestroyed() && fMissile != null){
-						if (missile.getHitBox().contains(fMissile.getHitBox().getLocation())) {
+						if (missile.getHitBox().intersects(fMissile.getHitBox())) {
 							fMissile.setDestroyed(true);
 							missile.setDestroyed(true);
 							this.incrementScore(this.SCORE_INCREASE);
