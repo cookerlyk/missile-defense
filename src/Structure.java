@@ -42,6 +42,7 @@ public class Structure {
 	 */
 	public void reset(){
 		destroyed = false;
+		this.hitbox.setFillColor(Color.blue);
 	}
 	
 	/**

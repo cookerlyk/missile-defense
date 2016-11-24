@@ -1,4 +1,8 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
+
+import javax.swing.Timer;
 
 /**
  * This class represents the Level that will handle the gameplay
@@ -9,11 +13,12 @@ import java.util.*;
  *
  */
 
-public class Level {
-	private final int ROUND_TIME = 60;  // Round is 60 seconds
+public class Level implements ActionListener {
+	private final int ROUND_TIME = 45;  // A round lasts 45 seconds
 	private boolean gameOver, paused;
-	private int score, time, roundNum;
+	private int time, roundNum;
 	private Gameplay game;
+	private Timer roundTimer;
 	
 
 	/*
@@ -23,9 +28,43 @@ public class Level {
 		this.game = new Gameplay();
 		this.paused = false;
 		this.gameOver = false;
-		this.score = 0;
 		this.time = this.ROUND_TIME;
 		this.roundNum = 1;
+		this.roundTimer = new Timer(1000, this);
+		
+	}
+	
+	/*
+	 * starts the timer for the round
+	 */
+	public void startRound(){
+		this.roundTimer.start();
+	}
+	
+	/*
+	 * stops the timer at a given state when called
+	 */
+	public void pauseRound(){
+		this.roundTimer.stop();
+	}
+	
+	/*
+	 * resumes the timer
+	 * TODO remove and call start for both unless 
+	 * something needs to be added here to differentiate the functionality
+	 * from startRound()
+	 */
+	public void resumeRound(){
+		this.roundTimer.start();
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		if(this.time > 0){
+			this.decrementTime();
+		}
+		else{
+			this.resetLevel();
+		}
 	}
 	
 	/*
@@ -45,6 +84,7 @@ public class Level {
 		this.game.resetTurrets();
 		this.time = this.ROUND_TIME;
 		this.roundNum += 1;
+		this.roundTimer.setDelay(1000);
 	}
 	
 	/*
@@ -55,6 +95,13 @@ public class Level {
 	}
 	
 	/*
+	 * returns the current score
+	 */
+	public int getScore(){
+		return this.game.getScore();
+	}
+	
+	/*
 	 * returns the current time left in the round
 	 */
 	public int getTime(){
@@ -62,25 +109,12 @@ public class Level {
 	}
 	
 	/*
-	 * returns the current score 
+	 * Decrements the time by 1 when called
 	 */
-	public int getScore(){
-		return this.score;
+	public void decrementTime(){
+		this.time -= 1;
 	}
 	
-	/*
-	 * Allows the score to be manually set
-	 */
-	public void setScore(int newScore){
-		this.score = newScore;
-	}
-	
-	/*
-	 * increments the score by a passed in amount when called
-	 */
-	public void incrementScore(int amount){
-		this.score += amount;
-	}
 	
 	/*
 	 * sets gameOver to be true

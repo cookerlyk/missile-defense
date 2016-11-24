@@ -11,11 +11,14 @@ import java.util.*;
 
 public class Gameplay {
 	
+	private final int SCORE_INCREASE = 10;
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
 	private final int MISSILE_GENERATION_PROBILITY = 5;  // Translates to a 5% chance of a missile spawning
 	private final int PERCENT = 100;                     // Used in place for hard coding 100 into the RNG function
 	private Random rng;
+	
+	private int score;
 
 
 	// array list that will hold the missile objects on the board
@@ -34,6 +37,7 @@ public class Gameplay {
 		this.friendlyMissiles = new ArrayList<Missile>();
 		this.turrets = new Turret[this.TOTAL_TURRETS];
 		this.buildings = new Structure[this.TOTAL_BUILDINGS];
+		this.score = 0;
 	}
 	
 	/*
@@ -119,6 +123,7 @@ public class Gameplay {
 						if (missile.getHitBox().contains(fMissile.getHitBox().getLocation())) {
 							fMissile.setDestroyed(true);
 							missile.setDestroyed(true);
+							this.incrementScore(this.SCORE_INCREASE);
 							break;
 						}
 					}
@@ -174,5 +179,26 @@ public class Gameplay {
 	
 	public List<Missile> getFriendlyMissilesOnStage(){
 		return this.friendlyMissiles;
+	}
+	
+	/*
+	 * returns the current score 
+	 */
+	public int getScore(){
+		return this.score;
+	}
+	
+	/*
+	 * Allows the score to be manually set
+	 */
+	public void setScore(int newScore){
+		this.score = newScore;
+	}
+	
+	/*
+	 * increments the score by a passed in amount when called
+	 */
+	public void incrementScore(int amount){
+		this.score += amount;
 	}
 }
