@@ -16,16 +16,14 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x768
 	private final int PROGRAM_HEIGHT = 768;
-	
-	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private final String lABEL_FONT = "Arial-Bold-22";
 	private final String ROUND_TIME_LABEL = "45";
+	
+	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage img;
 	private Level lvl;
-
 	private Timer move;
 	private GLabel roundTime, score;
-	
 	private GRect pauseBox;
 	private GLabel pauseMessage;
 	
@@ -97,42 +95,14 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.roundTime.setLabel(String.valueOf(lvl.getTime()));
 		this.score.setLabel(String.valueOf(lvl.getScore()));
 		
-		//TODO make the inner for loop code in both loops into a single helper function
-		
 		// Enemy Missiles
 		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
-			if(missile != null){
-				if(!missile.isDestroyed()){
-					missile.draw(program);                // draws the missile image if the missile is not destroyed
-				}
-				else{
-					missile.getSprite().remove(program);  // removes image if the missile is destroyed
-				}
-				missile.move();
-			}
-			
-			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
-			if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
-				missile = null;
-			}
+			this.missileHelper(missile);
 		}
 		
 		// Friendly Missiles
 		for(Missile fMissile: lvl.getGameObject().getFriendlyMissilesOnStage()){
-			if(fMissile != null){
-				if(!fMissile.isDestroyed()){
-					fMissile.draw(program);                // draws the missile image if the missile is not destroyed
-				}
-				else{
-					fMissile.getSprite().remove(program);  // removes image if the missile is destroyed
-				}
-				fMissile.move();
-			}
-			
-			//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
-			if(fMissile.getY() < 0 || fMissile.getY() > this.PROGRAM_HEIGHT || fMissile.getX() < 0 || fMissile.getX() > this.PROGRAM_WIDTH){
-				fMissile = null;
-			}
+			this.missileHelper(fMissile);
 		}
 	}
 
@@ -202,6 +172,28 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			break;
 		}
 		
+	}
+	
+	
+	/*
+	 * Helper function to handle missile drawing, removing, and setting to null
+	 * @param missile object to check
+	 */
+	private void missileHelper(Missile missile){
+		if(missile != null){
+			if(!missile.isDestroyed()){
+				missile.draw(program);                // draws the missile image if the missile is not destroyed
+			}
+			else{
+				missile.getSprite().remove(program);  // removes image if the missile is destroyed
+			}
+			missile.move();
+		}
+		
+		//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
+		if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
+			missile = null;
+		}
 	}
 
 }
