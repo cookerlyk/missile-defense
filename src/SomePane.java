@@ -18,11 +18,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private final int PROGRAM_HEIGHT = 768;
 	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
-	private static final String lABEL_FONT = "Arial-Bold-22";
+	private final String lABEL_FONT = "Arial-Bold-22";
+	private final String ROUND_TIME_LABEL = "45";
 	private GImage img;
 	private Level lvl;
-	private Turret test;
-	private Turret test2;
+
 	private Timer move;
 	private GLabel roundTime, score;
 	
@@ -50,7 +50,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.pauseMessage.setFont("Arial-Bold-30");
 		
 		// set up the labels for the score and the time in the round
-		this.roundTime = new GLabel("45",10, 20);
+		this.roundTime = new GLabel(this.ROUND_TIME_LABEL,10, 20);
 		this.score = new GLabel("0",875, 20);
 		this.roundTime.setColor(Color.black);
 		this.roundTime.setFont(lABEL_FONT);
