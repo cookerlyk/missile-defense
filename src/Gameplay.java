@@ -201,4 +201,16 @@ public class Gameplay {
 	public void incrementScore(int amount){
 		this.score += amount;
 	}
+	
+	/*
+	 * returns true if there is at least one building not destroyed
+	 */
+	public boolean checkBuildings(){
+		for(Structure building : this.buildings){
+			if(!building.isDestroyed()){
+				return true;
+			}
+		}
+		return false;
+	}
 }

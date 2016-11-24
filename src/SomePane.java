@@ -25,7 +25,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private Timer move;
 	private GLabel roundTime, score;
 	private GRect pauseBox;
-	private GLabel pauseMessage;
+	private GLabel pauseMessage, gameOverMessage;
 	
 	private int currentMouseX;
 	private int currentMouseY;
@@ -47,6 +47,9 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.pauseMessage = new GLabel("Press Spacebar to Resume", 320, 280);
 		this.pauseMessage.setFont("Arial-Bold-30");
 		
+		this.gameOverMessage = new GLabel("Game Over", 435, 280);
+		this.gameOverMessage.setFont("Arial-Bold-30");
+		
 		// set up the labels for the score and the time in the round
 		this.roundTime = new GLabel(this.ROUND_TIME_LABEL,10, 20);
 		this.score = new GLabel("0",875, 20);
@@ -59,25 +62,10 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	
 	public void showContents() {
-		
+		System.out.println(true);
 		program.add(this.roundTime);
 	    program.add(this.score);
-		
-		// Draws the buildings to the stage screen
-		for(Structure building : lvl.getGameObject().getBuildingsOnStage()){
-			if(building != null){
-				building.sprite.scale(0.4, 0.4);
-				building.draw(program);
-			}
-		}
-		
-		 //Draws the turrets to the stage screen
-		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
-			if(turret != null){
-				turret.sprite.scale(0.3, 0.3);
-				turret.draw(program);
-			}
-		}
+		this.drawStructures();
 		this.run();
 	}
 	
@@ -90,25 +78,39 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
-		lvl.getGameObject().checkForHits();
-		this.roundTime.setLabel(String.valueOf(lvl.getTime()));
-		this.score.setLabel(String.valueOf(lvl.getScore()));
-		
-		// Enemy Missiles
-		for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
-			this.missileHelper(missile);
+		if(!lvl.isGameOver()){
+			lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
+			lvl.getGameObject().checkForHits();
+			this.roundTime.setLabel(String.valueOf(lvl.getTime()));
+			this.score.setLabel(String.valueOf(lvl.getScore()));
+
+			// Enemy Missiles
+			for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
+				this.missileHelper(missile);
+			}
+
+			// Friendly Missiles
+			for(Missile fMissile: lvl.getGameObject().getFriendlyMissilesOnStage()){
+				this.missileHelper(fMissile);
+			}
+			
+			// Checks that all the buildings are not destroyed, sets game over to true if entered
+			if(!lvl.getGameObject().checkBuildings()){
+				lvl.setGameOver();
+			}
 		}
-		
-		// Friendly Missiles
-		for(Missile fMissile: lvl.getGameObject().getFriendlyMissilesOnStage()){
-			this.missileHelper(fMissile);
+		else{
+			this.gameOverHelper();
 		}
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(img);
+		program.remove(this.roundTime);
+		program.remove(this.score);
+		for(Missile missile : lvl.getmissiles()){
+			missile.getSprite().remove(program); 
+		}
 	}
 	
 	@Override
@@ -154,26 +156,48 @@ public class SomePane extends GraphicsPane implements ActionListener{
 
 		// Pause or resume the game with a space bar press
 		case ' ':
-			if(!lvl.isPaused()){
-				lvl.setPaused();           // sets paused to true
-				this.move.stop();          // stops timer, thus pauses the game
-				lvl.pauseRound();          // stops round timer
-				program.add(this.pauseBox);
-				program.add(this.pauseMessage);
-			}
-			else{
-				program.remove(this.pauseBox);
-				program.remove(this.pauseMessage);
-				lvl.setPaused();           // sets paused to false
-				move.setInitialDelay(50);  // 50ms delay before restart
-				this.move.start();         // starts timer, thus resumes the game
-				lvl.resumeRound();         // restarts the round timer
+			this.pauseHelper();
+			break;
+			
+		// Press the enter key when the game is over to return to main menu
+		case '\n':
+			if(lvl.isGameOver()){
+				this.hideContents();
+				program.switchBack();  // TODO reset the game to a new game 
 			}
 			break;
 		}
-		
 	}
 	
+	
+	
+	/***********************************
+	 * 
+	 * 
+	 *		   Helper functions 
+	 * 
+	 * 
+	 ***********************************/
+	
+	/*
+	 * Draws the turrets and buildings to the screen
+	 */
+	private void drawStructures(){
+		// Draws the buildings to the stage screen
+		for(Structure building : lvl.getGameObject().getBuildingsOnStage()){
+			if(building != null){
+				building.sprite.scale(0.4, 0.4);
+				building.draw(program);
+			}
+		}
+		//Draws the turrets to the stage screen
+		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
+			if(turret != null){
+				turret.sprite.scale(0.3, 0.3);
+				turret.draw(program);
+			}
+		}
+	}
 	
 	/*
 	 * Helper function to handle missile drawing, removing, and setting to null
@@ -193,6 +217,39 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
 		if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH){
 			missile = null;
+		}
+	}
+	
+	/*
+	 * Helper function to perform the necessary tasks
+	 * to end the game
+	 */
+	private void gameOverHelper(){
+		this.move.stop();          // stops movement timer
+		lvl.pauseRound();          // stops round timer
+		program.add(this.gameOverMessage);
+		
+		// TODO high score entering
+	}
+	
+	/*
+	 * Helper function to pause the game
+	 */
+	private void pauseHelper(){
+		if(!lvl.isPaused()){
+			lvl.setPaused();           // sets paused to true
+			this.move.stop();          // stops timer, thus pauses the game
+			lvl.pauseRound();          // stops round timer
+			program.add(this.pauseBox);
+			program.add(this.pauseMessage);
+		}
+		else{
+			program.remove(this.pauseBox);
+			program.remove(this.pauseMessage);
+			lvl.setPaused();           // sets paused to false
+			move.setInitialDelay(50);  // 50ms delay before restart
+			this.move.start();         // starts timer, thus resumes the game
+			lvl.resumeRound();         // restarts the round timer
 		}
 	}
 
