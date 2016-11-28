@@ -15,8 +15,11 @@ public class Missile {
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y;
 	private double radius, angle;
+	
+	private int roundedAngle;
+	
 	private Random rng;
-
+	
 	private final static int WIDTH = 30, HEIGHT = 50;
 
 
@@ -77,12 +80,21 @@ public class Missile {
 	 * @param mouseY is mouse's y
 	 */
 	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
-		sprite = SpriteStore.get().getSprite(spriteLoc);
+		double theta =Math.toDegrees(Math.atan2((mouseY - y),(mouseX - x)));
+		roundedAngle = (int)Math.round(theta/15)*15;
+		
+		String spriteLoc2 = "Sprites/friendlyPlaceholder_R" + roundedAngle + ".png";
+		System.out.println("Theta = " + roundedAngle);
+		System.out.println(spriteLoc2);
+		
+		
+		sprite = SpriteStore.get().getSprite(spriteLoc2);
 		isFriendly = side;
 		isDestroyed = false;
 		this.x = x;
 		this.y = y;
 		radius = 10;
+		
 		
 //		if (isFriendly)
 //			radius *= -1;

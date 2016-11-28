@@ -60,9 +60,9 @@ public class Turret extends Structure implements ActionListener{
 			ammo -=1;
 			fireDelay = DELAYTIME;
 			
-			double theta =Math.toDegrees(Math.atan2((y - this.y),(x - this.x)));
-			double rounded = Math.round(theta/15)*15;
-			System.out.println("Theta = " + rounded);
+//			double theta =Math.toDegrees(Math.atan2((y - this.y),(x - this.x)));
+//			double rounded = Math.round(theta/15)*15;
+//			System.out.println("Theta = " + rounded);
 			Missile missile = new Missile("Sprites/friendlyPlaceholder.png", true, this.x, this.y, app, x, y); //TODO fix user firing
 			m.add(missile);
 		}
