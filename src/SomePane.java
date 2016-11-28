@@ -20,7 +20,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private final String ROUND_TIME_LABEL = "45";
 	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
-	private GImage img;
 	private Level lvl;
 	private Timer move;
 	private GLabel roundTime, score;
@@ -112,13 +111,10 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		}
 	}
 	
-	@Override
-	public void mousePressed(MouseEvent e) {
-		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if(obj == img) {
-			program.switchBack();
-		}
-	}
+//	@Override
+//	public void mousePressed(MouseEvent e) {
+
+//	}
 	
 	@Override
 	public void mouseMoved(MouseEvent e){
