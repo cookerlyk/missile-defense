@@ -44,7 +44,11 @@ public class Missile {
 		y = 0;
 		radius = 10;
 		angle = 120 * this.rng.nextDouble() - 120;
-		
+		if (angle <= 20 && angle >= 0) {
+			angle += 20;
+		} else if (angle >= -20 && angle < 0) {
+			angle -= 20;
+		}
 		roundedAngle = Math.abs((int)Math.round(angle/15)*15);
 		
 		String spriteLoc2 = "Sprites/enemyPlaceholder_R-" + roundedAngle + ".png";
