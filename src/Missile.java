@@ -59,6 +59,7 @@ public class Missile {
 		
 		sprite = SpriteStore.get().getSprite(spriteLoc2);
 /*
+ * 
 		if (angle < 0.3) {
 			angle += 0.1;
 		}
