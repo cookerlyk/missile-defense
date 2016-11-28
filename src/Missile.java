@@ -45,9 +45,9 @@ public class Missile {
 		radius = 10;
 		angle = 150 * this.rng.nextDouble() - 150;
 		
-		roundedAngle = (int)Math.round(angle/15)*15;
+		roundedAngle = Math.abs((int)Math.round(angle/15)*15);
 		
-		String spriteLoc2 = "Sprites/enemyPlaceholder_R" + roundedAngle + ".png";
+		String spriteLoc2 = "Sprites/enemyPlaceholder_R-" + roundedAngle + ".png";
 		System.out.println("Theta = " + roundedAngle);
 		System.out.println(spriteLoc2);
 		
@@ -93,9 +93,9 @@ public class Missile {
 	 */
 	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
 		double theta =Math.toDegrees(Math.atan2((mouseY - y),(mouseX - x)));
-		roundedAngle = (int)Math.round(theta/15)*15;
+		roundedAngle = Math.abs((int)Math.round(theta/15)*15);
 		
-		String spriteLoc2 = "Sprites/friendlyPlaceholder_R" + roundedAngle + ".png";
+		String spriteLoc2 = "Sprites/friendlyPlaceholder_R-" + roundedAngle + ".png";
 		System.out.println("Theta = " + roundedAngle);
 		System.out.println(spriteLoc2);
 		
