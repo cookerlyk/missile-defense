@@ -43,7 +43,7 @@ public class Missile {
 		x = rng.nextInt(1024);
 		y = 0;
 		radius = 10;
-		angle = 120 * this.rng.nextDouble() - 120;
+		angle = 135 * this.rng.nextDouble() - 135;
 		if (angle <= 20 && angle >= 0) {
 			angle += 20;
 		} else if (angle >= -20 && angle < 0) {
