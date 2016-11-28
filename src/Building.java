@@ -6,7 +6,7 @@ public class Building extends Structure {
 	public Building(MainApplication app, int x, int y, String loc){
 		super(app, x, y, loc);
 		
-		this.height = 100;
+		this.height = 75;
 		this.width = 100;
 		
 		hitbox = new GRectangle(x, y, width, height);

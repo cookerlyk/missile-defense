@@ -58,20 +58,23 @@ public class Gameplay {
 	 * generates the buildings at start
 	 */
 	public void generateBuildings(MainApplication app){
-		this.buildings[0] = new Building(app, 300, 700, "Sprites/house_placeholder.jpg");
-		this.buildings[1] = new Building(app, 450, 700, "Sprites/house_placeholder.jpg");
-		this.buildings[2] = new Building(app, 550, 700, "Sprites/house_placeholder.jpg");
-		this.buildings[3] = new Building(app, 700, 700, "Sprites/house_placeholder.jpg");
+		// y was 700
+		this.buildings[0] = new Building(app, 300, 550, "Sprites/house_placeholder.jpg");
+		this.buildings[1] = new Building(app, 450, 550, "Sprites/house_placeholder.jpg");
+		this.buildings[2] = new Building(app, 550, 550, "Sprites/house_placeholder.jpg");
+		this.buildings[3] = new Building(app, 700, 550, "Sprites/house_placeholder.jpg");
 	}
 
 	/*
 	 * generates the turrets at start
 	 */
 	public void generateTurrets(MainApplication app){
-		this.turrets[0] = new Turret(app,15,550,"Sprites/turret_Placeholder.png");
-		this.turrets[1] = new Turret(app,150,680,"Sprites/turret_Placeholder.png");
-		this.turrets[2] = new Turret(app,800,680,"Sprites/turret_Placeholder.png");
-		this.turrets[3] = new Turret(app,925,550,"Sprites/turret_Placeholder.png");
+		// turret 0,3 550
+		// turret 1,2 680
+		this.turrets[0] = new Turret(app,15,475,"Sprites/turret_Placeholder.png");
+		this.turrets[1] = new Turret(app,150,550,"Sprites/turret_Placeholder.png");
+		this.turrets[2] = new Turret(app,800,550,"Sprites/turret_Placeholder.png");
+		this.turrets[3] = new Turret(app,925,475,"Sprites/turret_Placeholder.png");
 	}
 	
 	/*
