@@ -43,7 +43,7 @@ public class Missile {
 		x = rng.nextInt(1024);
 		y = 0;
 		radius = 10;
-		angle = 150 * this.rng.nextDouble() - 150;
+		angle = 120 * this.rng.nextDouble() - 120;
 		
 		roundedAngle = Math.abs((int)Math.round(angle/15)*15);
 		
