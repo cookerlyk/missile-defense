@@ -34,7 +34,9 @@ public class Missile {
 	 * Default constructor. Intended for enemies.
 	 */
 	public Missile(MainApplication app, String spriteLoc) {
-		sprite = SpriteStore.get().getSprite(spriteLoc);
+		
+		
+	
 		isFriendly = false;
 		isDestroyed = false;
 		this.rng = new Random();
@@ -42,6 +44,16 @@ public class Missile {
 		y = 0;
 		radius = 10;
 		angle = 150 * this.rng.nextDouble() - 150;
+		
+		roundedAngle = (int)Math.round(angle/15)*15;
+		
+		String spriteLoc2 = "Sprites/enemyPlaceholder_R" + roundedAngle + ".png";
+		System.out.println("Theta = " + roundedAngle);
+		System.out.println(spriteLoc2);
+		
+		
+		
+		sprite = SpriteStore.get().getSprite(spriteLoc2);
 /*
 		if (angle < 0.3) {
 			angle += 0.1;
