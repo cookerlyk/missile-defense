@@ -41,7 +41,12 @@ public class Turret extends Structure implements ActionListener{
 	 * 
 	 * @return is the turret able to fire a missile
 	 */
-	boolean canFire(){
+	boolean canFire(double mY){
+		if (mY > y){
+			return false;
+		}
+		
+		//System.out.println("Fire Angle = " + theta);
 		if(ammo > 0 && this.destroyed == false && fireDelay <= 0){
 			return true;
 		}
@@ -54,7 +59,7 @@ public class Turret extends Structure implements ActionListener{
 	 * @param y: the y location of the mouse when fireMissile is Called
 	 */
 	void fireMissile(MainApplication app, Level lvl, int x, int y, List<Missile> m){
-		if(canFire()){
+		if(canFire(y)){
 			ammo -=1;
 			fireDelay = DELAYTIME;
 			
