@@ -14,6 +14,8 @@ public class Turret extends Structure implements ActionListener{
 	private static int DELAYTIME = 2000;
 	private static int SHOTDELAY = 1000;
 	
+	
+	private int MAXAMMO = 10;
 	private int ammo = 10;
 	private Timer timer;
 	private int fireDelay;
@@ -84,5 +86,12 @@ public class Turret extends Structure implements ActionListener{
 			fireDelay -=SHOTDELAY;
 		}
 	//	System.out.println(fireDelay);
+	}
+	
+	@Override
+	public void reset(){
+		destroyed = false;
+		this.debugHitbox.setFillColor(Color.blue);
+		ammo = MAXAMMO;
 	}
 }
