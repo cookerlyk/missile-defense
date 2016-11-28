@@ -1,6 +1,5 @@
 import java.util.*;
 import java.io.*;
-import acm.graphics.*;
 
 /**
  * 
@@ -12,16 +11,31 @@ import acm.graphics.*;
 
 public class HighScores {
 	private String[][] scoreArray;
-	private static int NUM_SCORES = 10;
+	private static final int NUM_SCORES = 10;
+	private File sf;
 	
 	public HighScores() {
-		Scanner sc = new Scanner(new File("media/HighScores.txt"));
+		scoreArray = new String[NUM_SCORES][2];
 		for (int i = 0; i < NUM_SCORES; i++) {
-			String data[] = sc.nextLine().split(" ");
-			scoreArray[i][0] = data[0];
-			scoreArray[i][1] = data[1];
+			for (int j = 0; j < 2; j++) {
+				scoreArray[i][j] = "";
+			}
 		}
-		sc.close();
+		this.sf = new File("HighScores.txt");
+		FileReader fr;
+		try {
+			fr = new FileReader(this.sf);
+			BufferedReader br = new BufferedReader(fr);
+			for (int i = 0; i < NUM_SCORES; i++) {
+				String data[] = br.readLine().split(" ");
+				scoreArray[i][0] = data[0];
+				scoreArray[i][1] = data[1];
+			}
+			fr.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			;//e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -51,12 +65,19 @@ public class HighScores {
 				scoreArray[i][1] = newScore[1];
 			}
 		}
-		sort();		
+		sort();	
 		
-		PrintWriter pr = new PrintWriter("media/HighScores.txt");
-		pr.print(""); // blanks the HighScores.txt
-		pr.print(printScores()); // Refills file with the new list of scores
-		pr.close();
+		try {
+			FileWriter fw = new FileWriter(this.sf);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(""); // blanks the HighScores.txt
+			bw.write(printScores()); // Refills file with the new list of scores
+			bw.newLine();
+			fw.close();
+		} catch (IOException e) {
+			;//e.printStackTrace();
+		}
+		
 	}
 	
 	public String printScores() {
