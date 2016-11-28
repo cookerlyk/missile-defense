@@ -1,9 +1,10 @@
 import java.util.*;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-
+import java.math.*;
 import acm.graphics.GRect;
 import acm.graphics.GRectangle;
 
@@ -58,6 +59,10 @@ public class Turret extends Structure implements ActionListener{
 		if(canFire()){
 			ammo -=1;
 			fireDelay = DELAYTIME;
+			
+			double theta =Math.toDegrees(Math.atan2((y - this.y),(x - this.x)));
+			double rounded = Math.round(theta/15)*15;
+			System.out.println("Theta = " + rounded);
 			Missile missile = new Missile("Sprites/friendlyPlaceholder.png", true, this.x, this.y, app, x, y); //TODO fix user firing
 			m.add(missile);
 		}
