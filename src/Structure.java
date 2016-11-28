@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.util.*;
-import acm.graphics.GObject;
 import acm.graphics.GRect;
 import acm.graphics.GRectangle;
 

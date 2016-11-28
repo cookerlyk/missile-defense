@@ -7,8 +7,6 @@ import javax.swing.Timer;
 import acm.graphics.GRect;
 import acm.graphics.GRectangle;
 
-import javax.swing.*;
-
 public class Turret extends Structure implements ActionListener{
 	
 	private static int TIMERTICK = 1000;
