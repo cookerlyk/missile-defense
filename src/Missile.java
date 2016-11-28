@@ -15,8 +15,11 @@ public class Missile {
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y;
 	private double radius, angle;
+	
+	private int roundedAngle;
+	
 	private Random rng;
-
+	
 	private final static int WIDTH = 30, HEIGHT = 50;
 
 
@@ -31,7 +34,9 @@ public class Missile {
 	 * Default constructor. Intended for enemies.
 	 */
 	public Missile(MainApplication app, String spriteLoc) {
-		sprite = SpriteStore.get().getSprite(spriteLoc);
+		
+		
+	
 		isFriendly = false;
 		isDestroyed = false;
 		this.rng = new Random();
@@ -39,6 +44,16 @@ public class Missile {
 		y = 0;
 		radius = 10;
 		angle = 150 * this.rng.nextDouble() - 150;
+		
+		roundedAngle = Math.abs((int)Math.round(angle/15)*15);
+		
+		String spriteLoc2 = "Sprites/enemyPlaceholder_R-" + roundedAngle + ".png";
+		System.out.println("Theta = " + roundedAngle);
+		System.out.println(spriteLoc2);
+		
+		
+		
+		sprite = SpriteStore.get().getSprite(spriteLoc2);
 /*
 		if (angle < 0.3) {
 			angle += 0.1;
@@ -77,12 +92,21 @@ public class Missile {
 	 * @param mouseY is mouse's y
 	 */
 	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
-		sprite = SpriteStore.get().getSprite(spriteLoc);
+		double theta =Math.toDegrees(Math.atan2((mouseY - y),(mouseX - x)));
+		roundedAngle = Math.abs((int)Math.round(theta/15)*15);
+		
+		String spriteLoc2 = "Sprites/friendlyPlaceholder_R-" + roundedAngle + ".png";
+		System.out.println("Theta = " + roundedAngle);
+		System.out.println(spriteLoc2);
+		
+		
+		sprite = SpriteStore.get().getSprite(spriteLoc2);
 		isFriendly = side;
 		isDestroyed = false;
 		this.x = x;
 		this.y = y;
 		radius = 10;
+		
 		
 //		if (isFriendly)
 //			radius *= -1;
