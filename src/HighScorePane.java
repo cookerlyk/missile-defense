@@ -14,19 +14,20 @@ public class HighScorePane extends GraphicsPane{
 		this.program = app;
 		background = new GImage("Screens/High_Score_Placeholder.png", 0, 0);
 		backButton = new GButton("Back", 100, 100, 100, 100);
-		score = new GLabel("", 1, 1);
 		scoreTable = new HighScores();
-		this.getScores();
+		score = new GLabel(scoreTable.printScores(), 200, 200);
+		//this.getScores();
 	}
 	
 	public void getScores() {
-		score.setLabel(scoreTable.printScores());
+		this.score.setLabel(scoreTable.printScores());
 	}
 	
 	@Override
 	public void showContents() {
 		program.add(background);
 		program.add(backButton);
+		program.add(score);
 	}
 
 	@Override

@@ -34,7 +34,8 @@ public class HighScores {
 			fr.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			;//e.printStackTrace();
+			System.out.print("I'm broken\n");
+			e.printStackTrace();
 		}
 	}
 	
