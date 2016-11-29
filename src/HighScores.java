@@ -27,8 +27,10 @@ public class HighScores {
 			fr = new FileReader(this.sf);
 			BufferedReader br = new BufferedReader(fr);
 			for (int i = 0; i < NUM_SCORES; i++) {
-				String data[] = br.readLine().split(" ");
-				scoreArray[i] = data;
+				String data = br.readLine(), dat[];
+				data = data.replaceAll("\\s+", " ");
+				dat = data.split(" ");	
+				scoreArray[i] = dat;
 				//scoreArray[i][1] = data[1];
 			}
 			fr.close();
