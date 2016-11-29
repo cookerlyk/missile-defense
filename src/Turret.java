@@ -15,6 +15,8 @@ public class Turret extends Structure implements ActionListener{
 	private static int SHOTDELAY = 1000;
 	
 	
+	
+	
 	private int MAXAMMO = 10;
 	private int ammo = 10;
 	private Timer timer;
@@ -86,6 +88,10 @@ public class Turret extends Structure implements ActionListener{
 			fireDelay -=SHOTDELAY;
 		}
 	//	System.out.println(fireDelay);
+	}
+	
+	public int getMissile(){
+		return ammo;
 	}
 	
 	@Override
