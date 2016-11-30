@@ -129,7 +129,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e){
-		System.out.println(e.getKeyChar()); //TODO remove, testing only
 		
 		switch(Character.toLowerCase(e.getKeyChar())){
 		
