@@ -14,15 +14,16 @@ import acm.graphics.GRect;
 
 public class SomePane extends GraphicsPane implements ActionListener{
 	
-	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x768
+	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x650 max on screen
 	private final int PROGRAM_HEIGHT = 768;
-	private final String lABEL_FONT = "Arial-Bold-22";
+	private final String LABEL_FONT = "Arial-Bold-22";
+	private final String AMMO_LABEL_FONT = "Arial-Bold-18";
 	private final String ROUND_TIME_LABEL = "45";
 	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private Level lvl;
 	private Timer move;
-	private GLabel roundTime, score;
+	private GLabel roundTime, score, ammoQ, ammoW, ammoE, ammoR;
 	private GRect pauseBox;
 	private GLabel pauseMessage, gameOverMessage;
 	
@@ -45,17 +46,10 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.pauseBox.setFilled(true);
 		this.pauseMessage = new GLabel("Press Spacebar to Resume", 320, 280);
 		this.pauseMessage.setFont("Arial-Bold-30");
-		
 		this.gameOverMessage = new GLabel("Game Over", 435, 280);
 		this.gameOverMessage.setFont("Arial-Bold-30");
 		
-		// set up the labels for the score and the time in the round
-		this.roundTime = new GLabel(this.ROUND_TIME_LABEL,10, 20);
-		this.score = new GLabel("0",875, 20);
-		this.roundTime.setColor(Color.black);
-		this.roundTime.setFont(lABEL_FONT);
-	    this.score.setColor(Color.black);
-		this.score.setFont(lABEL_FONT);
+		this.drawLabelHelper();
 		
 	}
 	
@@ -64,7 +58,12 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		program.add(this.roundTime);
 	    program.add(this.score);
 		this.drawStructures();
+		program.add(ammoQ);
+		program.add(ammoW);
+		program.add(ammoE);
+		program.add(ammoR);
 		this.run();
+
 	}
 	
 	public void run(){
@@ -80,7 +79,12 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
 			lvl.getGameObject().checkForHits();
 			this.roundTime.setLabel(String.valueOf(lvl.getTime()));
+			
 			this.score.setLabel(String.valueOf(lvl.getScore()));
+			this.ammoQ.setLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()));
+			this.ammoW.setLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()));
+			this.ammoE.setLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()));
+			this.ammoR.setLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()));
 
 			// Enemy Missiles
 			for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
@@ -247,5 +251,26 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			lvl.resumeRound();         // restarts the round timer
 		}
 	}
-
+	
+	/*
+	 * set up the labels for the score and the time in the round
+	 */
+	private void drawLabelHelper(){
+				this.roundTime = new GLabel(this.ROUND_TIME_LABEL,10, 20);
+				this.score = new GLabel("0",875, 20);
+				this.roundTime.setColor(Color.black);
+				this.roundTime.setFont(LABEL_FONT);
+			    this.score.setColor(Color.black);
+				this.score.setFont(LABEL_FONT);
+				
+				this.ammoQ = new GLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()), 15, 600);
+				this.ammoW = new GLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()), 150, 675);
+				this.ammoE = new GLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()), 800, 675);
+				this.ammoR = new GLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()), 925, 600);
+				
+				this.ammoQ.setFont(AMMO_LABEL_FONT);
+				this.ammoW.setFont(AMMO_LABEL_FONT);
+				this.ammoE.setFont(AMMO_LABEL_FONT);
+				this.ammoR.setFont(AMMO_LABEL_FONT);
+	}
 }
