@@ -13,9 +13,8 @@ public class Turret extends Structure implements ActionListener{
 	private static int TIMERTICK = 1000;
 	private static int DELAYTIME = 2000;
 	private static int SHOTDELAY = 1000;
-	
-	private AudioPlayer audio;
-	
+
+	AudioPlayer audio = AudioPlayer.getInstance();
 	
 	private int MAXAMMO = 10;
 	private int ammo = 10;
@@ -23,6 +22,9 @@ public class Turret extends Structure implements ActionListener{
 	private int fireDelay;
 	
 	public Turret(MainApplication app, int x, int y, String loc){
+		
+	
+		
 		super(app, x, y, loc);
 		this.height = 100;
 		this.width = 100;
@@ -45,16 +47,24 @@ public class Turret extends Structure implements ActionListener{
 	 * 
 	 * @return is the turret able to fire a missile
 	 */
-	boolean canFire(double mY){
-		if (mY > y){
-			return false;
-		}
-		
+	boolean canFire(double mY){		
 		//System.out.println("Fire Angle = " + theta);
-		if(ammo > 0 && this.destroyed == false && fireDelay <= 0){
+		if(ammo > 0 && this.destroyed == false && fireDelay <= 0 && mY < y){
+			
+			
+			
+			//Change this to firing missile sound.
+			audio.playSound("sounds", "r2d2.mp3");
+			
+			
 			return true;
 		}
-		else return false;
+		else{
+			
+			//Change this to missile firing error sound
+			audio.playSound("sounds", "somethinlikethis.mp3");
+			return false;
+		}
 	}
 	
 	/**
