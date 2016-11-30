@@ -27,10 +27,8 @@ public class HighScores {
 			fr = new FileReader(this.sf);
 			BufferedReader br = new BufferedReader(fr);
 			for (int i = 0; i < NUM_SCORES; i++) {
-				String data = br.readLine(), dat[];
-				data = data.replaceAll("\\s+", " ");
-				dat = data.split(" ");	
-				scoreArray[i] = dat;
+				String[] data = br.readLine().split(" ");
+				scoreArray[i] = data;
 				//scoreArray[i][1] = data[1];
 			}
 			fr.close();
@@ -73,11 +71,12 @@ public class HighScores {
 		sort();	
 		
 		try {
+			this.sf.delete();
+			this.sf = new File("HighScores.txt");
+			this.sf.createNewFile();
 			FileWriter fw = new FileWriter(this.sf);
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(""); // blanks the HighScores.txt
 			bw.write(printScores()); // Refills file with the new list of scores
-			bw.newLine();
 			fw.close();
 		} catch (IOException e) {
 			;//e.printStackTrace();
@@ -95,7 +94,7 @@ public class HighScores {
 	public String printScores() {
 		String list = "";
 		for (int i = 0; i < 10; i++) {
-			list += scoreArray[i][0] + scoreArray[i][1] + "\n";
+			list += scoreArray[i][0] + " " + scoreArray[i][1] + "\n";
 		}
 		return list;
 	}
