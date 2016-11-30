@@ -14,6 +14,7 @@ import javax.swing.Timer;
  */
 
 public class Level implements ActionListener {
+	private final int BONUS_SCORE_INCREMENT = 50;
 	private final int ROUND_TIME = 45;  // A round lasts 45 seconds
 	private boolean gameOver, paused;
 	private int time, roundNum;
@@ -85,6 +86,11 @@ public class Level implements ActionListener {
 		this.time = this.ROUND_TIME;
 		this.roundNum += 1;
 		this.roundTimer.setDelay(1000);
+		for(Turret turret : this.getTurrets()){
+			if(!turret.isDestroyed()){
+				this.game.incrementScore(BONUS_SCORE_INCREMENT);
+			}
+		}
 	}
 	
 	/*
