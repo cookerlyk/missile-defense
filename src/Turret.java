@@ -10,10 +10,13 @@ import acm.graphics.GRectangle;
 
 public class Turret extends Structure implements ActionListener{
 	
-	private static int TIMERTICK = 500;
+	
+	private static int TIMERTICK = 1000; // timer ticks every MS
 	private static int DELAYTIME = 1000;
 	private static int SHOTDELAY = 1000;
 
+	
+	
 	AudioPlayer audio = AudioPlayer.getInstance();
 	
 	private int MAXAMMO = 15;
@@ -54,15 +57,16 @@ public class Turret extends Structure implements ActionListener{
 			
 			
 			//Change this to firing missile sound.
-			audio.playSound("sounds", "r2d2.mp3");
+			audio.playSound("sounds", "Missile Fire.WAV");
 			
 			
 			return true;
 		}
 		else{
-			
+			if(ammo == 0 || mY > y){
+				audio.playSound("sounds", "Fire Error.WAV");
+			}
 			//Change this to missile firing error sound
-			audio.playSound("sounds", "somethinlikethis.mp3");
 			return false;
 		}
 	}
@@ -97,12 +101,16 @@ public class Turret extends Structure implements ActionListener{
 		if (fireDelay > 0){
 			fireDelay -=SHOTDELAY;
 		}
+		
+		
+		
 	//	System.out.println(fireDelay);
 	}
 	
 	public int getMissileCount(){
 		return ammo;
 	}
+	
 	
 	@Override
 	public void reset(){
