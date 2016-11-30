@@ -10,14 +10,14 @@ import acm.graphics.GRectangle;
 
 public class Turret extends Structure implements ActionListener{
 	
-	private static int TIMERTICK = 1000;
-	private static int DELAYTIME = 2000;
+	private static int TIMERTICK = 500;
+	private static int DELAYTIME = 1000;
 	private static int SHOTDELAY = 1000;
 
 	AudioPlayer audio = AudioPlayer.getInstance();
 	
-	private int MAXAMMO = 10;
-	private int ammo = 10;
+	private int MAXAMMO = 15;
+	private int ammo = 15;
 	private Timer timer;
 	private int fireDelay;
 	
