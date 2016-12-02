@@ -26,15 +26,13 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private Level lvl;
 	private Timer move;
-	private GLabel roundTime, score, ammoQ, ammoW, ammoE, ammoR;
+	private GLabel pauseMessage, gameOverMessage, roundTime, score, ammoQ, ammoW, ammoE, ammoR;
 	private GRect pauseBox;
-	private GLabel pauseMessage, gameOverMessage;
 	
 	private int currentMouseX;
 	private int currentMouseY;
-	private HighScores scores;
-	
 	private int gameSpeed;
+	
 	
 
 	
@@ -48,7 +46,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.currentMouseY = 0;
 
 		this.gameSpeed = 80;
-		this.scores = new HighScores();
 
 		
 		// TODO do all of this better, no hard coding and make pause window better (image instead of making with GRect and GLabel)
@@ -138,11 +135,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		
 	}
 	
-//	@Override
-//	public void mousePressed(MouseEvent e) {
-
-//	}
-	
 	@Override
 	public void mouseMoved(MouseEvent e){
 		this.currentMouseX = e.getX();
@@ -187,7 +179,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 				String name = tb.readLine("Name");
 				program.addScore(name, lvl.getScore());
 				this.hideContents();
-				program.switchBack();  // TODO reset the game to a new game 
+				program.switchBack();
 			}
 			break;
 		}
@@ -198,7 +190,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	/***********************************
 	 * 
 	 * 
-	 *		   Helper functions 
+	 *Helper functions 
 	 * 
 	 * 
 	 ***********************************/
@@ -210,14 +202,14 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		// Draws the buildings to the stage screen
 		for(Structure building : lvl.getGameObject().getBuildingsOnStage()){
 			if(building != null){
-				building.sprite.scale(0.4, 0.4);
+				building.sprite.scale(0.4, 0.4); // TODO remove hard coded value
 				building.draw(program);
 			}
 		}
 		//Draws the turrets to the stage screen
 		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
 			if(turret != null){
-				turret.sprite.scale(0.3, 0.3);
+				turret.sprite.scale(0.3, 0.3); // TODO remove hard coded value
 				turret.draw(program);
 			}
 		}
