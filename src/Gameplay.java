@@ -216,4 +216,19 @@ public class Gameplay {
 		}
 		return false;
 	}
+	
+	public void removeAllMissiles(){
+		for (Missile missile : this.missiles){
+			if(!missile.isDestroyed() && missile != null){
+				missile.setDestroyed(true);
+				missile = null;
+			}
+		}
+		for (Missile fMissile : this.friendlyMissiles){
+			if(!fMissile.isDestroyed() && fMissile != null){
+				fMissile.setDestroyed(true);
+				fMissile = null;
+			}
+		}
+	}
 }

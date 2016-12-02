@@ -64,6 +64,7 @@ public class Level implements ActionListener {
 			this.decrementTime();
 		}
 		else{
+			this.game.removeAllMissiles();
 			this.resetLevel();
 		}
 	}

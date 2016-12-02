@@ -20,7 +20,7 @@ public class MainApplication extends GraphicsApplication {
 	public void run() {
 		
 		menu = new MenuPane(this);
-		somePane = new SomePane(this);
+		//somePane = new SomePane(this);
 		tutorial = new TutorialPane(this);
 		highScore = new HighScorePane(this);
 		setupInteractions();
@@ -55,6 +55,7 @@ public class MainApplication extends GraphicsApplication {
 //			case 0: audio.playSound("sounds", "r2d2.mp3"); break;
 //			case 1: audio.playSound("sounds", "somethinlikethis.mp3"); break;
 //		}
+		somePane = new SomePane(this);
 		switchToScreen(somePane);
 	}
 	
