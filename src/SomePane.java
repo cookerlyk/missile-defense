@@ -112,9 +112,21 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public void hideContents() {
 		program.remove(this.roundTime);
 		program.remove(this.score);
+		program.remove(this.gameOverMessage);
+		program.remove(this.ammoQ);
+		program.remove(this.ammoW);
+		program.remove(this.ammoE);
+		program.remove(this.ammoR);
 		for(Missile missile : lvl.getmissiles()){
 			missile.getSprite().remove(program); 
 		}
+		for(Turret turret : lvl.getTurrets()){
+			turret.sprite.remove(program); 
+		}
+		for(Structure building : lvl.getBuildings()){
+			building.sprite.remove(program); 
+		}
+		
 	}
 	
 //	@Override

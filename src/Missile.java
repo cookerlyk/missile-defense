@@ -25,7 +25,7 @@ public class Missile {
 
 	private GRectangle hitbox;
 	
-	private final boolean DEBUG_MODE = true; // set to false if you want the hit boxes to not appear on screen
+	private final boolean DEBUG_MODE = false; // set to false if you want the hit boxes to not appear on screen
 	private GRect debugHitbox;
 	
 	
