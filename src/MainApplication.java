@@ -67,5 +67,10 @@ public class MainApplication extends GraphicsApplication {
 	public void switchToHighScore(){
 		switchToScreen(highScore);
 	}
+
+	public void addScore(String name, int score) {
+		highScore.addHighScore(name, score);
+		
+	}
 	
 }

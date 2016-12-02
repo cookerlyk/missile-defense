@@ -35,7 +35,12 @@ public class HighScorePane extends GraphicsPane{
 			scores[i].setFont("Arial-Bold-20");
 		}
 	}
-	public void addScores() {
+	
+	public void addHighScore(String name, int points) {
+		scoreTable.addScore(name, points);
+	}
+	
+	public void showScores() {
 		program.add(this.backing);
 		for (GLabel score: this.scores) {
 			program.add(score);
@@ -52,7 +57,7 @@ public class HighScorePane extends GraphicsPane{
 	public void showContents() {
 		program.add(background);
 		program.add(backButton);
-		addScores();
+		showScores();
 	}
 
 	@Override

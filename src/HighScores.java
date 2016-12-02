@@ -1,5 +1,11 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * 
@@ -21,17 +27,15 @@ public class HighScores {
 				scoreArray[i][j] = "";
 			}
 		}
-		this.sf = new File("HighScores.txt");
-		FileReader fr;
+		
 		try {
-			fr = new FileReader(this.sf);
-			BufferedReader br = new BufferedReader(fr);
+			BufferedReader br = openFileReader("../media/HighScores.txt");
 			for (int i = 0; i < NUM_SCORES; i++) {
 				String[] data = br.readLine().split(" ");
 				scoreArray[i] = data;
 				//scoreArray[i][1] = data[1];
 			}
-			fr.close();
+			br.close();
 			sort();
 			System.out.print(printScores());
 		} catch (IOException e) {
@@ -39,6 +43,31 @@ public class HighScores {
 			System.out.print("I'm broken\n");
 			e.printStackTrace();
 		}
+	}
+	
+	/* convenience method to open a file for reading, throws exception if the file is not found */
+	private static BufferedReader openFileReader(String filename) {
+		BufferedReader rd = null;
+//		while (rd == null) {
+			try {
+				rd = new BufferedReader(new FileReader(filename));
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+//		}
+		return rd;
+	}
+	
+	private static BufferedWriter openFileWriter (String filename) {
+		BufferedWriter wr = null;
+//		while (wr == null) {
+			try {
+				wr = new BufferedWriter(new FileWriter(filename));
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+//		}
+		return wr;
 	}
 	
 	/**
@@ -71,13 +100,10 @@ public class HighScores {
 		sort();	
 		
 		try {
-			this.sf.delete();
-			this.sf = new File("HighScores.txt");
-			this.sf.createNewFile();
-			FileWriter fw = new FileWriter(this.sf);
-			BufferedWriter bw = new BufferedWriter(fw);
+			BufferedWriter bw = openFileWriter("../media/HighScores.txt");
 			bw.write(printScores()); // Refills file with the new list of scores
-			fw.close();
+			bw.flush(); //forces it to write out
+			bw.close();
 		} catch (IOException e) {
 			;//e.printStackTrace();
 		}
