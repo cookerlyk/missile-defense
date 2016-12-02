@@ -1,8 +1,11 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
 import javax.swing.Timer;
+
+import acm.graphics.GLabel;
 
 /**
  * This class represents the Level that will handle the gameplay
@@ -14,13 +17,18 @@ import javax.swing.Timer;
  */
 
 public class Level implements ActionListener {
+	private final String LABEL_FONT = "Arial-Bold-22";
 	private final int BONUS_SCORE_INCREMENT = 50;
 	private final int ROUND_TIME = 45;  // A round lasts 45 seconds
+	private final int ROUND_RESET_DELAY = 750;
 	private boolean gameOver, paused;
 	private int time, roundNum;
 	private Gameplay game;
 	private Timer roundTimer;
 	
+	private GLabel roundNumberLabel;
+	
+	private MainApplication app;
 
 	/*
 	 * Set up the level when called
@@ -32,6 +40,10 @@ public class Level implements ActionListener {
 		this.time = this.ROUND_TIME;
 		this.roundNum = 1;
 		this.roundTimer = new Timer(1000, this);
+		this.roundNumberLabel = new GLabel("Round " + String.valueOf(this.getRoundNumber()), 475, 280);
+		this.roundNumberLabel.setFont(LABEL_FONT);
+		this.roundNumberLabel.setColor(Color.black);
+		this.app = app;
 		
 	}
 	
@@ -60,6 +72,7 @@ public class Level implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		this.app.remove(this.roundNumberLabel);
 		if(this.time > 0){
 			this.decrementTime();
 		}
@@ -86,12 +99,16 @@ public class Level implements ActionListener {
 		this.game.resetTurrets();
 		this.time = this.ROUND_TIME;
 		this.roundNum += 1;
-		this.roundTimer.setDelay(1000);
+		this.roundTimer.setInitialDelay(ROUND_RESET_DELAY);
+		this.pauseRound();
 		for(Turret turret : this.getTurrets()){
 			if(!turret.isDestroyed()){
 				this.game.incrementScore(BONUS_SCORE_INCREMENT);
 			}
 		}
+		this.roundNumberLabel.setLabel("Round " + String.valueOf(this.getRoundNumber()));
+		this.app.add(this.roundNumberLabel);
+		this.startRound();
 	}
 	
 	/*

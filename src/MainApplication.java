@@ -20,7 +20,7 @@ public class MainApplication extends GraphicsApplication {
 	public void run() {
 		
 		menu = new MenuPane(this);
-		//somePane = new SomePane(this);
+		somePane = new SomePane(this);
 		tutorial = new TutorialPane(this);
 		highScore = new HighScorePane(this);
 		setupInteractions();
