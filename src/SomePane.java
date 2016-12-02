@@ -21,6 +21,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private final String LABEL_FONT = "Arial-Bold-22";
 	private final String AMMO_LABEL_FONT = "Arial-Bold-18";
 	private final String ROUND_TIME_LABEL = "45";
+	private final int INITIAL_DELAY = 1000;
 	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private Level lvl;
@@ -34,6 +35,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	private HighScores scores;
 	
+	private int gameSpeed;
+	
 	
 	
 	public SomePane(MainApplication app) {
@@ -43,6 +46,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl.getGameObject().generateTurrets(program);
 		this.currentMouseX = 0;
 		this.currentMouseY = 0;
+		this.gameSpeed = 80;
 		this.scores = new HighScores();
 		
 		// TODO do all of this better, no hard coding and make pause window better (image instead of making with GRect and GLabel)
@@ -72,8 +76,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	}
 	
 	public void run(){
-		move = new Timer(80, (ActionListener) this);
-		move.setInitialDelay(1000);
+		move = new Timer(this.gameSpeed, (ActionListener) this);
+		move.setInitialDelay(INITIAL_DELAY);
 		move.start();
 		this.lvl.startRound();  // starts the round timer
 
