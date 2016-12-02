@@ -90,11 +90,12 @@ public class HighScores {
 		sort();
 		for (int i = 0; i < NUM_SCORES; i++) {
 			if (Integer.parseInt(newScore[1]) < Integer.parseInt(scoreArray[i][1])) {
-				;
+				continue;
 			}
 			else {
 				scoreArray[i] = newScore;
 				//scoreArray[i][1] = newScore[1];
+				break; // TODO do we need to do more here?
 			}
 		}
 		sort();	
