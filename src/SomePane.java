@@ -32,8 +32,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private int currentMouseX;
 	private int currentMouseY;
 	
-	private HighScores scores;
-	
 	
 	
 	public SomePane(MainApplication app) {
@@ -43,7 +41,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl.getGameObject().generateTurrets(program);
 		this.currentMouseX = 0;
 		this.currentMouseY = 0;
-		this.scores = new HighScores();
 		
 		// TODO do all of this better, no hard coding and make pause window better (image instead of making with GRect and GLabel)
 		this.pauseBox = new GRect(this.PROGRAM_WIDTH/2 - 200, this.PROGRAM_HEIGHT/2 - 200, 400, 200);
@@ -167,7 +164,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			if(lvl.isGameOver()){
 				IODialog tb = new IODialog();
 				String name = tb.readLine("Name");
-				scores.addScore(name, lvl.getScore());
+				program.addScore(name, lvl.getScore());
 				this.hideContents();
 				program.switchBack();  // TODO reset the game to a new game 
 			}
