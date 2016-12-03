@@ -31,7 +31,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	private int currentMouseX;
 	private int currentMouseY;
-	private int gameSpeed;
+	private int gameSpeed, tempRoundNum;
 	
 	
 
@@ -44,7 +44,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl.getGameObject().generateTurrets(program);
 		this.currentMouseX = 0;
 		this.currentMouseY = 0;
-
+		this.tempRoundNum = 1;
 		this.gameSpeed = 80;
 
 		
@@ -84,6 +84,15 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		if(!lvl.isGameOver()){
+			
+			// speeds up game speed when round changes
+			if(this.tempRoundNum != lvl.getRoundNumber()){
+				this.tempRoundNum = lvl.getRoundNumber();
+				if(this.gameSpeed > 40){
+					this.move.setDelay(this.gameSpeed-=5);
+				}
+			}
+			
 			lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
 			lvl.getGameObject().checkForHits();
 			this.roundTime.setLabel(String.valueOf(lvl.getTime()));
