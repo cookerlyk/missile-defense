@@ -84,6 +84,17 @@ public class HighScores {
 		return score;
 	}
 	
+	private String[][] shift(int x, String[] nS) {
+		String[][] newArray = new String[NUM_SCORES][2];
+		for (int i = 0; i < NUM_SCORES; i++) {
+			newArray[i] = scoreArray[i];
+		}
+		newArray[x] = nS;
+		for (int i = x+1; i < NUM_SCORES; i++) {
+			newArray[i] = scoreArray[i-1];
+		}
+		return newArray;	
+	}
 	/**
 	 * 
 	 * @param name: taken from Level/Gameplay/GraphicsGame
@@ -97,7 +108,7 @@ public class HighScores {
 				continue;
 			}
 			else {
-				scoreArray[i] = newScore;
+				scoreArray = shift(i, newScore);
 				//scoreArray[i][1] = newScore[1];
 				break; // TODO do we need to do more here?
 			}
