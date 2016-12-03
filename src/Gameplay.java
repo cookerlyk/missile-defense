@@ -59,10 +59,15 @@ public class Gameplay {
 	 */
 	public void generateBuildings(MainApplication app){
 		// y was 700
+		for (int i = 0; i < TOTAL_BUILDINGS; i++) {
+			this.buildings[i] = new Building(app, 290 + i*125, 550, "Sprites/house_placeholder.jpg");
+		}
+/*
 		this.buildings[0] = new Building(app, 300, 550, "Sprites/house_placeholder.jpg");
 		this.buildings[1] = new Building(app, 450, 550, "Sprites/house_placeholder.jpg");
 		this.buildings[2] = new Building(app, 550, 550, "Sprites/house_placeholder.jpg");
 		this.buildings[3] = new Building(app, 700, 550, "Sprites/house_placeholder.jpg");
+*/
 	}
 
 	/*

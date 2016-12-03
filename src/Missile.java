@@ -34,9 +34,6 @@ public class Missile {
 	 * Default constructor. Intended for enemies.
 	 */
 	public Missile(MainApplication app, String spriteLoc) {
-		
-		
-	
 		isFriendly = false;
 		isDestroyed = false;
 		this.rng = new Random();
@@ -44,30 +41,19 @@ public class Missile {
 		y = 0;
 		radius = 10;
 		angle = 135 * this.rng.nextDouble() - 135;
-		if (angle <= 20 && angle >= 0) {
-			angle += 20;
-		} else if (angle >= -20 && angle < 0) {
-			angle -= 20;
+		if (angle <= 15 && angle >= 0) {
+			angle += 25;
+		} else if (angle >= -15 && angle < 0) {
+			angle -= 25;
 		}
 		roundedAngle = Math.abs((int)Math.round(angle/15)*15);
 		
 		String spriteLoc2 = "Sprites/enemyPlaceholder_R-" + roundedAngle + ".png";
-		System.out.println("Theta = " + roundedAngle);
+//		System.out.println("Theta = " + roundedAngle);
 		System.out.println(spriteLoc2);
 		
-		
-		
 		sprite = SpriteStore.get().getSprite(spriteLoc2);
-/*
- * 
-		if (angle < 0.3) {
-			angle += 0.1;
-		}
-		else if (angle > 0.7) {
-			angle -= 0.1;
-		}
-		angle = -100 * angle;
-*/
+
 		isHit = false;
 		
 		this.hitbox = new GRectangle(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
@@ -77,7 +63,7 @@ public class Missile {
 //		hitbox.setColor(Color.BLUE);
 //		hitbox.setFilled(true);
 
-		System.out.print("r" + radius + "a" + angle + "\n" );
+		System.out.print("r: " + radius + " theta (exact): " + angle + " theta (rounded): " + roundedAngle + "\n" );
 		
 		//TODO remove, test only to generate the boxes for visual example
 		if(this.DEBUG_MODE == true){
@@ -101,7 +87,7 @@ public class Missile {
 		roundedAngle = Math.abs((int)Math.round(theta/15)*15);
 		
 		String spriteLoc2 = "Sprites/friendlyPlaceholder_R-" + roundedAngle + ".png";
-		System.out.println("Theta = " + roundedAngle);
+//		System.out.println("Theta = " + roundedAngle);
 		System.out.println(spriteLoc2);
 		
 		
@@ -127,7 +113,7 @@ public class Missile {
 		this.hitbox = new GRectangle(x, y, Missile.WIDTH, Missile.HEIGHT); //TODO need to make the hit box reflect the orientation/size of the missile
 		this.sprite.scale(SCALE, SCALE);
 		
-		System.out.print("x: " + mouseX + " y: " + mouseY + " a: " + angle + "\n");
+		System.out.print("x: " + mouseX + " y: " + mouseY + " a: " + angle + " rounded: " + theta + "\n");
 		
 		//TODO remove, test only to generate the boxes for visual example
 		if(this.DEBUG_MODE == true){
@@ -156,19 +142,6 @@ public class Missile {
 			this.debugHitbox.setLocation(this.x, this.y);
 		}
 		
-	//	move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
-
-		/*
-		if (left) {
-			this.x -= (int) (radius*Math.cos(angle));
-			this.hitbox.move((int) -(radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
-		}
-		else {
-			this.x += (int) (radius*Math.cos(angle));
-			this.hitbox.move((int) (radius*Math.cos(angle)), (int) (radius*Math.sin(angle)));
-		}
-		this.y += (int) (radius*Math.sin(angle)); 
-		*/
 	}
 	
 	/**

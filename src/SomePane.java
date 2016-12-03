@@ -176,7 +176,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		case '\n':
 			if(lvl.isGameOver()){
 				IODialog tb = new IODialog();
-				String name = tb.readLine("Name");
+				String name = tb.readLine("Name (Three Initials):");
 				program.addScore(name, lvl.getScore());
 				this.hideContents();
 				program.switchBack();

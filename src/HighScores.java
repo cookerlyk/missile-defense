@@ -37,7 +37,7 @@ public class HighScores {
 			}
 			br.close();
 			sort();
-			System.out.print(printScores());
+//			System.out.print(printScores());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.print("I'm broken\n");
@@ -74,6 +74,10 @@ public class HighScores {
 	 * Generates a score-holding array for addScore()
 	 */
 	private String[] submitScore(String name, int scoreval) {
+		if (name == "") {
+			name = "UNK";
+		}
+		name = name.toUpperCase();
 		String[] score = new String[2];
 		score[0] = name;
 		score[1] = Integer.toString(scoreval);
@@ -121,6 +125,17 @@ public class HighScores {
 	public String printScores() {
 		String list = "";
 		for (int i = 0; i < 10; i++) {
+			if (scoreArray[i][0].length() > 3) {
+				scoreArray[i][0] = scoreArray[i][0].substring(0, 3);
+			}
+			if (Integer.parseInt(scoreArray[i][1]) > 99999) {
+				scoreArray[i][1] = "99999";
+			}
+			if (scoreArray[i][1].length() < 5) {
+				while (scoreArray[i][1].length() != 5) {
+					scoreArray[i][1] = "0".concat(scoreArray[i][1]);
+				}
+			}
 			list += scoreArray[i][0] + " " + scoreArray[i][1] + "\n";
 		}
 		return list;

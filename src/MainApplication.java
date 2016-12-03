@@ -65,6 +65,8 @@ public class MainApplication extends GraphicsApplication {
 	}
 	
 	public void switchToHighScore(){
+		highScore = null;
+		highScore = new HighScorePane(this);
 		switchToScreen(highScore);
 	}
 
