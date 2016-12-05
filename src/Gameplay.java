@@ -16,6 +16,7 @@ public class Gameplay {
 	private static final String TURRET_SPRITE = "Sprites/turret_Placeholder.png";
 	private static final String TURRET_SPRITE_DESTROYED = "Sprites/turretDestroyed_Placeholder.png";
 	
+	
 	private final int SCORE_INCREASE = 10;
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
