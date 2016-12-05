@@ -15,7 +15,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x625 max on screen
 	private final int PROGRAM_HEIGHT = 625;
 	private final String GAMEOVER = "Game Over";
-	private final String PAUSE = "Screens/windows_xp_bliss-wide.png";
+	private final String PAUSE = "Press Spacebar to Resume";
 	private final String BACKGROUND_IMAGE = "Screens/windows_xp_bliss-wide.png";
 	private final String STATUS_LABEL_FONT = "Arial-Bold-30";
 	private final String LABEL_FONT = "Arial-Bold-20";
@@ -59,7 +59,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	
 	public void showContents() {
-		program.add(this.background);
+		//program.add(this.background);
 		program.add(this.roundTime);
 	    program.add(this.score);
 		this.drawStructures();
