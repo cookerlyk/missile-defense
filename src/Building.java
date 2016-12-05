@@ -22,5 +22,13 @@ public class Building extends Structure {
 		
 	}
 	
+	@Override
+	public void reset(){
+		destroyed = false;
+		this.sprite.remove(game);
+		this.sprite = SpriteStore.get().getSprite(spriteLoc);
+		sprite.draw(game,(int) x,(int) y);
+		this.debugHitbox.setFillColor(Color.blue);
+	}
 	
 }

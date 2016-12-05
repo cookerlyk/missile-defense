@@ -10,9 +10,10 @@ public class Structure {
 	protected Sprite sprite;
 	protected boolean destroyed;
 	protected GRectangle hitbox;
+	protected MainApplication game;
 	
-	private String spriteLoc;
-	private String destroyedSpriteLoc;
+	protected String spriteLoc;
+	protected String destroyedSpriteLoc;
 	
 	protected final boolean DEBUG_MODE = true; // set to false if you want the hit boxes to not appear on screen
 	protected GRect debugHitbox;
@@ -29,6 +30,9 @@ public class Structure {
 		this.x = x;
 		this.y = y;
 
+		game = app;
+		
+		
 		this.sprite = SpriteStore.get().getSprite(spriteLoc);
 	}
 	
@@ -41,8 +45,10 @@ public class Structure {
 	 */
 	public void destroy(){
 		destroyed = true;
+		this.sprite.remove(game);
 		this.debugHitbox.setFillColor(Color.red);
 		this.sprite = SpriteStore.get().getSprite(destroyedSpriteLoc);
+		sprite.draw(game,(int) x,(int) y);
 	}
 	
 	/**
@@ -50,8 +56,10 @@ public class Structure {
 	 */
 	public void reset(){
 		destroyed = false;
-		
+		this.sprite.remove(game);
 		this.debugHitbox.setFillColor(Color.blue);
+		this.sprite = SpriteStore.get().getSprite(spriteLoc);
+		sprite.draw(game,(int) x,(int) y);
 	}
 	
 	/**
