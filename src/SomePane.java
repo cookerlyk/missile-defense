@@ -3,21 +3,16 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import javax.swing.Timer;
-
-import acm.graphics.GImage;
 import acm.graphics.GLabel;
-import acm.graphics.GObject;
 import acm.graphics.GRect;
-
 import acm.io.*;
 
 
 public class SomePane extends GraphicsPane implements ActionListener{
 	
-	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x650 max on screen
-	private final int PROGRAM_HEIGHT = 768;
+	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x625 max on screen
+	private final int PROGRAM_HEIGHT = 625;
 	private final String LABEL_FONT = "Arial-Bold-22";
 	private final String AMMO_LABEL_FONT = "Arial-Bold-18";
 	private final String ROUND_TIME_LABEL = "45";
@@ -95,13 +90,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			
 			lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
 			lvl.getGameObject().checkForHits();
-			this.roundTime.setLabel(String.valueOf(lvl.getTime()));
-			
-			this.score.setLabel(String.valueOf(lvl.getScore()));
-			this.ammoQ.setLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()));
-			this.ammoW.setLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()));
-			this.ammoE.setLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()));
-			this.ammoR.setLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()));
+			this.updateScreenLabels();
 
 			// Enemy Missiles
 			for(Missile missile: lvl.getGameObject().getMissilesOnStage()){
@@ -298,5 +287,14 @@ public class SomePane extends GraphicsPane implements ActionListener{
 				this.ammoW.setFont(AMMO_LABEL_FONT);
 				this.ammoE.setFont(AMMO_LABEL_FONT);
 				this.ammoR.setFont(AMMO_LABEL_FONT);
+	}
+	
+	private void updateScreenLabels(){
+		this.roundTime.setLabel(String.valueOf(lvl.getTime()));
+		this.score.setLabel(String.valueOf(lvl.getScore()));
+		this.ammoQ.setLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()));
+		this.ammoW.setLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()));
+		this.ammoE.setLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()));
+		this.ammoR.setLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()));
 	}
 }

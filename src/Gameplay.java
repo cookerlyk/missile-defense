@@ -82,10 +82,10 @@ public class Gameplay {
 	public void generateTurrets(MainApplication app){
 		// turret 0,3 550
 		// turret 1,2 680
-		this.turrets[0] = new Turret(app,15,475,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
-		this.turrets[1] = new Turret(app,150,550,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
-		this.turrets[2] = new Turret(app,800,550,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
-		this.turrets[3] = new Turret(app,925,475,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[0] = new Turret(app,15,450,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[1] = new Turret(app,150,500,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[2] = new Turret(app,800,500,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[3] = new Turret(app,925,450,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
 	}
 	
 	/*
