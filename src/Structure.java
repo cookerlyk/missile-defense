@@ -12,6 +12,9 @@ public class Structure {
 	protected GRectangle hitbox;
 	protected MainApplication game;
 	
+	
+	protected double SCALE;
+	
 	protected String spriteLoc;
 	protected String destroyedSpriteLoc;
 	
@@ -48,6 +51,7 @@ public class Structure {
 		this.sprite.remove(game);
 		this.debugHitbox.setFillColor(Color.red);
 		this.sprite = SpriteStore.get().getSprite(destroyedSpriteLoc);
+		this.sprite.scale(SCALE, SCALE);
 		sprite.draw(game,(int) x,(int) y);
 	}
 	
@@ -59,6 +63,7 @@ public class Structure {
 		this.sprite.remove(game);
 		this.debugHitbox.setFillColor(Color.blue);
 		this.sprite = SpriteStore.get().getSprite(spriteLoc);
+		this.sprite.scale(SCALE, SCALE);
 		sprite.draw(game,(int) x,(int) y);
 	}
 	

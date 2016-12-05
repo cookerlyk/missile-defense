@@ -5,7 +5,7 @@ import acm.graphics.GRectangle;
 public class Building extends Structure {
 	public Building(MainApplication app, int x, int y, String loc, String destroyedLoc){
 		super(app, x, y, loc, destroyedLoc);
-		
+		SCALE = 0.4;
 		this.height = 75;
 		this.width = 100;
 		
@@ -20,15 +20,6 @@ public class Building extends Structure {
 			app.add(debugHitbox);
 		}
 		
-	}
-	
-	@Override
-	public void reset(){
-		destroyed = false;
-		this.sprite.remove(game);
-		this.sprite = SpriteStore.get().getSprite(spriteLoc);
-		sprite.draw(game,(int) x,(int) y);
-		this.debugHitbox.setFillColor(Color.blue);
 	}
 	
 }

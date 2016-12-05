@@ -30,6 +30,7 @@ public class Turret extends Structure implements ActionListener{
 	
 		
 		super(app, x, y, loc, destroyedLoc);
+		SCALE = 0.3;
 		this.height = 100;
 		this.width = 100;
 		hitbox = new GRectangle(x, y, width, height);
@@ -118,6 +119,7 @@ public class Turret extends Structure implements ActionListener{
 		destroyed = false;
 		this.sprite.remove(game);
 		this.sprite = SpriteStore.get().getSprite(spriteLoc);
+		this.sprite.scale(SCALE, SCALE);
 		sprite.draw(game,(int) x,(int) y);
 		this.debugHitbox.setFillColor(Color.blue);
 		ammo = MAXAMMO;
