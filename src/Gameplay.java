@@ -11,6 +11,11 @@ import java.util.*;
 
 public class Gameplay {
 	
+	private static final String BUILDING_SPRITE = "Sprites/house_placeholder.jpg";
+	private static final String BUILDING_SPRITE_DESTROYED = "Sprites/houseDestroyed_placeholder.jpg";
+	private static final String TURRET_SPRITE = "Sprites/turret_Placeholder.png";
+	private static final String TURRET_SPRITE_DESTROYED = "Sprites/turretDestroyed_Placeholder.png";
+	
 	private final int SCORE_INCREASE = 10;
 	private final int TOTAL_TURRETS = 4;
 	private final int TOTAL_BUILDINGS = 4;
@@ -60,7 +65,7 @@ public class Gameplay {
 	public void generateBuildings(MainApplication app){
 		// y was 700
 		for (int i = 0; i < TOTAL_BUILDINGS; i++) {
-			this.buildings[i] = new Building(app, 290 + i*125, 550, "Sprites/house_placeholder.jpg");
+			this.buildings[i] = new Building(app, 290 + i*125, 550, BUILDING_SPRITE, BUILDING_SPRITE_DESTROYED);
 		}
 /*
 		this.buildings[0] = new Building(app, 300, 550, "Sprites/house_placeholder.jpg");
@@ -76,10 +81,10 @@ public class Gameplay {
 	public void generateTurrets(MainApplication app){
 		// turret 0,3 550
 		// turret 1,2 680
-		this.turrets[0] = new Turret(app,15,475,"Sprites/turret_Placeholder.png");
-		this.turrets[1] = new Turret(app,150,550,"Sprites/turret_Placeholder.png");
-		this.turrets[2] = new Turret(app,800,550,"Sprites/turret_Placeholder.png");
-		this.turrets[3] = new Turret(app,925,475,"Sprites/turret_Placeholder.png");
+		this.turrets[0] = new Turret(app,15,475,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[1] = new Turret(app,150,550,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[2] = new Turret(app,800,550,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[3] = new Turret(app,925,475,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
 	}
 	
 	/*

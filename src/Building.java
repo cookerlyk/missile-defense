@@ -3,8 +3,8 @@ import acm.graphics.GRect;
 import acm.graphics.GRectangle;
 
 public class Building extends Structure {
-	public Building(MainApplication app, int x, int y, String loc){
-		super(app, x, y, loc);
+	public Building(MainApplication app, int x, int y, String loc, String destroyedLoc){
+		super(app, x, y, loc, destroyedLoc);
 		
 		this.height = 75;
 		this.width = 100;

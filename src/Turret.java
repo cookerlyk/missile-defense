@@ -24,11 +24,12 @@ public class Turret extends Structure implements ActionListener{
 	private Timer timer;
 	private int fireDelay;
 	
-	public Turret(MainApplication app, int x, int y, String loc){
+	
+	public Turret(MainApplication app, int x, int y, String loc, String destroyedLoc){
 		
 	
 		
-		super(app, x, y, loc);
+		super(app, x, y, loc, destroyedLoc);
 		this.height = 100;
 		this.width = 100;
 		hitbox = new GRectangle(x, y, width, height);
