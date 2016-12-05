@@ -237,7 +237,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		lvl.pauseRound();          // stops round timer
 		program.add(this.gameOverMessage);
 		
-		// TODO high score entering
 	}
 	
 	/*
@@ -270,10 +269,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			    this.score.setColor(Color.black);
 				this.score.setFont(LABEL_FONT);
 				
-				this.ammoQ = new GLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()), 15, 600);
-				this.ammoW = new GLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()), 150, 675);
-				this.ammoE = new GLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()), 800, 675);
-				this.ammoR = new GLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()), 925, 600);
+				// TODO less hard coding?
+				this.ammoQ = new GLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()), 15, 560);
+				this.ammoW = new GLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()), 150, 610);
+				this.ammoE = new GLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()), 870, 610);
+				this.ammoR = new GLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()), 995, 560);
 				
 				this.ammoQ.setFont(AMMO_LABEL_FONT);
 				this.ammoW.setFont(AMMO_LABEL_FONT);
