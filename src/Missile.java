@@ -21,8 +21,7 @@ public class Missile {
 	private Random rng;
 	
 	private final static int WIDTH = 30, HEIGHT = 50;
-
-
+	
 	private GRectangle hitbox;
 	
 	private final boolean DEBUG_MODE = false; // set to false if you want the hit boxes to not appear on screen

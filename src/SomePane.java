@@ -302,7 +302,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		if(this.tempRoundNum != lvl.getRoundNumber()){
 			this.tempRoundNum = lvl.getRoundNumber();
 			if(this.gameSpeed > 40){
-				this.move.setDelay(this.gameSpeed-=5);
+				this.move.setDelay(this.gameSpeed-=2);
 			}
 		}
 	}
