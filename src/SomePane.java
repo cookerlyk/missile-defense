@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.Timer;
-
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -15,7 +14,11 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x625 max on screen
 	private final int PROGRAM_HEIGHT = 625;
-	private final String LABEL_FONT = "Arial-Bold-22";
+	private final String GAMEOVER = "Game Over";
+	private final String PAUSE = "Screens/windows_xp_bliss-wide.png";
+	private final String BACKGROUND_IMAGE = "Screens/windows_xp_bliss-wide.png";
+	private final String STATUS_LABEL_FONT = "Arial-Bold-30";
+	private final String LABEL_FONT = "Arial-Bold-20";
 	private final String AMMO_LABEL_FONT = "Arial-Bold-18";
 	private final String ROUND_TIME_LABEL = "45";
 	private final int INITIAL_DELAY = 1000;
@@ -24,7 +27,6 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private Level lvl;
 	private Timer move;
 	private GLabel pauseMessage, gameOverMessage, roundTime, score, ammoQ, ammoW, ammoE, ammoR;
-	private GRect pauseBox;
 	private GImage background;
 	
 	private int currentMouseX;
@@ -38,7 +40,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public SomePane(MainApplication app) {
 		this.program = app;
 		lvl = new Level(program);
-		background = new GImage("Screens/windows_xp_bliss-wide.png", 0, 0);
+		background = new GImage(this.BACKGROUND_IMAGE, 0, 0);
 		lvl.getGameObject().generateBuildings(program);
 		lvl.getGameObject().generateTurrets(program);
 		this.currentMouseX = 0;
@@ -46,15 +48,10 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.tempRoundNum = 1;
 		this.gameSpeed = 80;
 
-		
-		// TODO do all of this better, no hard coding and make pause window better (image instead of making with GRect and GLabel)
-		this.pauseBox = new GRect(this.PROGRAM_WIDTH/2 - 200, this.PROGRAM_HEIGHT/2 - 200, 400, 200);
-		this.pauseBox.setColor(Color.red);
-		this.pauseBox.setFilled(true);
-		this.pauseMessage = new GLabel("Press Spacebar to Resume", 320, 280);
-		this.pauseMessage.setFont("Arial-Bold-30");
-		this.gameOverMessage = new GLabel("Game Over", 435, 280);
-		this.gameOverMessage.setFont("Arial-Bold-30");
+		this.pauseMessage = new GLabel(this.PAUSE, this.PROGRAM_WIDTH/3.2, this.PROGRAM_HEIGHT/2);
+		this.pauseMessage.setFont(this.STATUS_LABEL_FONT);
+		this.gameOverMessage = new GLabel(this.GAMEOVER, this.PROGRAM_WIDTH/2.3, this.PROGRAM_HEIGHT/2);
+		this.gameOverMessage.setFont(this.STATUS_LABEL_FONT);
 		
 		this.drawLabelHelper();
 		
@@ -84,15 +81,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		if(!lvl.isGameOver()){
-			
-			// speeds up game speed when round changes
-			if(this.tempRoundNum != lvl.getRoundNumber()){
-				this.tempRoundNum = lvl.getRoundNumber();
-				if(this.gameSpeed > 40){
-					this.move.setDelay(this.gameSpeed-=5);
-				}
-			}
-			
+			this.updateRoundSpeed();
 			lvl.getGameObject().generateEnemyMissile("Sprites/enemyPlaceholder.png", program);
 			lvl.getGameObject().checkForHits();
 			this.updateScreenLabels();
@@ -259,11 +248,9 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			lvl.setPaused();           // sets paused to true
 			this.move.stop();          // stops timer, thus pauses the game
 			lvl.pauseRound();          // stops round timer
-			program.add(this.pauseBox);
 			program.add(this.pauseMessage);
 		}
 		else{
-			program.remove(this.pauseBox);
 			program.remove(this.pauseMessage);
 			lvl.setPaused();           // sets paused to false
 			move.setInitialDelay(50);  // 50ms delay before restart
@@ -302,4 +289,14 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		this.ammoE.setLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()));
 		this.ammoR.setLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()));
 	}
+	
+	private void updateRoundSpeed(){
+		if(this.tempRoundNum != lvl.getRoundNumber()){
+			this.tempRoundNum = lvl.getRoundNumber();
+			if(this.gameSpeed > 40){
+				this.move.setDelay(this.gameSpeed-=5);
+			}
+		}
+	}
+	
 }
