@@ -21,10 +21,10 @@ public class TutorialPane extends GraphicsPane{
 	
 	public TutorialPane(MainApplication app) {
 		this.program = app;
-		backButton = new GButton("Back", 100, 100, 100, 100);
+		backButton = new GButton("Back", 100, 100, 100, 50);
 		
-		prevPage = new GButton("Prev Page", 100, 600, 100, 50);
-		nextPage = new GButton("Next Page", 800, 600, 100, 50);
+		prevPage = new GButton("Prev Page", 100, 500, 100, 50);
+		nextPage = new GButton("Next Page", 800, 500, 100, 50);
 		
 		//Pages must follow the naming convention. Remove placeholder to change from placeholder to actual screens
 		for (int i = 0; i < numPages; i++){

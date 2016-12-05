@@ -19,10 +19,10 @@ public class MenuPane extends GraphicsPane {
 	public MenuPane(MainApplication app) {
 		program = app;
 		
-		playGame = new GButton("Play", 384, 100, 200, 100);
-		tutorial = new GButton ("Tutorial", 384, 250, 200, 100);
-		highScore = new GButton("High Score", 384, 400, 200, 100);
-		exit = new GButton("Exit", 384, 550, 200, 100);
+		playGame = new GButton("Play", 384, 75, 200, 100);
+		tutorial = new GButton ("Tutorial", 384, 200, 200, 100);
+		highScore = new GButton("High Score", 384, 325, 200, 100);
+		exit = new GButton("Exit", 384, 450, 200, 100);
 		
 		playGame.setFillColor(Color.RED);
 		tutorial.setFillColor(Color.RED);
