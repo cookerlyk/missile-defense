@@ -157,7 +157,7 @@ public class Missile {
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
 		AudioPlayer audio = AudioPlayer.getInstance();
-		audio.playSound("sounds", "Missile Explode.wav1");
+		audio.playSound("sounds", "Missile Explode.wav");
 	}
 	
 	/**
