@@ -28,6 +28,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	private Timer move;
 	private GLabel pauseMessage, gameOverMessage, roundTime, score, ammoQ, ammoW, ammoE, ammoR;
 	private GRect pauseBox;
+	private GImage background;
 	
 	private int currentMouseX;
 	private int currentMouseY;
@@ -40,6 +41,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	public SomePane(MainApplication app) {
 		this.program = app;
 		lvl = new Level(program);
+		background = new GImage("Screens/windows_xp_bliss-wide.png", 0, 0);
 		lvl.getGameObject().generateBuildings(program);
 		lvl.getGameObject().generateTurrets(program);
 		this.currentMouseX = 0;
@@ -63,6 +65,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	
 	public void showContents() {
+		program.add(this.background);
 		program.add(this.roundTime);
 	    program.add(this.score);
 		this.drawStructures();
