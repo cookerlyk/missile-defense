@@ -143,8 +143,7 @@ public class Missile {
 		//TODO remove, test only to generate the boxes for visual example
 		if(this.DEBUG_MODE == true){
 			this.debugHitbox.setLocation(this.x, this.y);
-		}
-		
+		}		
 	}
 	
 	/**
