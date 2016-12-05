@@ -66,6 +66,7 @@ public class Turret extends Structure implements ActionListener{
 		}
 		else{
 			if(ammo == 0 || mY > y){
+				
 				audio.playSound("sounds", "Fire Error.WAV");
 			}
 			//Change this to missile firing error sound
