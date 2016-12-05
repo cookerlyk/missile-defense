@@ -86,7 +86,7 @@ public class Missile {
 		double theta =Math.toDegrees(Math.atan2((mouseY - y),(mouseX - x)));
 		roundedAngle = Math.abs((int)Math.round(theta/15)*15);
 		
-		String spriteLoc2 = "Sprites/friendlyPlaceholder_R-" + roundedAngle + ".png";
+		String spriteLoc2 = "Missiles/friendlyMissile_r" + roundedAngle + ".png";
 //		System.out.println("Theta = " + roundedAngle);
 		System.out.println(spriteLoc2);
 		
