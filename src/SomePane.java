@@ -59,7 +59,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 	
 	
 	public void showContents() {
-		//program.add(this.background);
+		program.add(this.background);
 		program.add(this.roundTime);
 	    program.add(this.score);
 		this.drawStructures();

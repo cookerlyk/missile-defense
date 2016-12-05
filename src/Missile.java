@@ -20,7 +20,7 @@ public class Missile {
 	
 	private Random rng;
 	
-	private final static int WIDTH = 30, HEIGHT = 50;
+	private final static int WIDTH = 50, HEIGHT = 55;
 	
 	private GRectangle hitbox;
 	
