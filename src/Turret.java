@@ -59,7 +59,7 @@ public class Turret extends Structure implements ActionListener{
 			
 			
 			//Change this to firing missile sound.
-			audio.playSound("sounds", "Missile Fire.WAV");
+			//audio.playSound("sounds", "Missile Fire.WAV");
 			
 			
 			return true;
@@ -82,7 +82,7 @@ public class Turret extends Structure implements ActionListener{
 		if(canFire(y)){
 			ammo -=1;
 			fireDelay = DELAYTIME;
-			
+			audio.playSound("sounds", "Missile Fire.WAV");
 //			double theta =Math.toDegrees(Math.atan2((y - this.y),(x - this.x)));
 //			double rounded = Math.round(theta/15)*15;
 //			System.out.println("Theta = " + rounded);
