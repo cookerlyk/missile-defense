@@ -131,11 +131,12 @@ public class Missile {
 	}
 	
 	public void move() {
-		sprite.getImage().movePolar(radius, angle);
-		this.x = (int) sprite.getImage().getX();
-		this.y = (int) sprite.getImage().getY();
-		this.hitbox.setLocation(this.x, this.y);
-		
+		if (!isDestroyed) {
+			sprite.getImage().movePolar(radius, angle);
+			this.x = (int) sprite.getImage().getX();
+			this.y = (int) sprite.getImage().getY();
+			this.hitbox.setLocation(this.x, this.y);
+		}
 		if (this.y >= 550) {
 			this.setDestroyed(true);
 		}
@@ -160,6 +161,7 @@ public class Missile {
 		if (this.x <= 1024 && this.x >= 0) {
 			AudioPlayer audio = AudioPlayer.getInstance();
 			audio.playSound("sounds", "Missile Explode.wav");
+			
 		}
 		
 	}

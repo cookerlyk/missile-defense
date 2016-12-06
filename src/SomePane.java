@@ -226,6 +226,10 @@ public class SomePane extends GraphicsPane implements ActionListener{
 			}
 			else{
 				missile.getSprite().remove(program);  // removes image if the missile is destroyed
+				final int x = missile.getX();
+				final int y = missile.getY();
+				Explosion ex = new Explosion(this.gameSpeed, x, y, program);
+				ex.start();
 			}
 			missile.move();
 		}
