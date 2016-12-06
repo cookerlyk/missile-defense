@@ -16,10 +16,10 @@ public class HighScorePane extends GraphicsPane{
 	public HighScorePane(MainApplication app) {
 		this.program = app;
 		this.background = new GImage("Screens/High_Score_Placeholder.png", 0, 0);
-		this.backing = new GRect(375, 130, 300, 500);
+		this.backing = new GRect(375, 100, 300, 500);
 		this.backing.setFillColor(Color.WHITE);
 		this.backing.setFilled(true);
-		this.backButton = new GButton("Back", 100, 100, 100, 100);
+		this.backButton = new GButton("Back", 100, 100, 100, 50);
 		this.scoreTable = new HighScores();
 		this.scores = new GLabel[scoreTable.getNum()];
 		for (int i = 0; i < this.scoreTable.getNum(); i++) {
@@ -31,7 +31,7 @@ public class HighScorePane extends GraphicsPane{
 	public void getScores() {
 		for (int i = 0; i < this.scoreTable.getNum(); i++) {
 			scores[i].setLabel(this.scoreTable.getTable()[i][0] + " " + this.scoreTable.getTable()[i][1]);
-			scores[i].setLocation(480, 160+i*SPACER);
+			scores[i].setLocation(480, 135+i*SPACER);
 			scores[i].setFont("Arial-Bold-20");
 		}
 	}
