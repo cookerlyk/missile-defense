@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
-import acm.graphics.GRect;
 import acm.io.*;
 
 
@@ -64,11 +63,11 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		program.add(this.background);
 		program.add(this.roundTime);
 	    program.add(this.score);
+	    program.add(this.ammoQ);
+		program.add(this.ammoW);
+		program.add(this.ammoE);
+		program.add(this.ammoR);
 		this.drawStructures();
-		program.add(ammoQ);
-		program.add(ammoW);
-		program.add(ammoE);
-		program.add(ammoR);
 		this.run();
 
 	}
@@ -81,6 +80,12 @@ public class GamePane extends GraphicsPane implements ActionListener{
 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * Performs the necessary game play operations every tick of the clock
+	 */
 	public void actionPerformed(ActionEvent e){
 		if(!lvl.isGameOver()){
 			this.updateRoundSpeed();
@@ -171,7 +176,9 @@ public class GamePane extends GraphicsPane implements ActionListener{
 
 		// Pause or resume the game with a space bar press
 		case ' ':
-			this.pauseHelper();
+			if(!lvl.isGameOver()){
+				this.pauseHelper();
+			}
 			break;
 			
 		// Press the enter key when the game is over to return to main menu
