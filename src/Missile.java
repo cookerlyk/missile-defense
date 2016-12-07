@@ -165,9 +165,11 @@ public class Missile {
 		if (this.x <= 1024 && this.x >= 0) {
 			AudioPlayer audio = AudioPlayer.getInstance();
 			audio.playSound("sounds", "Missile Explode.wav");
-			Explosion ex = new Explosion(80, x, y, this.program);	
-			ex.start();
-			ex.add();
+			if (!isFriendly) {
+				Explosion ex = new Explosion(80, x, y, this.program);	
+				ex.start();
+				ex.add();
+			}
 		}
 		
 	}
