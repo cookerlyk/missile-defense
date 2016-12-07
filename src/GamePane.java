@@ -10,7 +10,7 @@ import acm.graphics.GRect;
 import acm.io.*;
 
 
-public class SomePane extends GraphicsPane implements ActionListener{
+public class GamePane extends GraphicsPane implements ActionListener{
 	
 	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x625 max on screen
 	private final int PROGRAM_HEIGHT = 625;
@@ -37,7 +37,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 
 	
 	
-	public SomePane(MainApplication app) {
+	public GamePane(MainApplication app) {
 		this.program = app;
 		lvl = new Level(program);
 		background = new GImage(this.BACKGROUND_IMAGE, 0, 0);

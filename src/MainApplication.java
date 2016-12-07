@@ -7,7 +7,7 @@ public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1024;
 	public static final int WINDOW_HEIGHT = 625;
 	
-	private SomePane somePane;
+	private GamePane gamePane;
 	private MenuPane menu;
 	private TutorialPane tutorial;
 	private HighScorePane highScore;
@@ -20,7 +20,7 @@ public class MainApplication extends GraphicsApplication {
 	public void run() {
 		
 		menu = new MenuPane(this);
-		somePane = new SomePane(this);
+		gamePane = new GamePane(this);
 		tutorial = new TutorialPane(this);
 		highScore = new HighScorePane(this);
 		setupInteractions();
@@ -55,8 +55,8 @@ public class MainApplication extends GraphicsApplication {
 //			case 0: audio.playSound("sounds", "r2d2.mp3"); break;
 //			case 1: audio.playSound("sounds", "somethinlikethis.mp3"); break;
 //		}
-		somePane = new SomePane(this);
-		switchToScreen(somePane);
+		gamePane = new GamePane(this);
+		switchToScreen(gamePane);
 	}
 	
 	public void switchToTutorial(){
