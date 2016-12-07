@@ -14,18 +14,20 @@ public class GamePane extends GraphicsPane implements ActionListener{
 	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x625 max on screen
 	private final int PROGRAM_HEIGHT = 625;
 	private final String GAMEOVER = "Game Over";
+	private final String PROMPT_LABEL = "(Press Enter to Continue)";
 	private final String PAUSE = "Press Spacebar to Resume";
 	private final String BACKGROUND_IMAGE = "Screens/gameplay_background.png";
 	private final String STATUS_LABEL_FONT = "Arial-Bold-30";
 	private final String LABEL_FONT = "Arial-Bold-20";
 	private final String AMMO_LABEL_FONT = "Arial-Bold-18";
+	private final String PROMPT_LABEL_FONT = "Arial-Bold-14";
 	private final String ROUND_TIME_LABEL = "45";
 	private final int INITIAL_DELAY = 1000;
 	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private Level lvl;
 	private Timer move;
-	private GLabel pauseMessage, gameOverMessage, roundTime, score, ammoQ, ammoW, ammoE, ammoR;
+	private GLabel pauseMessage, prompt, gameOverMessage, roundTime, score, ammoQ, ammoW, ammoE, ammoR;
 	private GImage background;
 	
 	private int currentMouseX;
@@ -51,8 +53,13 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		this.pauseMessage.setFont(this.STATUS_LABEL_FONT);
 		this.pauseMessage.setColor(Color.white);
 		this.gameOverMessage = new GLabel(this.GAMEOVER, this.PROGRAM_WIDTH/2.3, this.PROGRAM_HEIGHT/2);
-		this.gameOverMessage.setFont(this.STATUS_LABEL_FONT);
 		this.gameOverMessage.setColor(Color.white);
+		this.gameOverMessage.setFont(this.STATUS_LABEL_FONT);
+		this.prompt = new GLabel(this.PROMPT_LABEL, this.PROGRAM_WIDTH/2.345, this.PROGRAM_HEIGHT/1.85);
+		this.prompt.setColor(Color.white);
+		this.prompt.setFont(PROMPT_LABEL_FONT);
+		
+		
 		
 		this.drawLabelHelper();
 		
@@ -118,6 +125,7 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		program.remove(this.roundTime);
 		program.remove(this.score);
 		program.remove(this.gameOverMessage);
+		program.remove(this.prompt);
 		program.remove(this.ammoQ);
 		program.remove(this.ammoW);
 		program.remove(this.ammoE);
@@ -254,6 +262,7 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		this.move.stop();          // stops movement timer
 		lvl.pauseRound();          // stops round timer
 		program.add(this.gameOverMessage);
+		program.add(this.prompt);
 		
 	}
 	
