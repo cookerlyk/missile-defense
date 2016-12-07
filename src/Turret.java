@@ -125,7 +125,7 @@ public class Turret extends Structure implements ActionListener{
 		this.sprite = SpriteStore.get().getSprite(spriteLoc);
 		this.sprite.scale(SCALE, SCALE);
 		sprite.draw(game,(int) x,(int) y);
-		this.debugHitbox.setFillColor(Color.blue);
+		//this.debugHitbox.setFillColor(Color.blue);
 		ammo = MAXAMMO;
 	}
 }
