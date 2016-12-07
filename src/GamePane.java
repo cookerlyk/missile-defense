@@ -16,7 +16,7 @@ public class GamePane extends GraphicsPane implements ActionListener{
 	private final int PROGRAM_HEIGHT = 625;
 	private final String GAMEOVER = "Game Over";
 	private final String PAUSE = "Press Spacebar to Resume";
-	private final String BACKGROUND_IMAGE = "Screens/windows_xp_bliss-wide.png";
+	private final String BACKGROUND_IMAGE = "Screens/gameplay_background.png";
 	private final String STATUS_LABEL_FONT = "Arial-Bold-30";
 	private final String LABEL_FONT = "Arial-Bold-20";
 	private final String AMMO_LABEL_FONT = "Arial-Bold-18";
@@ -50,8 +50,10 @@ public class GamePane extends GraphicsPane implements ActionListener{
 
 		this.pauseMessage = new GLabel(this.PAUSE, this.PROGRAM_WIDTH/3.2, this.PROGRAM_HEIGHT/2);
 		this.pauseMessage.setFont(this.STATUS_LABEL_FONT);
+		this.pauseMessage.setColor(Color.white);
 		this.gameOverMessage = new GLabel(this.GAMEOVER, this.PROGRAM_WIDTH/2.3, this.PROGRAM_HEIGHT/2);
 		this.gameOverMessage.setFont(this.STATUS_LABEL_FONT);
+		this.gameOverMessage.setColor(Color.white);
 		
 		this.drawLabelHelper();
 		
@@ -273,9 +275,9 @@ public class GamePane extends GraphicsPane implements ActionListener{
 	private void drawLabelHelper(){
 				this.roundTime = new GLabel(this.ROUND_TIME_LABEL,10, 20);
 				this.score = new GLabel("0",875, 20);
-				this.roundTime.setColor(Color.black);
+				this.roundTime.setColor(Color.white);
 				this.roundTime.setFont(LABEL_FONT);
-			    this.score.setColor(Color.black);
+			    this.score.setColor(Color.white);
 				this.score.setFont(LABEL_FONT);
 				
 				// TODO less hard coding?
@@ -288,6 +290,10 @@ public class GamePane extends GraphicsPane implements ActionListener{
 				this.ammoW.setFont(AMMO_LABEL_FONT);
 				this.ammoE.setFont(AMMO_LABEL_FONT);
 				this.ammoR.setFont(AMMO_LABEL_FONT);
+				this.ammoQ.setColor(Color.white);
+				this.ammoW.setColor(Color.white);
+				this.ammoE.setColor(Color.white);
+				this.ammoR.setColor(Color.white);
 	}
 	
 	private void updateScreenLabels(){

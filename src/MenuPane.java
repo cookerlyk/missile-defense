@@ -29,7 +29,7 @@ public class MenuPane extends GraphicsPane {
 		highScore.setFillColor(Color.RED);
 		exit.setFillColor(Color.RED);
 		
-		background = new GImage("Screens/menu_placeholder.png", 0, 0);
+		background = new GImage("Screens/missile_defense_menu.png", 0, 0);
 	}
 	
 	@Override

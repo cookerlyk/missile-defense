@@ -39,7 +39,7 @@ public class Level implements ActionListener {
 		this.roundTimer = new Timer(1000, this);
 		this.roundNumberLabel = new GLabel(this.ROUND_TEXT + String.valueOf(this.getRoundNumber()), 475, 280);
 		this.roundNumberLabel.setFont(LABEL_FONT);
-		this.roundNumberLabel.setColor(Color.black);
+		this.roundNumberLabel.setColor(Color.white);
 		this.app = app;
 		
 	}
