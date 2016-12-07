@@ -74,7 +74,7 @@ public class HighScores {
 	 * Generates a score-holding array for addScore()
 	 */
 	private String[] submitScore(String name, int scoreval) {
-		if (name == "") {
+		if (name.length() == 0) {
 			name = "UNK";
 		}
 		name = name.toUpperCase();
