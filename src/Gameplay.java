@@ -14,8 +14,7 @@ public class Gameplay {
 	private static final String BUILDING_SPRITE = "Sprites/SpaceColony.png";
 	private static final String BUILDING_SPRITE_DESTROYED = "Sprites/SpaceColonyDestroyed.png";
 
-	private static final String TURRET_SPRITE = "Sprites/turret_Placeholder.png";
-	private static final String TURRET_SPRITE_DESTROYED = "Sprites/turretDestroyed_Placeholder.png";
+
 	private static final int BUILDING_Y_LOCATION = 536;
 	private static final int HIGH_TURRET_Y_LOCATION = 450;
 	private static final int LOW_TURRET_Y_LOCATION = 500;
