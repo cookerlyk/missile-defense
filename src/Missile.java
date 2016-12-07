@@ -15,7 +15,7 @@ public class Missile {
 	private boolean isFriendly, isDestroyed, isHit;
 	private int x, y;
 	private double radius, angle;
-	
+	private MainApplication program;
 	private int roundedAngle;
 	
 	private Random rng;
@@ -33,6 +33,7 @@ public class Missile {
 	 * Default constructor. Intended for enemies.
 	 */
 	public Missile(MainApplication app, String spriteLoc) {
+		program = app;
 		isFriendly = false;
 		isDestroyed = false;
 		this.rng = new Random();
@@ -82,6 +83,7 @@ public class Missile {
 	 * @param mouseY is mouse's y
 	 */
 	public Missile(String spriteLoc, boolean side, int x, int y, MainApplication app, int mouseX, int mouseY) {
+		program = app;
 		double theta =Math.toDegrees(Math.atan2((mouseY - y),(mouseX - x)));
 		roundedAngle = Math.abs((int)Math.round(theta/15)*15);
 		
@@ -161,7 +163,9 @@ public class Missile {
 		if (this.x <= 1024 && this.x >= 0) {
 			AudioPlayer audio = AudioPlayer.getInstance();
 			audio.playSound("sounds", "Missile Explode.wav");
-			
+			Explosion ex = new Explosion(80, x, y, this.program);	
+			ex.start();
+			ex.add();
 		}
 		
 	}

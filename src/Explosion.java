@@ -23,20 +23,24 @@ public class Explosion implements ActionListener {
 		kaboom.setLocation(x-kaboom.getWidth()/2, y-kaboom.getHeight()/2);
 		program = app;
 		counter = 0;
+		this.t.setInitialDelay(800);
+		this.t.setDelay(800);
+	}
+	public void start() {
+		this.t.start();
+	}
+	
+	public void add() {
 		program.add(this.kaboom);
 	}
 	
-	public void start() {
-		t.start();
+	public void stop() {
+		this.t.stop();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		this.counter++;
-		if (counter == MAX_COUNT) {
-			counter = 0;
-			t.stop();
-		}
-		
+		program.remove(kaboom);
+		stop();
 	}
 }
