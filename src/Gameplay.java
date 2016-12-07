@@ -15,6 +15,10 @@ public class Gameplay {
 	private static final String BUILDING_SPRITE_DESTROYED = "Sprites/SpaceColonyDestroyed.png";
 	private static final String TURRET_SPRITE = "Sprites/turret_Placeholder.png";
 	private static final String TURRET_SPRITE_DESTROYED = "Sprites/turretDestroyed_Placeholder.png";
+	private static final int BUILDING_Y_LOCATION = 536;
+	private static final int HIGH_TURRET_Y_LOCATION = 450;
+	private static final int LOW_TURRET_Y_LOCATION = 500;
+
 	
 	
 	private final int SCORE_INCREASE = 10;
@@ -65,7 +69,7 @@ public class Gameplay {
 	 */
 	public void generateBuildings(MainApplication app){
 		for (int i = 0; i < TOTAL_BUILDINGS; i++) {
-			this.buildings[i] = new Building(app, 290 + i*125, 537, BUILDING_SPRITE, BUILDING_SPRITE_DESTROYED);
+			this.buildings[i] = new Building(app, 290 + i*125, BUILDING_Y_LOCATION, BUILDING_SPRITE, BUILDING_SPRITE_DESTROYED);
 		}
 	}
 
@@ -73,10 +77,10 @@ public class Gameplay {
 	 * generates the turrets at start
 	 */
 	public void generateTurrets(MainApplication app){
-		this.turrets[0] = new Turret(app,15,450,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
-		this.turrets[1] = new Turret(app,150,500,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
-		this.turrets[2] = new Turret(app,800,500,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
-		this.turrets[3] = new Turret(app,925,450,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[0] = new Turret(app,15,HIGH_TURRET_Y_LOCATION,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[1] = new Turret(app,150,LOW_TURRET_Y_LOCATION,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[2] = new Turret(app,800,LOW_TURRET_Y_LOCATION,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
+		this.turrets[3] = new Turret(app,925,HIGH_TURRET_Y_LOCATION,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
 	}
 	
 	/*

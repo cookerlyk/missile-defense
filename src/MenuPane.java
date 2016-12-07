@@ -1,10 +1,8 @@
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
-import acm.graphics.GOval;
-import acm.graphics.GRect;
+
 
 public class MenuPane extends GraphicsPane {
 	
@@ -23,7 +21,7 @@ public class MenuPane extends GraphicsPane {
 		program = app;
 		playGame = new GButton("Play", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 75, BUTTON_WIDTH, BUTTON_HEIGHT);
 		instructions = new GButton ("Instructions", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 200, BUTTON_WIDTH, BUTTON_HEIGHT);
-		highScore = new GButton("High Score", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 325, BUTTON_WIDTH, BUTTON_HEIGHT);
+		highScore = new GButton("High Scores", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 325, BUTTON_WIDTH, BUTTON_HEIGHT);
 		exit = new GButton("Exit", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 450, BUTTON_WIDTH, BUTTON_HEIGHT);
 		playGame.setFillColor(Color.RED);
 		instructions.setFillColor(Color.RED);
