@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -6,7 +7,7 @@ import acm.graphics.GObject;
 
 public class InstructionsPane extends GraphicsPane{
 	
-	private static int numPages = 3;//change this to increase the number of pages
+	private static int numPages = 2;//change this to increase the number of pages
 	
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage page[] = new GImage[numPages];
@@ -21,14 +22,16 @@ public class InstructionsPane extends GraphicsPane{
 	
 	public InstructionsPane(MainApplication app) {
 		this.program = app;
-		backButton = new GButton("Back", 100, 100, 100, 50);
+		backButton = new GButton("Back", 100, 25, 100, 50);
+		backButton.setFillColor(Color.RED);
 		
-		prevPage = new GButton("Prev Page", 100, 500, 100, 50);
-		nextPage = new GButton("Next Page", 800, 500, 100, 50);
-		
+		prevPage = new GButton("Prev Page", 100, 550, 100, 50);
+		nextPage = new GButton("Next Page", 800, 550, 100, 50);
+		prevPage.setFillColor(Color.RED);
+		nextPage.setFillColor(Color.RED);
 		//Pages must follow the naming convention. Remove placeholder to change from placeholder to actual screens
 		for (int i = 0; i < numPages; i++){
-			page[i] = new GImage("Screens/tutorial_"+ i +"_placeholder.png",0, 0);
+			page[i] = new GImage("Screens/instructions_"+ i +".png",0, 0);
 		}
 	}
 	
