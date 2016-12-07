@@ -1,10 +1,8 @@
 import java.util.*;
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import java.math.*;
 import acm.graphics.GRect;
 import acm.graphics.GRectangle;
 
@@ -19,8 +17,8 @@ public class Turret extends Structure implements ActionListener{
 	
 	AudioPlayer audio = AudioPlayer.getInstance();
 	
-	private int MAXAMMO = 15;
-	private int ammo = 15;
+	private int MAXAMMO = 10;
+	private int ammo = 10;
 	private Timer timer;
 	private int fireDelay;
 	
@@ -104,9 +102,6 @@ public class Turret extends Structure implements ActionListener{
 		if (fireDelay > 0){
 			fireDelay -=SHOTDELAY;
 		}
-		
-		
-		
 	//	System.out.println(fireDelay);
 	}
 	
