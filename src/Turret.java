@@ -30,16 +30,14 @@ public class Turret extends Structure implements ActionListener{
 	
 		
 		super(app, x, y, loc, destroyedLoc);
-		SCALE = .5;
-		this.height = 100;
-		this.width = 100;
-		hitbox = new GRectangle(x, y, width, height);
-		
-		debugHitbox = new GRect(x, y, width, height);
+		SCALE = 0.4;
+		this.height = 70;
+		this.width = 90;
+		hitbox = new GRectangle(x + 5, y + 5, width, height);
 		
 		//TODO remove, test only to generate the boxes for visual example
 		if(this.DEBUG_MODE == true){
-			debugHitbox = new GRect(x, y, width, height);
+			debugHitbox = new GRect(x + 5, y + 5, width, height);
 			debugHitbox.setColor(Color.BLUE);
 			debugHitbox.setFilled(true);
 			app.add(debugHitbox);

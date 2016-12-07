@@ -218,7 +218,7 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		//Draws the turrets to the stage screen
 		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
 			if(turret != null){
-				turret.sprite.scale(.5, .5); // TODO remove hard coded value
+				turret.sprite.scale(0.4, 0.4); // TODO remove hard coded value
 				turret.draw(program);
 			}
 		}
@@ -288,10 +288,10 @@ public class GamePane extends GraphicsPane implements ActionListener{
 				this.score.setFont(LABEL_FONT);
 				
 				// TODO less hard coding?
-				this.ammoQ = new GLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()), 15, 560);
-				this.ammoW = new GLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()), 150, 610);
-				this.ammoE = new GLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()), 870, 610);
-				this.ammoR = new GLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()), 995, 560);
+				this.ammoQ = new GLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()), 15, 550);
+				this.ammoW = new GLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()), 150, 600);
+				this.ammoE = new GLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()), 870, 600);
+				this.ammoR = new GLabel(String.valueOf(lvl.getTurrets()[3].getMissileCount()), 995, 550);
 				
 				this.ammoQ.setFont(AMMO_LABEL_FONT);
 				this.ammoW.setFont(AMMO_LABEL_FONT);
