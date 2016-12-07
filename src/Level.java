@@ -2,9 +2,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
 import javax.swing.Timer;
-
 import acm.graphics.GLabel;
 
 /**
@@ -17,17 +15,16 @@ import acm.graphics.GLabel;
  */
 
 public class Level implements ActionListener {
+	private final String ROUND_TEXT = "Round ";
 	private final String LABEL_FONT = "Arial-Bold-22";
-	private final int BONUS_SCORE_INCREMENT = 50;
-	private final int ROUND_TIME = 45;  // A round lasts 45 seconds
-	private final int ROUND_RESET_DELAY = 750;
+	private final int BONUS_SCORE_INCREMENT = 50;        // Each turret not destroyed at the end of the round increases score by this amount
+	private final int ROUND_TIME = 45;                   // A round lasts 45 seconds
+	private final int ROUND_RESET_DELAY = 750;           // 750ms second delay between rounds
 	private boolean gameOver, paused;
 	private int time, roundNum;
 	private Gameplay game;
 	private Timer roundTimer;
-	
 	private GLabel roundNumberLabel;
-	
 	private MainApplication app;
 
 	/*
@@ -40,7 +37,7 @@ public class Level implements ActionListener {
 		this.time = this.ROUND_TIME;
 		this.roundNum = 1;
 		this.roundTimer = new Timer(1000, this);
-		this.roundNumberLabel = new GLabel("Round " + String.valueOf(this.getRoundNumber()), 475, 280);
+		this.roundNumberLabel = new GLabel(this.ROUND_TEXT + String.valueOf(this.getRoundNumber()), 475, 280);
 		this.roundNumberLabel.setFont(LABEL_FONT);
 		this.roundNumberLabel.setColor(Color.black);
 		this.app = app;
@@ -63,9 +60,6 @@ public class Level implements ActionListener {
 	
 	/*
 	 * resumes the timer
-	 * TODO remove and call start for both unless 
-	 * something needs to be added here to differentiate the functionality
-	 * from startRound()
 	 */
 	public void resumeRound(){
 		this.roundTimer.start();
@@ -106,7 +100,7 @@ public class Level implements ActionListener {
 				this.game.incrementScore(BONUS_SCORE_INCREMENT);
 			}
 		}
-		this.roundNumberLabel.setLabel("Round " + String.valueOf(this.getRoundNumber()));
+		this.roundNumberLabel.setLabel(this.ROUND_TEXT + String.valueOf(this.getRoundNumber()));
 		this.app.add(this.roundNumberLabel);
 		this.startRound();
 	}
@@ -194,6 +188,9 @@ public class Level implements ActionListener {
 		return this.game.getMissilesOnStage();
 	}
 	
+	/*
+	 * returns friendly missiles that are in play
+	 */
 	public List<Missile> getFriendlymissiles(){
 		return this.game.getFriendlyMissilesOnStage();
 	}
