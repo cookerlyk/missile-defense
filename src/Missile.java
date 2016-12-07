@@ -139,9 +139,11 @@ public class Missile {
 			this.y = (int) sprite.getImage().getY();
 			this.hitbox.setLocation(this.x, this.y);
 		}
+		/*
 		if (this.y >= 550) {
 			this.setDestroyed(true);
 		}
+		*/
 		//TODO remove, test only to generate the boxes for visual example
 		if(this.DEBUG_MODE == true){
 			this.debugHitbox.setLocation(this.x, this.y);

@@ -232,6 +232,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		
 		//Sets the missile object to null if it goes off screen, to hopefully evoke GC to destroy the object
 		if(missile.getY() < 0 || missile.getY() > this.PROGRAM_HEIGHT || missile.getX() < 0 || missile.getX() > this.PROGRAM_WIDTH) {
+//			missile.setDestroyed(true);
 			missile = null;
 		}
 	}

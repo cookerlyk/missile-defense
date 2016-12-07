@@ -41,6 +41,6 @@ public class Explosion implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		program.remove(kaboom);
-		stop();
+//		stop();
 	}
 }
