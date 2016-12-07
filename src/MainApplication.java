@@ -9,7 +9,7 @@ public class MainApplication extends GraphicsApplication {
 	
 	private GamePane gamePane;
 	private MenuPane menu;
-	private TutorialPane tutorial;
+	private InstructionsPane tutorial;
 	private HighScorePane highScore;
 	private int count = 0;
 	
@@ -21,7 +21,7 @@ public class MainApplication extends GraphicsApplication {
 		
 		menu = new MenuPane(this);
 		gamePane = new GamePane(this);
-		tutorial = new TutorialPane(this);
+		tutorial = new InstructionsPane(this);
 		highScore = new HighScorePane(this);
 		setupInteractions();
 		switchBack();

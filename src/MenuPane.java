@@ -13,7 +13,7 @@ public class MenuPane extends GraphicsPane {
 	public static final int BUTTON_HEIGHT = 75;
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GButton playGame;
-	private GButton tutorial;
+	private GButton instructions;
 	private GButton highScore;
 	private GButton exit;
 	
@@ -22,11 +22,11 @@ public class MenuPane extends GraphicsPane {
 	public MenuPane(MainApplication app) {
 		program = app;
 		playGame = new GButton("Play", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 75, BUTTON_WIDTH, BUTTON_HEIGHT);
-		tutorial = new GButton ("Instructions", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 200, BUTTON_WIDTH, BUTTON_HEIGHT);
+		instructions = new GButton ("Instructions", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 200, BUTTON_WIDTH, BUTTON_HEIGHT);
 		highScore = new GButton("High Score", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 325, BUTTON_WIDTH, BUTTON_HEIGHT);
 		exit = new GButton("Exit", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 450, BUTTON_WIDTH, BUTTON_HEIGHT);
 		playGame.setFillColor(Color.RED);
-		tutorial.setFillColor(Color.RED);
+		instructions.setFillColor(Color.RED);
 		highScore.setFillColor(Color.RED);
 		exit.setFillColor(Color.RED);
 		
@@ -37,7 +37,7 @@ public class MenuPane extends GraphicsPane {
 	public void showContents() {
 		program.add(background);
 		program.add(playGame);
-		program.add(tutorial);
+		program.add(instructions);
 		program.add(highScore);
 		program.add(exit);
 	}
@@ -46,7 +46,7 @@ public class MenuPane extends GraphicsPane {
 	public void hideContents() {
 		program.remove(playGame);
 		program.remove(background);
-		program.remove(tutorial);
+		program.remove(instructions);
 		program.remove(highScore);
 		program.remove(exit);
 	}
@@ -57,7 +57,7 @@ public class MenuPane extends GraphicsPane {
 		if(obj == playGame) {
 			program.switchToSome();
 		}
-		if(obj == tutorial){
+		if(obj == instructions){
 			program.switchToTutorial();
 		}
 		
