@@ -13,7 +13,7 @@ public class Turret extends Structure implements ActionListener{
 	private static int DELAYTIME = 1000;
 	private static int SHOTDELAY = 1000;
 
-	
+	//private static String EMPTYLOC = "Sprites/MissileSiloEmpty.png";
 	
 	AudioPlayer audio = AudioPlayer.getInstance();
 	
@@ -28,7 +28,7 @@ public class Turret extends Structure implements ActionListener{
 	
 		
 		super(app, x, y, loc, destroyedLoc);
-		SCALE = 0.3;
+		SCALE = .5;
 		this.height = 100;
 		this.width = 100;
 		hitbox = new GRectangle(x, y, width, height);
@@ -87,6 +87,11 @@ public class Turret extends Structure implements ActionListener{
 //			System.out.println("Theta = " + rounded);
 			Missile missile = new Missile("Sprites/friendlyPlaceholder.png", true, this.x, this.y, app, x, y); //TODO fix user firing
 			m.add(missile);
+//			if(ammo == 0){
+//				this.sprite=SpriteStore.get().getSprite(EMPTYLOC);
+//				this.sprite.scale(SCALE, SCALE);
+//				sprite.draw(game,(int) x,(int) y);
+//			}
 		}
 		
 	}

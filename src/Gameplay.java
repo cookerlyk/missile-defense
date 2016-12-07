@@ -13,8 +13,8 @@ public class Gameplay {
 	
 	private static final String BUILDING_SPRITE = "Sprites/SpaceColony.png";
 	private static final String BUILDING_SPRITE_DESTROYED = "Sprites/SpaceColonyDestroyed.png";
-	private static final String TURRET_SPRITE = "Sprites/turret_Placeholder.png";
-	private static final String TURRET_SPRITE_DESTROYED = "Sprites/turretDestroyed_Placeholder.png";
+	private static final String TURRET_SPRITE = "Sprites/MissileSilo.png";
+	private static final String TURRET_SPRITE_DESTROYED = "Sprites/MissileSiloDestroyed.png";
 	
 	
 	private final int SCORE_INCREASE = 10;
