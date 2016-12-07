@@ -7,8 +7,11 @@ import acm.graphics.GOval;
 import acm.graphics.GRect;
 
 public class MenuPane extends GraphicsPane {
-	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	
+	public static final int WINDOW_WIDTH = 1024;
+	public static final int BUTTON_WIDTH = 150;
+	public static final int BUTTON_HEIGHT = 75;
+	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GButton playGame;
 	private GButton tutorial;
 	private GButton highScore;
@@ -18,12 +21,10 @@ public class MenuPane extends GraphicsPane {
 	
 	public MenuPane(MainApplication app) {
 		program = app;
-		
-		playGame = new GButton("Play", 384, 75, 200, 100);
-		tutorial = new GButton ("Tutorial", 384, 200, 200, 100);
-		highScore = new GButton("High Score", 384, 325, 200, 100);
-		exit = new GButton("Exit", 384, 450, 200, 100);
-		
+		playGame = new GButton("Play", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 75, BUTTON_WIDTH, BUTTON_HEIGHT);
+		tutorial = new GButton ("Instructions", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 200, BUTTON_WIDTH, BUTTON_HEIGHT);
+		highScore = new GButton("High Score", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 325, BUTTON_WIDTH, BUTTON_HEIGHT);
+		exit = new GButton("Exit", WINDOW_WIDTH/2 - BUTTON_HEIGHT, 450, BUTTON_WIDTH, BUTTON_HEIGHT);
 		playGame.setFillColor(Color.RED);
 		tutorial.setFillColor(Color.RED);
 		highScore.setFillColor(Color.RED);
