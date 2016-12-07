@@ -15,11 +15,12 @@ public class HighScorePane extends GraphicsPane{
 		
 	public HighScorePane(MainApplication app) {
 		this.program = app;
-		this.background = new GImage("Screens/High_Score_Placeholder.png", 0, 0);
+		this.background = new GImage("Screens/HighScore.png", 0, 0);
 		this.backing = new GRect(375, 100, 300, 500);
 		this.backing.setFillColor(Color.WHITE);
 		this.backing.setFilled(true);
-		this.backButton = new GButton("Back", 100, 100, 100, 50);
+		this.backButton = new GButton("Back", 100, 25, 100, 50);
+		backButton.setFillColor(Color.RED);
 		this.scoreTable = new HighScores();
 		this.scores = new GLabel[scoreTable.getNum()];
 		for (int i = 0; i < this.scoreTable.getNum(); i++) {
