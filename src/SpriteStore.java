@@ -1,7 +1,5 @@
 import java.util.HashMap;
 
-import javax.imageio.ImageIO;
-
 import acm.graphics.GImage;
 
 

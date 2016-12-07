@@ -64,24 +64,15 @@ public class Gameplay {
 	 * generates the buildings at start
 	 */
 	public void generateBuildings(MainApplication app){
-		// y was 700
 		for (int i = 0; i < TOTAL_BUILDINGS; i++) {
 			this.buildings[i] = new Building(app, 290 + i*125, 550, BUILDING_SPRITE, BUILDING_SPRITE_DESTROYED);
 		}
-/*
-		this.buildings[0] = new Building(app, 300, 550, "Sprites/house_placeholder.jpg");
-		this.buildings[1] = new Building(app, 450, 550, "Sprites/house_placeholder.jpg");
-		this.buildings[2] = new Building(app, 550, 550, "Sprites/house_placeholder.jpg");
-		this.buildings[3] = new Building(app, 700, 550, "Sprites/house_placeholder.jpg");
-*/
 	}
 
 	/*
 	 * generates the turrets at start
 	 */
 	public void generateTurrets(MainApplication app){
-		// turret 0,3 550
-		// turret 1,2 680
 		this.turrets[0] = new Turret(app,15,450,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
 		this.turrets[1] = new Turret(app,150,500,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
 		this.turrets[2] = new Turret(app,800,500,TURRET_SPRITE, TURRET_SPRITE_DESTROYED);
@@ -105,9 +96,6 @@ public class Gameplay {
 	 * hit box
 	 */
 	public void checkForHits(){
-		
-		// TODO try to remove a for loop or 2?
-		
 		for(Missile missile : this.missiles){
 			if(missile != null && !missile.isDestroyed()){
 				// Check buildings
@@ -172,7 +160,7 @@ public class Gameplay {
 	 * resets all of the turret's status to true when called 
 	 * eg. destroyed to not destroyed.
 	 * 
-	 * Called when the round is over
+	 * Called when each round is over
 	 */
 	public void resetTurrets(){
 		for(Turret turret : this.turrets){
@@ -191,6 +179,9 @@ public class Gameplay {
 		}
 	}
 	
+	/*
+	 * Returns Array list of friendly missiles
+	 */
 	public List<Missile> getFriendlyMissilesOnStage(){
 		return this.friendlyMissiles;
 	}
@@ -228,6 +219,10 @@ public class Gameplay {
 		return false;
 	}
 	
+	/*
+	 * Removes all the missiles from the screen and sets them to null
+	 * intended for use at the start of a new round
+	 */
 	public void removeAllMissiles(){
 		for (Missile missile : this.missiles){
 			if(!missile.isDestroyed() && missile != null){
