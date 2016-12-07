@@ -11,8 +11,8 @@ import java.util.*;
 
 public class Gameplay {
 	
-	private static final String BUILDING_SPRITE = "Sprites/house_placeholder.jpg";
-	private static final String BUILDING_SPRITE_DESTROYED = "Sprites/houseDestroyed_placeholder.jpg";
+	private static final String BUILDING_SPRITE = "Sprites/SpaceColony.png";
+	private static final String BUILDING_SPRITE_DESTROYED = "Sprites/SpaceColonyDestroyed.png";
 	private static final String TURRET_SPRITE = "Sprites/turret_Placeholder.png";
 	private static final String TURRET_SPRITE_DESTROYED = "Sprites/turretDestroyed_Placeholder.png";
 	
@@ -65,7 +65,7 @@ public class Gameplay {
 	 */
 	public void generateBuildings(MainApplication app){
 		for (int i = 0; i < TOTAL_BUILDINGS; i++) {
-			this.buildings[i] = new Building(app, 290 + i*125, 550, BUILDING_SPRITE, BUILDING_SPRITE_DESTROYED);
+			this.buildings[i] = new Building(app, 290 + i*125, 537, BUILDING_SPRITE, BUILDING_SPRITE_DESTROYED);
 		}
 	}
 
