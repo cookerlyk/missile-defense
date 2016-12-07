@@ -218,7 +218,7 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		//Draws the turrets to the stage screen
 		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
 			if(turret != null){
-				turret.sprite.scale(0.3, 0.3); // TODO remove hard coded value
+				turret.sprite.scale(.5, .5); // TODO remove hard coded value
 				turret.draw(program);
 			}
 		}
