@@ -4,7 +4,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 
-public class TutorialPane extends GraphicsPane{
+public class InstructionsPane extends GraphicsPane{
 	
 	private static int numPages = 3;//change this to increase the number of pages
 	
@@ -19,7 +19,7 @@ public class TutorialPane extends GraphicsPane{
 	
 	private int currentPage;
 	
-	public TutorialPane(MainApplication app) {
+	public InstructionsPane(MainApplication app) {
 		this.program = app;
 		backButton = new GButton("Back", 100, 100, 100, 50);
 		
