@@ -13,8 +13,8 @@ public class Explosion implements ActionListener {
 	private final String path = "FX/kaboom.png";
 	private GImage kaboom;
 	private Timer t;
-	private int counter, speed, x, y;
-	private static final int MAX_COUNT = 3;
+//	private int counter, speed, x, y;
+//	private static final int MAX_COUNT = 3;
 	private MainApplication program;
 	
 	public Explosion(int speed, int x, int y, MainApplication app) {
@@ -22,7 +22,7 @@ public class Explosion implements ActionListener {
 		kaboom = new GImage(path, x, y);
 		kaboom.setLocation(x-kaboom.getWidth()/2, y-kaboom.getHeight()/2);
 		program = app;
-		counter = 0;
+//		counter = 0;
 		this.t.setInitialDelay(800);
 		this.t.setDelay(800);
 	}
