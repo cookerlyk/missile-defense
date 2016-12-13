@@ -13,6 +13,7 @@ public class GamePane extends GraphicsPane implements ActionListener{
 	
 	private final int PROGRAM_WIDTH = 1024; //Resolution is 1024x625 max on screen
 	private final int PROGRAM_HEIGHT = 625;
+	private final double STRUCTURE_SCALE = 0.4;
 	private final String GAMEOVER = "Game Over";
 	private final String PROMPT_LABEL = "(Press Enter to Continue)";
 	private final String PAUSE = "Press Spacebar to Resume";
@@ -219,14 +220,14 @@ public class GamePane extends GraphicsPane implements ActionListener{
 		// Draws the buildings to the stage screen
 		for(Structure building : lvl.getGameObject().getBuildingsOnStage()){
 			if(building != null){
-				building.sprite.scale(0.4, 0.4); // TODO remove hard coded value
+				building.sprite.scale(this.STRUCTURE_SCALE, this.STRUCTURE_SCALE);
 				building.draw(program);
 			}
 		}
 		//Draws the turrets to the stage screen
 		for(Turret turret : lvl.getGameObject().getTurretsOnStage()){
 			if(turret != null){
-				turret.sprite.scale(0.4, 0.4); // TODO remove hard coded value
+				turret.sprite.scale(this.STRUCTURE_SCALE, this.STRUCTURE_SCALE);
 				turret.draw(program);
 			}
 		}
@@ -296,7 +297,6 @@ public class GamePane extends GraphicsPane implements ActionListener{
 			    this.score.setColor(Color.white);
 				this.score.setFont(LABEL_FONT);
 				
-				// TODO less hard coding?
 				this.ammoQ = new GLabel(String.valueOf(lvl.getTurrets()[0].getMissileCount()), 15, 550);
 				this.ammoW = new GLabel(String.valueOf(lvl.getTurrets()[1].getMissileCount()), 150, 600);
 				this.ammoE = new GLabel(String.valueOf(lvl.getTurrets()[2].getMissileCount()), 870, 600);
